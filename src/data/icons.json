@@ -1,0 +1,6232 @@
+[
+  {
+    "id": "abs-member",
+    "provider": "azure",
+    "icon_name": "Abs Member",
+    "description": "Azure service for Abs Member",
+    "tags": ["identity", "security"],
+    "svg_path": "/icons/azure/abs-member.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "active-directory-connect-health",
+    "provider": "azure",
+    "icon_name": "Active Directory Connect Health",
+    "description": "Azure service for Active Directory Connect Health",
+    "tags": ["identity", "monitoring", "security"],
+    "svg_path": "/icons/azure/active-directory-connect-health.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "activity-log",
+    "provider": "azure",
+    "icon_name": "Activity Log",
+    "description": "Azure service for Activity Log",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/activity-log.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "administrative-units",
+    "provider": "azure",
+    "icon_name": "Administrative Units",
+    "description": "Azure service for Administrative Units",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/administrative-units.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "advisor",
+    "provider": "azure",
+    "icon_name": "Advisor",
+    "description": "Azure service for Advisor",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/advisor.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ai-at-edge",
+    "provider": "azure",
+    "icon_name": "Ai At Edge",
+    "description": "Azure service for Ai At Edge",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/ai-at-edge.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ai-studio",
+    "provider": "azure",
+    "icon_name": "Ai Studio",
+    "description": "Azure service for Ai Studio",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/ai-studio.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "aks-automatic",
+    "provider": "azure",
+    "icon_name": "Aks Automatic",
+    "description": "Azure service for Aks Automatic",
+    "tags": [
+      "compute",
+      "container"
+    ],
+    "svg_path": "/icons/azure/aks-automatic.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "aks-istio",
+    "provider": "azure",
+    "icon_name": "Aks Istio",
+    "description": "Azure service for Aks Istio",
+    "tags": [
+      "compute",
+      "container"
+    ],
+    "svg_path": "/icons/azure/aks-istio.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "alerts",
+    "provider": "azure",
+    "icon_name": "Alerts",
+    "description": "Azure service for Alerts",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/alerts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "all-resources",
+    "provider": "azure",
+    "icon_name": "All Resources",
+    "description": "Azure service for All Resources",
+    "tags": [],
+    "svg_path": "/icons/azure/all-resources.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "analysis-services",
+    "provider": "azure",
+    "icon_name": "Analysis Services",
+    "description": "Azure service for Analysis Services",
+    "tags": ["analytics", "data", "business-intelligence"],
+    "svg_path": "/icons/azure/analysis-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "anomaly-detector",
+    "provider": "azure",
+    "icon_name": "Anomaly Detector",
+    "description": "Azure service for Anomaly Detector",
+    "tags": ["ai", "machine-learning", "analytics"],
+    "svg_path": "/icons/azure/anomaly-detector.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "api-center",
+    "provider": "azure",
+    "icon_name": "Api Center",
+    "description": "Azure service for Api Center",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/api-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "api-connections",
+    "provider": "azure",
+    "icon_name": "Api Connections",
+    "description": "Azure service for Api Connections",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/api-connections.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "api-management-services",
+    "provider": "azure",
+    "icon_name": "Api Management Services",
+    "description": "Azure service for Api Management Services",
+    "tags": [
+      "integration",
+      "management"
+    ],
+    "svg_path": "/icons/azure/api-management-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "api-proxy",
+    "provider": "azure",
+    "icon_name": "Api Proxy",
+    "description": "Azure service for Api Proxy",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/api-proxy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-compliance-automation",
+    "provider": "azure",
+    "icon_name": "App Compliance Automation",
+    "description": "Azure service for App Compliance Automation",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-compliance-automation.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-configuration",
+    "provider": "azure",
+    "icon_name": "App Configuration",
+    "description": "Azure service for App Configuration",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-configuration.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-registrations",
+    "provider": "azure",
+    "icon_name": "App Registrations",
+    "description": "Azure service for App Registrations",
+    "tags": [
+      "web",
+      "identity",
+      "security",
+      "authentication"
+    ],
+    "svg_path": "/icons/azure/app-registrations.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-service-certificates",
+    "provider": "azure",
+    "icon_name": "App Service Certificates",
+    "description": "Azure service for App Service Certificates",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-service-certificates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-service-domains",
+    "provider": "azure",
+    "icon_name": "App Service Domains",
+    "description": "Azure service for App Service Domains",
+    "tags": [
+      "web",
+      "networking",
+      "dns"
+    ],
+    "svg_path": "/icons/azure/app-service-domains.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-service-environments",
+    "provider": "azure",
+    "icon_name": "App Service Environments",
+    "description": "Azure service for App Service Environments",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-service-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-service-plans",
+    "provider": "azure",
+    "icon_name": "App Service Plans",
+    "description": "Azure service for App Service Plans",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-service-plans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-services",
+    "provider": "azure",
+    "icon_name": "App Services",
+    "description": "Azure service for App Services",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-space-component",
+    "provider": "azure",
+    "icon_name": "App Space Component",
+    "description": "Azure service for App Space Component",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-space-component.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "app-space",
+    "provider": "azure",
+    "icon_name": "App Space",
+    "description": "Azure service for App Space",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/app-space.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "applens",
+    "provider": "azure",
+    "icon_name": "Applens",
+    "description": "Azure service for Applens",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/applens.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "application-gateway-containers",
+    "provider": "azure",
+    "icon_name": "Application Gateway Containers",
+    "description": "Azure service for Application Gateway Containers",
+    "tags": [
+      "ai",
+      "container",
+      "networking",
+      "web"
+    ],
+    "svg_path": "/icons/azure/application-gateway-containers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "application-gateways",
+    "provider": "azure",
+    "icon_name": "Application Gateways",
+    "description": "Azure service for Application Gateways",
+    "tags": [
+      "networking",
+      "web"
+    ],
+    "svg_path": "/icons/azure/application-gateways.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "application-group",
+    "provider": "azure",
+    "icon_name": "Application Group",
+    "description": "Azure service for Application Group",
+    "tags": [
+      "management",
+      "web"
+    ],
+    "svg_path": "/icons/azure/application-group.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "application-insights",
+    "provider": "azure",
+    "icon_name": "Application Insights",
+    "description": "Azure service for Application Insights",
+    "tags": [
+      "monitoring",
+      "web"
+    ],
+    "svg_path": "/icons/azure/application-insights.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "application-security-groups",
+    "provider": "azure",
+    "icon_name": "Application Security Groups",
+    "description": "Azure service for Application Security Groups",
+    "tags": [
+      "management",
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/application-security-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "aquila",
+    "provider": "azure",
+    "icon_name": "Aquila",
+    "description": "Azure service for Aquila",
+    "tags": ["ai", "machine-learning", "analytics"],
+    "svg_path": "/icons/azure/aquila.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-data-services",
+    "provider": "azure",
+    "icon_name": "Arc Data Services",
+    "description": "Azure service for Arc Data Services",
+    "tags": ["data", "hybrid", "management", "database"],
+    "svg_path": "/icons/azure/arc-data-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-kubernetes",
+    "provider": "azure",
+    "icon_name": "Arc Kubernetes",
+    "description": "Azure service for Arc Kubernetes",
+    "tags": [
+      "container",
+      "kubernetes",
+      "hybrid",
+      "management",
+      "orchestration"
+    ],
+    "svg_path": "/icons/azure/arc-kubernetes.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-machines",
+    "provider": "azure",
+    "icon_name": "Arc Machines",
+    "description": "Azure service for Arc Machines",
+    "tags": [
+      "compute",
+      "hybrid",
+      "management",
+      "virtual-machine"
+    ],
+    "svg_path": "/icons/azure/arc-machines.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-postgresql ",
+    "provider": "azure",
+    "icon_name": "Arc Postgresql ",
+    "description": "Azure service for Arc Postgresql ",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/arc-postgresql .svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-sql-managed-instance",
+    "provider": "azure",
+    "icon_name": "Arc Sql Managed Instance",
+    "description": "Azure service for Arc Sql Managed Instance",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/arc-sql-managed-instance.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "arc-sql-server",
+    "provider": "azure",
+    "icon_name": "Arc Sql Server",
+    "description": "Azure service for Arc Sql Server",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/arc-sql-server.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "atm-multistack",
+    "provider": "azure",
+    "icon_name": "Atm Multistack",
+    "description": "Azure service for Atm Multistack",
+    "tags": ["networking", "management", "traffic-manager"],
+    "svg_path": "/icons/azure/atm-multistack.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "auto-scale",
+    "provider": "azure",
+    "icon_name": "Auto Scale",
+    "description": "Azure service for Auto Scale",
+    "tags": ["management", "compute", "scaling", "performance"],
+    "svg_path": "/icons/azure/auto-scale.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "automanaged-vm",
+    "provider": "azure",
+    "icon_name": "Automanaged Vm",
+    "description": "Azure service for Automanaged Vm",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/automanaged-vm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "automation-accounts",
+    "provider": "azure",
+    "icon_name": "Automation Accounts",
+    "description": "Azure service for Automation Accounts",
+    "tags": ["automation", "management", "devops", "scripting"],
+    "svg_path": "/icons/azure/automation-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "availability-sets",
+    "provider": "azure",
+    "icon_name": "Availability Sets",
+    "description": "Azure service for Availability Sets",
+    "tags": [
+      "compute",
+      "devops",
+      "high-availability",
+      "reliability"
+    ],
+    "svg_path": "/icons/azure/availability-sets.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "avs-vm",
+    "provider": "azure",
+    "icon_name": "Avs Vm",
+    "description": "Azure service for Avs Vm",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/avs-vm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-a",
+    "provider": "azure",
+    "icon_name": "Azure A",
+    "description": "Azure service for Azure A",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-a.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-ad-b2c",
+    "provider": "azure",
+    "icon_name": "Azure Ad B2C",
+    "description": "Azure service for Azure Ad B2C",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/azure-ad-b2c.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-api-for-fhir",
+    "provider": "azure",
+    "icon_name": "Azure Api For Fhir",
+    "description": "Azure service for Azure Api For Fhir",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/azure-api-for-fhir.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-applied-ai-services",
+    "provider": "azure",
+    "icon_name": "Azure Applied Ai Services",
+    "description": "Azure service for Azure Applied Ai Services",
+    "tags": [
+      "ai",
+      "web"
+    ],
+    "svg_path": "/icons/azure/azure-applied-ai-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-arc",
+    "provider": "azure",
+    "icon_name": "Azure Arc",
+    "description": "Azure service for Azure Arc",
+    "tags": ["hybrid", "management", "kubernetes", "infrastructure"],
+    "svg_path": "/icons/azure/azure-arc.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-backup-center",
+    "provider": "azure",
+    "icon_name": "Azure Backup Center",
+    "description": "Azure service for Azure Backup Center",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/azure-backup-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-blockchain-service",
+    "provider": "azure",
+    "icon_name": "Azure Blockchain Service",
+    "description": "Azure service for Azure Blockchain Service",
+    "tags": [
+      "blockchain",
+      "web3",
+      "distributed-ledger"
+    ],
+    "svg_path": "/icons/azure/azure-blockchain-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-center-for-sap",
+    "provider": "azure",
+    "icon_name": "Azure Center For Sap",
+    "description": "Azure service for Azure Center For Sap",
+    "tags": ["enterprise", "sap", "management", "integration"],
+    "svg_path": "/icons/azure/azure-center-for-sap.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-chaos-studio",
+    "provider": "azure",
+    "icon_name": "Azure Chaos Studio",
+    "description": "Azure service for Azure Chaos Studio",
+    "tags": ["testing", "reliability", "devops", "resilience"],
+    "svg_path": "/icons/azure/azure-chaos-studio.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-cloud-shell",
+    "provider": "azure",
+    "icon_name": "Azure Cloud Shell",
+    "description": "Azure service for Azure Cloud Shell",
+    "tags": ["devops", "cli", "terminal", "management"],
+    "svg_path": "/icons/azure/azure-cloud-shell.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-communication-services",
+    "provider": "azure",
+    "icon_name": "Azure Communication Services",
+    "description": "Azure service for Azure Communication Services",
+    "tags": ["communication", "messaging", "chat", "voice"],
+    "svg_path": "/icons/azure/azure-communication-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-communications-gateway",
+    "provider": "azure",
+    "icon_name": "Azure Communications Gateway",
+    "description": "Azure service for Azure Communications Gateway",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/azure-communications-gateway.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-compute-galleries",
+    "provider": "azure",
+    "icon_name": "Azure Compute Galleries",
+    "description": "Azure service for Azure Compute Galleries",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/azure-compute-galleries.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-consumption-commitment",
+    "provider": "azure",
+    "icon_name": "Azure Consumption Commitment",
+    "description": "Azure service for Azure Consumption Commitment",
+    "tags": ["billing", "cost-management", "enterprise"],
+    "svg_path": "/icons/azure/azure-consumption-commitment.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-cosmos-db",
+    "provider": "azure",
+    "icon_name": "Azure Cosmos Db",
+    "description": "Azure service for Azure Cosmos Db",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-cosmos-db.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-data-catalog",
+    "provider": "azure",
+    "icon_name": "Azure Data Catalog",
+    "description": "Azure service for Azure Data Catalog",
+    "tags": [
+      "data",
+      "analytics",
+      "metadata",
+      "discovery"
+    ],
+    "svg_path": "/icons/azure/azure-data-catalog.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-data-explorer-clusters",
+    "provider": "azure",
+    "icon_name": "Azure Data Explorer Clusters",
+    "description": "Azure service for Azure Data Explorer Clusters",
+    "tags": ["analytics", "big-data", "data", "query"],
+    "svg_path": "/icons/azure/azure-data-explorer-clusters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-database-mariadb-server",
+    "provider": "azure",
+    "icon_name": "Azure Database Mariadb Server",
+    "description": "Azure service for Azure Database Mariadb Server",
+    "tags": [
+      "database",
+      "mariadb",
+      "sql",
+      "relational"
+    ],
+    "svg_path": "/icons/azure/azure-database-mariadb-server.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-database-migration-services",
+    "provider": "azure",
+    "icon_name": "Azure Database Migration Services",
+    "description": "Azure service for Azure Database Migration Services",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-database-migration-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-database-mysql-server",
+    "provider": "azure",
+    "icon_name": "Azure Database Mysql Server",
+    "description": "Azure service for Azure Database Mysql Server",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-database-mysql-server.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-database-postgresql-server-group",
+    "provider": "azure",
+    "icon_name": "Azure Database Postgresql Server Group",
+    "description": "Azure service for Azure Database Postgresql Server Group",
+    "tags": [
+      "database",
+      "management"
+    ],
+    "svg_path": "/icons/azure/azure-database-postgresql-server-group.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-database-postgresql-server",
+    "provider": "azure",
+    "icon_name": "Azure Database Postgresql Server",
+    "description": "Azure service for Azure Database Postgresql Server",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-database-postgresql-server.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-databox-gateway",
+    "provider": "azure",
+    "icon_name": "Azure Databox Gateway",
+    "description": "Azure service for Azure Databox Gateway",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/azure-databox-gateway.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-databricks",
+    "provider": "azure",
+    "icon_name": "Azure Databricks",
+    "description": "Azure service for Azure Databricks",
+    "tags": ["analytics", "big-data", "spark", "machine-learning"],
+    "svg_path": "/icons/azure/azure-databricks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-deployment-environments",
+    "provider": "azure",
+    "icon_name": "Azure Deployment Environments",
+    "description": "Azure service for Azure Deployment Environments",
+    "tags": ["devops", "deployment", "infrastructure", "testing"],
+    "svg_path": "/icons/azure/azure-deployment-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-dev-tunnels",
+    "provider": "azure",
+    "icon_name": "Azure Dev Tunnels",
+    "description": "Azure service for Azure Dev Tunnels",
+    "tags": ["networking", "development", "security", "remote"],
+    "svg_path": "/icons/azure/azure-dev-tunnels.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-devops",
+    "provider": "azure",
+    "icon_name": "Azure Devops",
+    "description": "Azure service for Azure Devops",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/azure-devops.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-edge-hardware-center",
+    "provider": "azure",
+    "icon_name": "Azure Edge Hardware Center",
+    "description": "Azure service for Azure Edge Hardware Center",
+    "tags": ["iot", "edge", "hardware", "management"],
+    "svg_path": "/icons/azure/azure-edge-hardware-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-experimentation-studio",
+    "provider": "azure",
+    "icon_name": "Azure Experimentation Studio",
+    "description": "Azure service for Azure Experimentation Studio",
+    "tags": ["testing", "analytics", "experimentation", "ab-testing"],
+    "svg_path": "/icons/azure/azure-experimentation-studio.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-fileshares",
+    "provider": "azure",
+    "icon_name": "Azure Fileshares",
+    "description": "Azure service for Azure Fileshares",
+    "tags": ["storage", "file-storage", "networking", "sharing"],
+    "svg_path": "/icons/azure/azure-fileshares.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-firewall-manager",
+    "provider": "azure",
+    "icon_name": "Azure Firewall Manager",
+    "description": "Azure service for Azure Firewall Manager",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/azure-firewall-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-firewall-policy",
+    "provider": "azure",
+    "icon_name": "Azure Firewall Policy",
+    "description": "Azure service for Azure Firewall Policy",
+    "tags": [
+      "management",
+      "security"
+    ],
+    "svg_path": "/icons/azure/azure-firewall-policy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-hcp-cache",
+    "provider": "azure",
+    "icon_name": "Azure Hcp Cache",
+    "description": "Azure service for Azure Hcp Cache",
+    "tags": ["storage", "cache", "performance", "networking"],
+    "svg_path": "/icons/azure/azure-hcp-cache.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-hpc-workbenches",
+    "provider": "azure",
+    "icon_name": "Azure Hpc Workbenches",
+    "description": "Azure service for Azure Hpc Workbenches",
+    "tags": ["compute", "high-performance-computing", "scientific", "research"],
+    "svg_path": "/icons/azure/azure-hpc-workbenches.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-hybrid-center",
+    "provider": "azure",
+    "icon_name": "Azure Hybrid Center",
+    "description": "Azure service for Azure Hybrid Center",
+    "tags": ["hybrid", "management", "infrastructure", "cloud"],
+    "svg_path": "/icons/azure/azure-hybrid-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-information-protection",
+    "provider": "azure",
+    "icon_name": "Azure Information Protection",
+    "description": "Azure service for Azure Information Protection",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/azure-information-protection.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-iot-operations",
+    "provider": "azure",
+    "icon_name": "Azure Iot Operations",
+    "description": "Azure service for Azure Iot Operations",
+    "tags": ["iot", "management", "operations", "edge"],
+    "svg_path": "/icons/azure/azure-iot-operations.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-lighthouse",
+    "provider": "azure",
+    "icon_name": "Azure Lighthouse",
+    "description": "Azure service for Azure Lighthouse",
+    "tags": ["management", "governance", "service-provider", "delegation"],
+    "svg_path": "/icons/azure/azure-lighthouse.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-load-testing",
+    "provider": "azure",
+    "icon_name": "Azure Load Testing",
+    "description": "Azure service for Azure Load Testing",
+    "tags": [
+      "testing",
+      "performance",
+      "devops",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/azure-load-testing.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-managed-grafana",
+    "provider": "azure",
+    "icon_name": "Azure Managed Grafana",
+    "description": "Azure service for Azure Managed Grafana",
+    "tags": ["monitoring", "visualization", "analytics", "dashboards"],
+    "svg_path": "/icons/azure/azure-managed-grafana.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-managed-redis",
+    "provider": "azure",
+    "icon_name": "Azure Managed Redis",
+    "description": "Azure service for Azure Managed Redis",
+    "tags": ["cache", "database", "redis", "performance"],
+    "svg_path": "/icons/azure/azure-managed-redis.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-maps-accounts",
+    "provider": "azure",
+    "icon_name": "Azure Maps Accounts",
+    "description": "Azure service for Azure Maps Accounts",
+    "tags": ["maps", "location", "geospatial", "navigation"],
+    "svg_path": "/icons/azure/azure-maps-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-media-service",
+    "provider": "azure",
+    "icon_name": "Azure Media Service",
+    "description": "Azure service for Azure Media Service",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/azure-media-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-migrate",
+    "provider": "azure",
+    "icon_name": "Azure Migrate",
+    "description": "Azure service for Azure Migrate",
+    "tags": ["migration", "assessment", "cloud", "infrastructure"],
+    "svg_path": "/icons/azure/azure-migrate.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-monitor-dashboard",
+    "provider": "azure",
+    "icon_name": "Azure Monitor Dashboard",
+    "description": "Azure service for Azure Monitor Dashboard",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/azure-monitor-dashboard.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-monitor-pipeline",
+    "provider": "azure",
+    "icon_name": "Azure Monitor Pipeline",
+    "description": "Azure service for Azure Monitor Pipeline",
+    "tags": [
+      "devops",
+      "monitoring",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/azure-monitor-pipeline.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-monitors-for-sap-solutions",
+    "provider": "azure",
+    "icon_name": "Azure Monitors For Sap Solutions",
+    "description": "Azure service for Azure Monitors For Sap Solutions",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/azure-monitors-for-sap-solutions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-netapp-files",
+    "provider": "azure",
+    "icon_name": "Azure Netapp Files",
+    "description": "Azure service for Azure Netapp Files",
+    "tags": [
+      "storage",
+      "file-storage",
+      "enterprise",
+      "performance"
+    ],
+    "svg_path": "/icons/azure/azure-netapp-files.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-network-function-manager-functions",
+    "provider": "azure",
+    "icon_name": "Azure Network Function Manager Functions",
+    "description": "Azure service for Azure Network Function Manager Functions",
+    "tags": [
+      "integration",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/azure-network-function-manager-functions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-network-function-manager",
+    "provider": "azure",
+    "icon_name": "Azure Network Function Manager",
+    "description": "Azure service for Azure Network Function Manager",
+    "tags": [
+      "integration",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/azure-network-function-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-object-understanding",
+    "provider": "azure",
+    "icon_name": "Azure Object Understanding",
+    "description": "Azure service for Azure Object Understanding",
+    "tags": ["ai", "computer-vision", "machine-learning", "cognitive-services"],
+    "svg_path": "/icons/azure/azure-object-understanding.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-openai",
+    "provider": "azure",
+    "icon_name": "Azure Openai",
+    "description": "Azure service for Azure Openai",
+    "tags": [
+      "ai",
+      "machine-learning",
+      "natural-language-processing",
+      "cognitive-services"
+    ],
+    "svg_path": "/icons/azure/azure-openai.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-operator-5g-core",
+    "provider": "azure",
+    "icon_name": "Azure Operator 5G Core",
+    "description": "Azure service for Azure Operator 5G Core",
+    "tags": ["networking", "telecommunications", "5g", "operator"],
+    "svg_path": "/icons/azure/azure-operator-5g-core.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-operator-insights",
+    "provider": "azure",
+    "icon_name": "Azure Operator Insights",
+    "description": "Azure service for Azure Operator Insights",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/azure-operator-insights.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-operator-nexus",
+    "provider": "azure",
+    "icon_name": "Azure Operator Nexus",
+    "description": "Azure service for Azure Operator Nexus",
+    "tags": ["networking", "telecommunications", "operator", "management"],
+    "svg_path": "/icons/azure/azure-operator-nexus.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-operator-service-manager",
+    "provider": "azure",
+    "icon_name": "Azure Operator Service Manager",
+    "description": "Azure service for Azure Operator Service Manager",
+    "tags": ["management", "telecommunications", "operator", "service-management"],
+    "svg_path": "/icons/azure/azure-operator-service-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-orbital",
+    "provider": "azure",
+    "icon_name": "Azure Orbital",
+    "description": "Azure service for Azure Orbital",
+    "tags": ["satellite", "space", "ground-station", "communications"],
+    "svg_path": "/icons/azure/azure-orbital.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-programmable-connectivity",
+    "provider": "azure",
+    "icon_name": "Azure Programmable Connectivity",
+    "description": "Azure service for Azure Programmable Connectivity",
+    "tags": ["networking", "connectivity", "telecommunications", "api"],
+    "svg_path": "/icons/azure/azure-programmable-connectivity.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-purview-accounts",
+    "provider": "azure",
+    "icon_name": "Azure Purview Accounts",
+    "description": "Azure service for Azure Purview Accounts",
+    "tags": ["data-governance", "compliance", "security", "management"],
+    "svg_path": "/icons/azure/azure-purview-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-quotas",
+    "provider": "azure",
+    "icon_name": "Azure Quotas",
+    "description": "Azure service for Azure Quotas",
+    "tags": ["management", "resource-management", "limits", "billing"],
+    "svg_path": "/icons/azure/azure-quotas.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-red-hat-openshift",
+    "provider": "azure",
+    "icon_name": "Azure Red Hat Openshift",
+    "description": "Azure service for Azure Red Hat Openshift",
+    "tags": ["container", "kubernetes", "openshift", "devops"],
+    "svg_path": "/icons/azure/azure-red-hat-openshift.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sentinel",
+    "provider": "azure",
+    "icon_name": "Azure Sentinel",
+    "description": "Azure service for Azure Sentinel",
+    "tags": ["security", "siem", "monitoring", "threat-detection"],
+    "svg_path": "/icons/azure/azure-sentinel.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-service-bus",
+    "provider": "azure",
+    "icon_name": "Azure Service Bus",
+    "description": "Azure service for Azure Service Bus",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/azure-service-bus.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sphere",
+    "provider": "azure",
+    "icon_name": "Azure Sphere",
+    "description": "Azure service for Azure Sphere",
+    "tags": ["iot", "security", "embedded", "hardware"],
+    "svg_path": "/icons/azure/azure-sphere.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-spring-apps",
+    "provider": "azure",
+    "icon_name": "Azure Spring Apps",
+    "description": "Azure service for Azure Spring Apps",
+    "tags": [
+      "web",
+      "java",
+      "spring",
+      "microservices"
+    ],
+    "svg_path": "/icons/azure/azure-spring-apps.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sql-edge",
+    "provider": "azure",
+    "icon_name": "Azure Sql Edge",
+    "description": "Azure service for Azure Sql Edge",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-sql-edge.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sql-server-stretch-databases",
+    "provider": "azure",
+    "icon_name": "Azure Sql Server Stretch Databases",
+    "description": "Azure service for Azure Sql Server Stretch Databases",
+    "tags": [
+      "database",
+      "sql",
+      "hybrid",
+      "storage"
+    ],
+    "svg_path": "/icons/azure/azure-sql-server-stretch-databases.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sql-vm",
+    "provider": "azure",
+    "icon_name": "Azure Sql Vm",
+    "description": "Azure service for Azure Sql Vm",
+    "tags": [
+      "compute",
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-sql-vm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sql",
+    "provider": "azure",
+    "icon_name": "Azure Sql",
+    "description": "Azure service for Azure Sql",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/azure-sql.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-stack-edge",
+    "provider": "azure",
+    "icon_name": "Azure Stack Edge",
+    "description": "Azure service for Azure Stack Edge",
+    "tags": ["hybrid", "edge", "compute", "infrastructure"],
+    "svg_path": "/icons/azure/azure-stack-edge.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-stack-hci-sizer",
+    "provider": "azure",
+    "icon_name": "Azure Stack Hci Sizer",
+    "description": "Azure service for Azure Stack Hci Sizer",
+    "tags": ["hybrid", "infrastructure", "planning", "sizing"],
+    "svg_path": "/icons/azure/azure-stack-hci-sizer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-stack",
+    "provider": "azure",
+    "icon_name": "Azure Stack",
+    "description": "Azure service for Azure Stack",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-stack.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-storage-mover",
+    "provider": "azure",
+    "icon_name": "Azure Storage Mover",
+    "description": "Azure service for Azure Storage Mover",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/azure-storage-mover.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-support-center-blue",
+    "provider": "azure",
+    "icon_name": "Azure Support Center Blue",
+    "description": "Azure service for Azure Support Center Blue",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-support-center-blue.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-sustainability",
+    "provider": "azure",
+    "icon_name": "Azure Sustainability",
+    "description": "Azure service for Azure Sustainability",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/azure-sustainability.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-synapse-analytics",
+    "provider": "azure",
+    "icon_name": "Azure Synapse Analytics",
+    "description": "Azure service for Azure Synapse Analytics",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-synapse-analytics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-token-service",
+    "provider": "azure",
+    "icon_name": "Azure Token Service",
+    "description": "Azure service for Azure Token Service",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-token-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-video-indexer",
+    "provider": "azure",
+    "icon_name": "Azure Video Indexer",
+    "description": "Azure service for Azure Video Indexer",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/azure-video-indexer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-virtual-desktop",
+    "provider": "azure",
+    "icon_name": "Azure Virtual Desktop",
+    "description": "Azure service for Azure Virtual Desktop",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-virtual-desktop.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-vmware-solution",
+    "provider": "azure",
+    "icon_name": "Azure Vmware Solution",
+    "description": "Azure service for Azure Vmware Solution",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/azure-vmware-solution.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azure-workbooks",
+    "provider": "azure",
+    "icon_name": "Azure Workbooks",
+    "description": "Azure service for Azure Workbooks",
+    "tags": [],
+    "svg_path": "/icons/azure/azure-workbooks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azureattestation",
+    "provider": "azure",
+    "icon_name": "Azureattestation",
+    "description": "Azure service for Azureattestation",
+    "tags": [],
+    "svg_path": "/icons/azure/azureattestation.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "azurite",
+    "provider": "azure",
+    "icon_name": "Azurite",
+    "description": "Azure service for Azurite",
+    "tags": [],
+    "svg_path": "/icons/azure/azurite.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "backlog",
+    "provider": "azure",
+    "icon_name": "Backlog",
+    "description": "Azure service for Backlog",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/backlog.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "backup-vault",
+    "provider": "azure",
+    "icon_name": "Backup Vault",
+    "description": "Azure service for Backup Vault",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/backup-vault.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "bare-metal-infrastructure",
+    "provider": "azure",
+    "icon_name": "Bare Metal Infrastructure",
+    "description": "Azure service for Bare Metal Infrastructure",
+    "tags": [],
+    "svg_path": "/icons/azure/bare-metal-infrastructure.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "bastions",
+    "provider": "azure",
+    "icon_name": "Bastions",
+    "description": "Azure service for Bastions",
+    "tags": [],
+    "svg_path": "/icons/azure/bastions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "batch-accounts",
+    "provider": "azure",
+    "icon_name": "Batch Accounts",
+    "description": "Azure service for Batch Accounts",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/batch-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "batch-ai",
+    "provider": "azure",
+    "icon_name": "Batch Ai",
+    "description": "Azure service for Batch Ai",
+    "tags": [
+      "ai",
+      "compute"
+    ],
+    "svg_path": "/icons/azure/batch-ai.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "biz-talk",
+    "provider": "azure",
+    "icon_name": "Biz Talk",
+    "description": "Azure service for Biz Talk",
+    "tags": [],
+    "svg_path": "/icons/azure/biz-talk.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "blob-block",
+    "provider": "azure",
+    "icon_name": "Blob Block",
+    "description": "Azure service for Blob Block",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/blob-block.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "blob-page",
+    "provider": "azure",
+    "icon_name": "Blob Page",
+    "description": "Azure service for Blob Page",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/blob-page.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "blockchain-applications",
+    "provider": "azure",
+    "icon_name": "Blockchain Applications",
+    "description": "Azure service for Blockchain Applications",
+    "tags": [
+      "ai",
+      "web"
+    ],
+    "svg_path": "/icons/azure/blockchain-applications.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "blueprints",
+    "provider": "azure",
+    "icon_name": "Blueprints",
+    "description": "Azure service for Blueprints",
+    "tags": [],
+    "svg_path": "/icons/azure/blueprints.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "bonsai",
+    "provider": "azure",
+    "icon_name": "Bonsai",
+    "description": "Azure service for Bonsai",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/bonsai.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "bot-services",
+    "provider": "azure",
+    "icon_name": "Bot Services",
+    "description": "Azure service for Bot Services",
+    "tags": [],
+    "svg_path": "/icons/azure/bot-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "branch",
+    "provider": "azure",
+    "icon_name": "Branch",
+    "description": "Azure service for Branch",
+    "tags": [],
+    "svg_path": "/icons/azure/branch.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "breeze",
+    "provider": "azure",
+    "icon_name": "Breeze",
+    "description": "Azure service for Breeze",
+    "tags": [],
+    "svg_path": "/icons/azure/breeze.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "browser",
+    "provider": "azure",
+    "icon_name": "Browser",
+    "description": "Azure service for Browser",
+    "tags": [],
+    "svg_path": "/icons/azure/browser.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "bug",
+    "provider": "azure",
+    "icon_name": "Bug",
+    "description": "Azure service for Bug",
+    "tags": [],
+    "svg_path": "/icons/azure/bug.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "builds",
+    "provider": "azure",
+    "icon_name": "Builds",
+    "description": "Azure service for Builds",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/builds.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "business-process-tracking",
+    "provider": "azure",
+    "icon_name": "Business Process Tracking",
+    "description": "Azure service for Business Process Tracking",
+    "tags": [],
+    "svg_path": "/icons/azure/business-process-tracking.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cache-redis",
+    "provider": "azure",
+    "icon_name": "Cache Redis",
+    "description": "Azure service for Cache Redis",
+    "tags": [],
+    "svg_path": "/icons/azure/cache-redis.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cache",
+    "provider": "azure",
+    "icon_name": "Cache",
+    "description": "Azure service for Cache",
+    "tags": [],
+    "svg_path": "/icons/azure/cache.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "capacity-reservation-groups",
+    "provider": "azure",
+    "icon_name": "Capacity Reservation Groups",
+    "description": "Azure service for Capacity Reservation Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/capacity-reservation-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "capacity",
+    "provider": "azure",
+    "icon_name": "Capacity",
+    "description": "Azure service for Capacity",
+    "tags": [],
+    "svg_path": "/icons/azure/capacity.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cdn-profiles",
+    "provider": "azure",
+    "icon_name": "Cdn Profiles",
+    "description": "Azure service for Cdn Profiles",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/cdn-profiles.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "central-service-instance-for-sap",
+    "provider": "azure",
+    "icon_name": "Central Service Instance For Sap",
+    "description": "Azure service for Central Service Instance For Sap",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/central-service-instance-for-sap.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ceres",
+    "provider": "azure",
+    "icon_name": "Ceres",
+    "description": "Azure service for Ceres",
+    "tags": [],
+    "svg_path": "/icons/azure/ceres.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "change-analysis",
+    "provider": "azure",
+    "icon_name": "Change Analysis",
+    "description": "Azure service for Change Analysis",
+    "tags": [],
+    "svg_path": "/icons/azure/change-analysis.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "client-apps",
+    "provider": "azure",
+    "icon_name": "Client Apps",
+    "description": "Azure service for Client Apps",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/client-apps.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cloud-services-(classic)",
+    "provider": "azure",
+    "icon_name": "Cloud Services (Classic)",
+    "description": "Azure service for Cloud Services (Classic)",
+    "tags": [],
+    "svg_path": "/icons/azure/cloud-services-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cloud-services-(extended-support)",
+    "provider": "azure",
+    "icon_name": "Cloud Services (Extended Support)",
+    "description": "Azure service for Cloud Services (Extended Support)",
+    "tags": [],
+    "svg_path": "/icons/azure/cloud-services-(extended-support).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cloudtest",
+    "provider": "azure",
+    "icon_name": "Cloudtest",
+    "description": "Azure service for Cloudtest",
+    "tags": [],
+    "svg_path": "/icons/azure/cloudtest.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "code-optimization",
+    "provider": "azure",
+    "icon_name": "Code Optimization",
+    "description": "Azure service for Code Optimization",
+    "tags": [],
+    "svg_path": "/icons/azure/code-optimization.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "code",
+    "provider": "azure",
+    "icon_name": "Code",
+    "description": "Azure service for Code",
+    "tags": [],
+    "svg_path": "/icons/azure/code.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cognitive-search copy",
+    "provider": "azure",
+    "icon_name": "Cognitive Search Copy",
+    "description": "Azure service for Cognitive Search Copy",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/cognitive-search copy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cognitive-search",
+    "provider": "azure",
+    "icon_name": "Cognitive Search",
+    "description": "Azure service for Cognitive Search",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/cognitive-search.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cognitive-services-decisions",
+    "provider": "azure",
+    "icon_name": "Cognitive Services Decisions",
+    "description": "Azure service for Cognitive Services Decisions",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/cognitive-services-decisions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cognitive-services",
+    "provider": "azure",
+    "icon_name": "Cognitive Services",
+    "description": "Azure service for Cognitive Services",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/cognitive-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "collaborative-service",
+    "provider": "azure",
+    "icon_name": "Collaborative Service",
+    "description": "Azure service for Collaborative Service",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/collaborative-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "commit",
+    "provider": "azure",
+    "icon_name": "Commit",
+    "description": "Azure service for Commit",
+    "tags": [],
+    "svg_path": "/icons/azure/commit.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "community-images",
+    "provider": "azure",
+    "icon_name": "Community Images",
+    "description": "Azure service for Community Images",
+    "tags": [],
+    "svg_path": "/icons/azure/community-images.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "compliance-center",
+    "provider": "azure",
+    "icon_name": "Compliance Center",
+    "description": "Azure service for Compliance Center",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/compliance-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "compliance",
+    "provider": "azure",
+    "icon_name": "Compliance",
+    "description": "Azure service for Compliance",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/compliance.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "compute-fleet",
+    "provider": "azure",
+    "icon_name": "Compute Fleet",
+    "description": "Azure service for Compute Fleet",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/compute-fleet.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "computer-vision",
+    "provider": "azure",
+    "icon_name": "Computer Vision",
+    "description": "Azure service for Computer Vision",
+    "tags": [
+      "ai",
+      "compute"
+    ],
+    "svg_path": "/icons/azure/computer-vision.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "conditional-access",
+    "provider": "azure",
+    "icon_name": "Conditional Access",
+    "description": "Azure service for Conditional Access",
+    "tags": [
+      "identity",
+      "security"
+    ],
+    "svg_path": "/icons/azure/conditional-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "confidential-ledgers",
+    "provider": "azure",
+    "icon_name": "Confidential Ledgers",
+    "description": "Azure service for Confidential Ledgers",
+    "tags": [],
+    "svg_path": "/icons/azure/confidential-ledgers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "connected-cache",
+    "provider": "azure",
+    "icon_name": "Connected Cache",
+    "description": "Azure service for Connected Cache",
+    "tags": [],
+    "svg_path": "/icons/azure/connected-cache.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "connected-vehicle-platform",
+    "provider": "azure",
+    "icon_name": "Connected Vehicle Platform",
+    "description": "Azure service for Connected Vehicle Platform",
+    "tags": [],
+    "svg_path": "/icons/azure/connected-vehicle-platform.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "connections",
+    "provider": "azure",
+    "icon_name": "Connections",
+    "description": "Azure service for Connections",
+    "tags": [],
+    "svg_path": "/icons/azure/connections.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "consortium",
+    "provider": "azure",
+    "icon_name": "Consortium",
+    "description": "Azure service for Consortium",
+    "tags": [],
+    "svg_path": "/icons/azure/consortium.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "container-apps-environments",
+    "provider": "azure",
+    "icon_name": "Container Apps Environments",
+    "description": "Azure service for Container Apps Environments",
+    "tags": [
+      "ai",
+      "container",
+      "web"
+    ],
+    "svg_path": "/icons/azure/container-apps-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "container-instances",
+    "provider": "azure",
+    "icon_name": "Container Instances",
+    "description": "Azure service for Container Instances",
+    "tags": [
+      "ai",
+      "container"
+    ],
+    "svg_path": "/icons/azure/container-instances.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "container-registries",
+    "provider": "azure",
+    "icon_name": "Container Registries",
+    "description": "Azure service for Container Registries",
+    "tags": [
+      "ai",
+      "container"
+    ],
+    "svg_path": "/icons/azure/container-registries.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "container-services-(deprecated)",
+    "provider": "azure",
+    "icon_name": "Container Services (Deprecated)",
+    "description": "Azure service for Container Services (Deprecated)",
+    "tags": [
+      "ai",
+      "container"
+    ],
+    "svg_path": "/icons/azure/container-services-(deprecated).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "content-moderators",
+    "provider": "azure",
+    "icon_name": "Content Moderators",
+    "description": "Azure service for Content Moderators",
+    "tags": [],
+    "svg_path": "/icons/azure/content-moderators.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "content-safety",
+    "provider": "azure",
+    "icon_name": "Content Safety",
+    "description": "Azure service for Content Safety",
+    "tags": [],
+    "svg_path": "/icons/azure/content-safety.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "controls-horizontal",
+    "provider": "azure",
+    "icon_name": "Controls Horizontal",
+    "description": "Azure service for Controls Horizontal",
+    "tags": [],
+    "svg_path": "/icons/azure/controls-horizontal.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "controls",
+    "provider": "azure",
+    "icon_name": "Controls",
+    "description": "Azure service for Controls",
+    "tags": [],
+    "svg_path": "/icons/azure/controls.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-alerts",
+    "provider": "azure",
+    "icon_name": "Cost Alerts",
+    "description": "Azure service for Cost Alerts",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/cost-alerts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-analysis",
+    "provider": "azure",
+    "icon_name": "Cost Analysis",
+    "description": "Azure service for Cost Analysis",
+    "tags": [],
+    "svg_path": "/icons/azure/cost-analysis.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-budgets",
+    "provider": "azure",
+    "icon_name": "Cost Budgets",
+    "description": "Azure service for Cost Budgets",
+    "tags": [],
+    "svg_path": "/icons/azure/cost-budgets.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-export",
+    "provider": "azure",
+    "icon_name": "Cost Export",
+    "description": "Azure service for Cost Export",
+    "tags": [],
+    "svg_path": "/icons/azure/cost-export.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-management-and-billing",
+    "provider": "azure",
+    "icon_name": "Cost Management And Billing",
+    "description": "Azure service for Cost Management And Billing",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/cost-management-and-billing.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cost-management",
+    "provider": "azure",
+    "icon_name": "Cost Management",
+    "description": "Azure service for Cost Management",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/cost-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "counter",
+    "provider": "azure",
+    "icon_name": "Counter",
+    "description": "Azure service for Counter",
+    "tags": [],
+    "svg_path": "/icons/azure/counter.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "cubes",
+    "provider": "azure",
+    "icon_name": "Cubes",
+    "description": "Azure service for Cubes",
+    "tags": [],
+    "svg_path": "/icons/azure/cubes.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "custom-ip-prefix",
+    "provider": "azure",
+    "icon_name": "Custom Ip Prefix",
+    "description": "Azure service for Custom Ip Prefix",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/custom-ip-prefix.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "custom-vision",
+    "provider": "azure",
+    "icon_name": "Custom Vision",
+    "description": "Azure service for Custom Vision",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/custom-vision.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "customer-lockbox-for-microsoft-azure",
+    "provider": "azure",
+    "icon_name": "Customer Lockbox For Microsoft Azure",
+    "description": "Azure service for Customer Lockbox For Microsoft Azure",
+    "tags": [],
+    "svg_path": "/icons/azure/customer-lockbox-for-microsoft-azure.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dashboard-hub",
+    "provider": "azure",
+    "icon_name": "Dashboard Hub",
+    "description": "Azure service for Dashboard Hub",
+    "tags": [],
+    "svg_path": "/icons/azure/dashboard-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dashboard",
+    "provider": "azure",
+    "icon_name": "Dashboard",
+    "description": "Azure service for Dashboard",
+    "tags": [],
+    "svg_path": "/icons/azure/dashboard.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-box",
+    "provider": "azure",
+    "icon_name": "Data Box",
+    "description": "Azure service for Data Box",
+    "tags": [],
+    "svg_path": "/icons/azure/data-box.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-collection-rules",
+    "provider": "azure",
+    "icon_name": "Data Collection Rules",
+    "description": "Azure service for Data Collection Rules",
+    "tags": [],
+    "svg_path": "/icons/azure/data-collection-rules.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-factories",
+    "provider": "azure",
+    "icon_name": "Data Factories",
+    "description": "Azure service for Data Factories",
+    "tags": [],
+    "svg_path": "/icons/azure/data-factories.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-lake-analytics",
+    "provider": "azure",
+    "icon_name": "Data Lake Analytics",
+    "description": "Azure service for Data Lake Analytics",
+    "tags": [],
+    "svg_path": "/icons/azure/data-lake-analytics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-lake-storage-gen1",
+    "provider": "azure",
+    "icon_name": "Data Lake Storage Gen1",
+    "description": "Azure service for Data Lake Storage Gen1",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/data-lake-storage-gen1.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-lake-store-gen1",
+    "provider": "azure",
+    "icon_name": "Data Lake Store Gen1",
+    "description": "Azure service for Data Lake Store Gen1",
+    "tags": [],
+    "svg_path": "/icons/azure/data-lake-store-gen1.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-share-invitations",
+    "provider": "azure",
+    "icon_name": "Data Share Invitations",
+    "description": "Azure service for Data Share Invitations",
+    "tags": [],
+    "svg_path": "/icons/azure/data-share-invitations.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-shares",
+    "provider": "azure",
+    "icon_name": "Data Shares",
+    "description": "Azure service for Data Shares",
+    "tags": [],
+    "svg_path": "/icons/azure/data-shares.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "data-virtualization",
+    "provider": "azure",
+    "icon_name": "Data Virtualization",
+    "description": "Azure service for Data Virtualization",
+    "tags": [],
+    "svg_path": "/icons/azure/data-virtualization.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "database-instance-for-sap",
+    "provider": "azure",
+    "icon_name": "Database Instance For Sap",
+    "description": "Azure service for Database Instance For Sap",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/database-instance-for-sap.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ddos-protection-plans",
+    "provider": "azure",
+    "icon_name": "Ddos Protection Plans",
+    "description": "Azure service for Ddos Protection Plans",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/ddos-protection-plans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dedicated-hsm",
+    "provider": "azure",
+    "icon_name": "Dedicated Hsm",
+    "description": "Azure service for Dedicated Hsm",
+    "tags": [],
+    "svg_path": "/icons/azure/dedicated-hsm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-cm-local-manager",
+    "provider": "azure",
+    "icon_name": "Defender Cm Local Manager",
+    "description": "Azure service for Defender Cm Local Manager",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-cm-local-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-dcs-controller",
+    "provider": "azure",
+    "icon_name": "Defender Dcs Controller",
+    "description": "Azure service for Defender Dcs Controller",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-dcs-controller.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-distributer-control-system",
+    "provider": "azure",
+    "icon_name": "Defender Distributer Control System",
+    "description": "Azure service for Defender Distributer Control System",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-distributer-control-system.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-engineering-station",
+    "provider": "azure",
+    "icon_name": "Defender Engineering Station",
+    "description": "Azure service for Defender Engineering Station",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-engineering-station.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-external-management",
+    "provider": "azure",
+    "icon_name": "Defender External Management",
+    "description": "Azure service for Defender External Management",
+    "tags": [
+      "management",
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-external-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-freezer-monitor",
+    "provider": "azure",
+    "icon_name": "Defender Freezer Monitor",
+    "description": "Azure service for Defender Freezer Monitor",
+    "tags": [
+      "monitoring",
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-freezer-monitor.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-historian",
+    "provider": "azure",
+    "icon_name": "Defender Historian",
+    "description": "Azure service for Defender Historian",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-historian.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-hmi",
+    "provider": "azure",
+    "icon_name": "Defender Hmi",
+    "description": "Azure service for Defender Hmi",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-hmi.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-industrial-packaging-system",
+    "provider": "azure",
+    "icon_name": "Defender Industrial Packaging System",
+    "description": "Azure service for Defender Industrial Packaging System",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-industrial-packaging-system.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-industrial-printer",
+    "provider": "azure",
+    "icon_name": "Defender Industrial Printer",
+    "description": "Azure service for Defender Industrial Printer",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-industrial-printer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-industrial-robot",
+    "provider": "azure",
+    "icon_name": "Defender Industrial Robot",
+    "description": "Azure service for Defender Industrial Robot",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-industrial-robot.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-industrial-scale-system",
+    "provider": "azure",
+    "icon_name": "Defender Industrial Scale System",
+    "description": "Azure service for Defender Industrial Scale System",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-industrial-scale-system.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-marquee",
+    "provider": "azure",
+    "icon_name": "Defender Marquee",
+    "description": "Azure service for Defender Marquee",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-marquee.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-meter",
+    "provider": "azure",
+    "icon_name": "Defender Meter",
+    "description": "Azure service for Defender Meter",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-meter.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-plc",
+    "provider": "azure",
+    "icon_name": "Defender Plc",
+    "description": "Azure service for Defender Plc",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-plc.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-pneumatic-device",
+    "provider": "azure",
+    "icon_name": "Defender Pneumatic Device",
+    "description": "Azure service for Defender Pneumatic Device",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-pneumatic-device.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-programable-board",
+    "provider": "azure",
+    "icon_name": "Defender Programable Board",
+    "description": "Azure service for Defender Programable Board",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-programable-board.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-relay",
+    "provider": "azure",
+    "icon_name": "Defender Relay",
+    "description": "Azure service for Defender Relay",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-relay.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-robot-controller",
+    "provider": "azure",
+    "icon_name": "Defender Robot Controller",
+    "description": "Azure service for Defender Robot Controller",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-robot-controller.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-rtu",
+    "provider": "azure",
+    "icon_name": "Defender Rtu",
+    "description": "Azure service for Defender Rtu",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-rtu.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-sensor",
+    "provider": "azure",
+    "icon_name": "Defender Sensor",
+    "description": "Azure service for Defender Sensor",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/defender-sensor.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-slot",
+    "provider": "azure",
+    "icon_name": "Defender Slot",
+    "description": "Azure service for Defender Slot",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/defender-slot.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "defender-web-guiding-system",
+    "provider": "azure",
+    "icon_name": "Defender Web Guiding System",
+    "description": "Azure service for Defender Web Guiding System",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/defender-web-guiding-system.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "detonation",
+    "provider": "azure",
+    "icon_name": "Detonation",
+    "description": "Azure service for Detonation",
+    "tags": [],
+    "svg_path": "/icons/azure/detonation.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dev-console",
+    "provider": "azure",
+    "icon_name": "Dev Console",
+    "description": "Azure service for Dev Console",
+    "tags": [],
+    "svg_path": "/icons/azure/dev-console.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-compliance",
+    "provider": "azure",
+    "icon_name": "Device Compliance",
+    "description": "Azure service for Device Compliance",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/device-compliance.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-configuration",
+    "provider": "azure",
+    "icon_name": "Device Configuration",
+    "description": "Azure service for Device Configuration",
+    "tags": [],
+    "svg_path": "/icons/azure/device-configuration.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-enrollment",
+    "provider": "azure",
+    "icon_name": "Device Enrollment",
+    "description": "Azure service for Device Enrollment",
+    "tags": [],
+    "svg_path": "/icons/azure/device-enrollment.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-provisioning-services",
+    "provider": "azure",
+    "icon_name": "Device Provisioning Services",
+    "description": "Azure service for Device Provisioning Services",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/device-provisioning-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-security-apple",
+    "provider": "azure",
+    "icon_name": "Device Security Apple",
+    "description": "Azure service for Device Security Apple",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/device-security-apple.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-security-google",
+    "provider": "azure",
+    "icon_name": "Device Security Google",
+    "description": "Azure service for Device Security Google",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/device-security-google.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-security-windows",
+    "provider": "azure",
+    "icon_name": "Device Security Windows",
+    "description": "Azure service for Device Security Windows",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/device-security-windows.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "device-update-iot-hub",
+    "provider": "azure",
+    "icon_name": "Device Update Iot Hub",
+    "description": "Azure service for Device Update Iot Hub",
+    "tags": [],
+    "svg_path": "/icons/azure/device-update-iot-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "devices",
+    "provider": "azure",
+    "icon_name": "Devices",
+    "description": "Azure service for Devices",
+    "tags": [],
+    "svg_path": "/icons/azure/devices.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "devops-starter",
+    "provider": "azure",
+    "icon_name": "Devops Starter",
+    "description": "Azure service for Devops Starter",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/devops-starter.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "devtest-labs",
+    "provider": "azure",
+    "icon_name": "Devtest Labs",
+    "description": "Azure service for Devtest Labs",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/devtest-labs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "diagnostics-settings",
+    "provider": "azure",
+    "icon_name": "Diagnostics Settings",
+    "description": "Azure service for Diagnostics Settings",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/diagnostics-settings.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "digital-twins",
+    "provider": "azure",
+    "icon_name": "Digital Twins",
+    "description": "Azure service for Digital Twins",
+    "tags": [],
+    "svg_path": "/icons/azure/digital-twins.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "disk-encryption-sets",
+    "provider": "azure",
+    "icon_name": "Disk Encryption Sets",
+    "description": "Azure service for Disk Encryption Sets",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/disk-encryption-sets.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "disk-pool",
+    "provider": "azure",
+    "icon_name": "Disk Pool",
+    "description": "Azure service for Disk Pool",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/disk-pool.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "disks-(classic)",
+    "provider": "azure",
+    "icon_name": "Disks (Classic)",
+    "description": "Azure service for Disks (Classic)",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/disks-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "disks-snapshots",
+    "provider": "azure",
+    "icon_name": "Disks Snapshots",
+    "description": "Azure service for Disks Snapshots",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/disks-snapshots.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "disks",
+    "provider": "azure",
+    "icon_name": "Disks",
+    "description": "Azure service for Disks",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/disks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dns-multistack",
+    "provider": "azure",
+    "icon_name": "Dns Multistack",
+    "description": "Azure service for Dns Multistack",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/dns-multistack.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dns-private-resolver",
+    "provider": "azure",
+    "icon_name": "Dns Private Resolver",
+    "description": "Azure service for Dns Private Resolver",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/dns-private-resolver.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dns-security-policy",
+    "provider": "azure",
+    "icon_name": "Dns Security Policy",
+    "description": "Azure service for Dns Security Policy",
+    "tags": [
+      "management",
+      "networking",
+      "security"
+    ],
+    "svg_path": "/icons/azure/dns-security-policy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "dns-zones",
+    "provider": "azure",
+    "icon_name": "Dns Zones",
+    "description": "Azure service for Dns Zones",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/dns-zones.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "download",
+    "provider": "azure",
+    "icon_name": "Download",
+    "description": "Azure service for Download",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/download.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ebooks",
+    "provider": "azure",
+    "icon_name": "Ebooks",
+    "description": "Azure service for Ebooks",
+    "tags": [],
+    "svg_path": "/icons/azure/ebooks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "edge-actions",
+    "provider": "azure",
+    "icon_name": "Edge Actions",
+    "description": "Azure service for Edge Actions",
+    "tags": [],
+    "svg_path": "/icons/azure/edge-actions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "edge-management",
+    "provider": "azure",
+    "icon_name": "Edge Management",
+    "description": "Azure service for Edge Management",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/edge-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "edge-storage-accelerator",
+    "provider": "azure",
+    "icon_name": "Edge Storage Accelerator",
+    "description": "Azure service for Edge Storage Accelerator",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/edge-storage-accelerator.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "education",
+    "provider": "azure",
+    "icon_name": "Education",
+    "description": "Azure service for Education",
+    "tags": [],
+    "svg_path": "/icons/azure/education.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "elastic-job-agents",
+    "provider": "azure",
+    "icon_name": "Elastic Job Agents",
+    "description": "Azure service for Elastic Job Agents",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/elastic-job-agents.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "elastic-san",
+    "provider": "azure",
+    "icon_name": "Elastic San",
+    "description": "Azure service for Elastic San",
+    "tags": [],
+    "svg_path": "/icons/azure/elastic-san.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "endpoint-analytics",
+    "provider": "azure",
+    "icon_name": "Endpoint Analytics",
+    "description": "Azure service for Endpoint Analytics",
+    "tags": [],
+    "svg_path": "/icons/azure/endpoint-analytics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "engage-center-connect",
+    "provider": "azure",
+    "icon_name": "Engage Center Connect",
+    "description": "Azure service for Engage Center Connect",
+    "tags": [],
+    "svg_path": "/icons/azure/engage-center-connect.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "enterprise-applications",
+    "provider": "azure",
+    "icon_name": "Enterprise Applications",
+    "description": "Azure service for Enterprise Applications",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/enterprise-applications.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-connect-health",
+    "provider": "azure",
+    "icon_name": "Entra Connect Health",
+    "description": "Azure service for Entra Connect Health",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-connect-health.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-connect-sync",
+    "provider": "azure",
+    "icon_name": "Entra Connect Sync",
+    "description": "Azure service for Entra Connect Sync",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-connect-sync.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-connect",
+    "provider": "azure",
+    "icon_name": "Entra Connect",
+    "description": "Azure service for Entra Connect",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-connect.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-domain-services",
+    "provider": "azure",
+    "icon_name": "Entra Domain Services",
+    "description": "Azure service for Entra Domain Services",
+    "tags": [
+      "ai",
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-domain-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-global-secure-access",
+    "provider": "azure",
+    "icon_name": "Entra Global Secure Access",
+    "description": "Azure service for Entra Global Secure Access",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-global-secure-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-id-protection",
+    "provider": "azure",
+    "icon_name": "Entra Id Protection",
+    "description": "Azure service for Entra Id Protection",
+    "tags": [
+      "identity",
+      "security"
+    ],
+    "svg_path": "/icons/azure/entra-id-protection.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-identity-custom-roles",
+    "provider": "azure",
+    "icon_name": "Entra Identity Custom Roles",
+    "description": "Azure service for Entra Identity Custom Roles",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-identity-custom-roles.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-identity-licenses",
+    "provider": "azure",
+    "icon_name": "Entra Identity Licenses",
+    "description": "Azure service for Entra Identity Licenses",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-identity-licenses.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-identity-risky-signins",
+    "provider": "azure",
+    "icon_name": "Entra Identity Risky Signins",
+    "description": "Azure service for Entra Identity Risky Signins",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-identity-risky-signins.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-identity-risky-users",
+    "provider": "azure",
+    "icon_name": "Entra Identity Risky Users",
+    "description": "Azure service for Entra Identity Risky Users",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-identity-risky-users.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-identity-roles-and-administrators",
+    "provider": "azure",
+    "icon_name": "Entra Identity Roles And Administrators",
+    "description": "Azure service for Entra Identity Roles And Administrators",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-identity-roles-and-administrators.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-internet-access",
+    "provider": "azure",
+    "icon_name": "Entra Internet Access",
+    "description": "Azure service for Entra Internet Access",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-internet-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-managed-identities",
+    "provider": "azure",
+    "icon_name": "Entra Managed Identities",
+    "description": "Azure service for Entra Managed Identities",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-managed-identities.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-private-access",
+    "provider": "azure",
+    "icon_name": "Entra Private Access",
+    "description": "Azure service for Entra Private Access",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-private-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-privleged-identity-management",
+    "provider": "azure",
+    "icon_name": "Entra Privleged Identity Management",
+    "description": "Azure service for Entra Privleged Identity Management",
+    "tags": [
+      "identity",
+      "management"
+    ],
+    "svg_path": "/icons/azure/entra-privleged-identity-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "entra-verified-id",
+    "provider": "azure",
+    "icon_name": "Entra Verified Id",
+    "description": "Azure service for Entra Verified Id",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/entra-verified-id.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "error",
+    "provider": "azure",
+    "icon_name": "Error",
+    "description": "Azure service for Error",
+    "tags": [],
+    "svg_path": "/icons/azure/error.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "event-grid-domains",
+    "provider": "azure",
+    "icon_name": "Event Grid Domains",
+    "description": "Azure service for Event Grid Domains",
+    "tags": [
+      "ai",
+      "integration"
+    ],
+    "svg_path": "/icons/azure/event-grid-domains.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "event-grid-subscriptions",
+    "provider": "azure",
+    "icon_name": "Event Grid Subscriptions",
+    "description": "Azure service for Event Grid Subscriptions",
+    "tags": [
+      "integration",
+      "management",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/event-grid-subscriptions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "event-grid-topics",
+    "provider": "azure",
+    "icon_name": "Event Grid Topics",
+    "description": "Azure service for Event Grid Topics",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/event-grid-topics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "event-hub-clusters",
+    "provider": "azure",
+    "icon_name": "Event Hub Clusters",
+    "description": "Azure service for Event Hub Clusters",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/event-hub-clusters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "event-hubs",
+    "provider": "azure",
+    "icon_name": "Event Hubs",
+    "description": "Azure service for Event Hubs",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/event-hubs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "exchange-access",
+    "provider": "azure",
+    "icon_name": "Exchange Access",
+    "description": "Azure service for Exchange Access",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/exchange-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "exchange-on-premises-access",
+    "provider": "azure",
+    "icon_name": "Exchange On Premises Access",
+    "description": "Azure service for Exchange On Premises Access",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/exchange-on-premises-access.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "express-route-traffic-collector",
+    "provider": "azure",
+    "icon_name": "Express Route Traffic Collector",
+    "description": "Azure service for Express Route Traffic Collector",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/express-route-traffic-collector.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "expressroute-circuits",
+    "provider": "azure",
+    "icon_name": "Expressroute Circuits",
+    "description": "Azure service for Expressroute Circuits",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/expressroute-circuits.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "expressroute-direct",
+    "provider": "azure",
+    "icon_name": "Expressroute Direct",
+    "description": "Azure service for Expressroute Direct",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/expressroute-direct.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "extendedsecurityupdates",
+    "provider": "azure",
+    "icon_name": "Extendedsecurityupdates",
+    "description": "Azure service for Extendedsecurityupdates",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/extendedsecurityupdates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "extensions",
+    "provider": "azure",
+    "icon_name": "Extensions",
+    "description": "Azure service for Extensions",
+    "tags": [],
+    "svg_path": "/icons/azure/extensions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "external-id-modified",
+    "provider": "azure",
+    "icon_name": "External Id Modified",
+    "description": "Azure service for External Id Modified",
+    "tags": [],
+    "svg_path": "/icons/azure/external-id-modified.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "external-id",
+    "provider": "azure",
+    "icon_name": "External Id",
+    "description": "Azure service for External Id",
+    "tags": [],
+    "svg_path": "/icons/azure/external-id.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "external-identities",
+    "provider": "azure",
+    "icon_name": "External Identities",
+    "description": "Azure service for External Identities",
+    "tags": [],
+    "svg_path": "/icons/azure/external-identities.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "face-apis",
+    "provider": "azure",
+    "icon_name": "Face Apis",
+    "description": "Azure service for Face Apis",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/face-apis.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "feature-previews",
+    "provider": "azure",
+    "icon_name": "Feature Previews",
+    "description": "Azure service for Feature Previews",
+    "tags": [],
+    "svg_path": "/icons/azure/feature-previews.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "fhir-service",
+    "provider": "azure",
+    "icon_name": "Fhir Service",
+    "description": "Azure service for Fhir Service",
+    "tags": [],
+    "svg_path": "/icons/azure/fhir-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "fiji",
+    "provider": "azure",
+    "icon_name": "Fiji",
+    "description": "Azure service for Fiji",
+    "tags": [],
+    "svg_path": "/icons/azure/fiji.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "file",
+    "provider": "azure",
+    "icon_name": "File",
+    "description": "Azure service for File",
+    "tags": [],
+    "svg_path": "/icons/azure/file.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "files",
+    "provider": "azure",
+    "icon_name": "Files",
+    "description": "Azure service for Files",
+    "tags": [],
+    "svg_path": "/icons/azure/files.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "firewalls",
+    "provider": "azure",
+    "icon_name": "Firewalls",
+    "description": "Azure service for Firewalls",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/firewalls.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "folder-blank",
+    "provider": "azure",
+    "icon_name": "Folder Blank",
+    "description": "Azure service for Folder Blank",
+    "tags": [],
+    "svg_path": "/icons/azure/folder-blank.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "folder-website",
+    "provider": "azure",
+    "icon_name": "Folder Website",
+    "description": "Azure service for Folder Website",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/folder-website.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "form-recognizers",
+    "provider": "azure",
+    "icon_name": "Form Recognizers",
+    "description": "Azure service for Form Recognizers",
+    "tags": [],
+    "svg_path": "/icons/azure/form-recognizers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "frd-qa",
+    "provider": "azure",
+    "icon_name": "Frd Qa",
+    "description": "Azure service for Frd Qa",
+    "tags": [],
+    "svg_path": "/icons/azure/frd-qa.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "free-services",
+    "provider": "azure",
+    "icon_name": "Free Services",
+    "description": "Azure service for Free Services",
+    "tags": [],
+    "svg_path": "/icons/azure/free-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "front-door-and-cdn-profiles",
+    "provider": "azure",
+    "icon_name": "Front Door And Cdn Profiles",
+    "description": "Azure service for Front Door And Cdn Profiles",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/front-door-and-cdn-profiles.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ftp",
+    "provider": "azure",
+    "icon_name": "Ftp",
+    "description": "Azure service for Ftp",
+    "tags": [],
+    "svg_path": "/icons/azure/ftp.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "function-apps",
+    "provider": "azure",
+    "icon_name": "Function Apps",
+    "description": "Azure service for Function Apps",
+    "tags": [
+      "integration",
+      "web"
+    ],
+    "svg_path": "/icons/azure/function-apps.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "gear",
+    "provider": "azure",
+    "icon_name": "Gear",
+    "description": "Azure service for Gear",
+    "tags": [],
+    "svg_path": "/icons/azure/gear.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "genomics-accounts",
+    "provider": "azure",
+    "icon_name": "Genomics Accounts",
+    "description": "Azure service for Genomics Accounts",
+    "tags": [],
+    "svg_path": "/icons/azure/genomics-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "genomics",
+    "provider": "azure",
+    "icon_name": "Genomics",
+    "description": "Azure service for Genomics",
+    "tags": [],
+    "svg_path": "/icons/azure/genomics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "globe-error",
+    "provider": "azure",
+    "icon_name": "Globe Error",
+    "description": "Azure service for Globe Error",
+    "tags": [],
+    "svg_path": "/icons/azure/globe-error.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "globe-success",
+    "provider": "azure",
+    "icon_name": "Globe Success",
+    "description": "Azure service for Globe Success",
+    "tags": [],
+    "svg_path": "/icons/azure/globe-success.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "globe-warning",
+    "provider": "azure",
+    "icon_name": "Globe Warning",
+    "description": "Azure service for Globe Warning",
+    "tags": [],
+    "svg_path": "/icons/azure/globe-warning.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "groups",
+    "provider": "azure",
+    "icon_name": "Groups",
+    "description": "Azure service for Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "guide",
+    "provider": "azure",
+    "icon_name": "Guide",
+    "description": "Azure service for Guide",
+    "tags": [],
+    "svg_path": "/icons/azure/guide.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "hd-insight-clusters",
+    "provider": "azure",
+    "icon_name": "Hd Insight Clusters",
+    "description": "Azure service for Hd Insight Clusters",
+    "tags": [],
+    "svg_path": "/icons/azure/hd-insight-clusters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "hdi-aks-cluster",
+    "provider": "azure",
+    "icon_name": "Hdi Aks Cluster",
+    "description": "Azure service for Hdi Aks Cluster",
+    "tags": [
+      "compute",
+      "container"
+    ],
+    "svg_path": "/icons/azure/hdi-aks-cluster.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "heart",
+    "provider": "azure",
+    "icon_name": "Heart",
+    "description": "Azure service for Heart",
+    "tags": [],
+    "svg_path": "/icons/azure/heart.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "help-and-support",
+    "provider": "azure",
+    "icon_name": "Help And Support",
+    "description": "Azure service for Help And Support",
+    "tags": [],
+    "svg_path": "/icons/azure/help-and-support.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "host-groups",
+    "provider": "azure",
+    "icon_name": "Host Groups",
+    "description": "Azure service for Host Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/host-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "host-pools",
+    "provider": "azure",
+    "icon_name": "Host Pools",
+    "description": "Azure service for Host Pools",
+    "tags": [],
+    "svg_path": "/icons/azure/host-pools.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "hosts",
+    "provider": "azure",
+    "icon_name": "Hosts",
+    "description": "Azure service for Hosts",
+    "tags": [],
+    "svg_path": "/icons/azure/hosts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "icm-troubleshooting",
+    "provider": "azure",
+    "icon_name": "Icm Troubleshooting",
+    "description": "Azure service for Icm Troubleshooting",
+    "tags": [],
+    "svg_path": "/icons/azure/icm-troubleshooting.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "identity-governance",
+    "provider": "azure",
+    "icon_name": "Identity Governance",
+    "description": "Azure service for Identity Governance",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/identity-governance.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "identity-secure-score",
+    "provider": "azure",
+    "icon_name": "Identity Secure Score",
+    "description": "Azure service for Identity Secure Score",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/identity-secure-score.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "image-definitions",
+    "provider": "azure",
+    "icon_name": "Image Definitions",
+    "description": "Azure service for Image Definitions",
+    "tags": [],
+    "svg_path": "/icons/azure/image-definitions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "image-templates",
+    "provider": "azure",
+    "icon_name": "Image Templates",
+    "description": "Azure service for Image Templates",
+    "tags": [],
+    "svg_path": "/icons/azure/image-templates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "image-versions",
+    "provider": "azure",
+    "icon_name": "Image Versions",
+    "description": "Azure service for Image Versions",
+    "tags": [],
+    "svg_path": "/icons/azure/image-versions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "image",
+    "provider": "azure",
+    "icon_name": "Image",
+    "description": "Azure service for Image",
+    "tags": [],
+    "svg_path": "/icons/azure/image.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "images",
+    "provider": "azure",
+    "icon_name": "Images",
+    "description": "Azure service for Images",
+    "tags": [],
+    "svg_path": "/icons/azure/images.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "immersive-readers",
+    "provider": "azure",
+    "icon_name": "Immersive Readers",
+    "description": "Azure service for Immersive Readers",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/immersive-readers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "import-export-jobs",
+    "provider": "azure",
+    "icon_name": "Import Export Jobs",
+    "description": "Azure service for Import Export Jobs",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/import-export-jobs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "industrial-iot",
+    "provider": "azure",
+    "icon_name": "Industrial Iot",
+    "description": "Azure service for Industrial Iot",
+    "tags": [],
+    "svg_path": "/icons/azure/industrial-iot.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "information",
+    "provider": "azure",
+    "icon_name": "Information",
+    "description": "Azure service for Information",
+    "tags": [],
+    "svg_path": "/icons/azure/information.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "infrastructure-backup",
+    "provider": "azure",
+    "icon_name": "Infrastructure Backup",
+    "description": "Azure service for Infrastructure Backup",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/infrastructure-backup.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "input-output",
+    "provider": "azure",
+    "icon_name": "Input Output",
+    "description": "Azure service for Input Output",
+    "tags": [],
+    "svg_path": "/icons/azure/input-output.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "instance-pools",
+    "provider": "azure",
+    "icon_name": "Instance Pools",
+    "description": "Azure service for Instance Pools",
+    "tags": [],
+    "svg_path": "/icons/azure/instance-pools.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "integration-accounts",
+    "provider": "azure",
+    "icon_name": "Integration Accounts",
+    "description": "Azure service for Integration Accounts",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/integration-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "integration-environments",
+    "provider": "azure",
+    "icon_name": "Integration Environments",
+    "description": "Azure service for Integration Environments",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/integration-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "integration-service-environments",
+    "provider": "azure",
+    "icon_name": "Integration Service Environments",
+    "description": "Azure service for Integration Service Environments",
+    "tags": [
+      "integration"
+    ],
+    "svg_path": "/icons/azure/integration-service-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "internet-analyzer-profiles",
+    "provider": "azure",
+    "icon_name": "Internet Analyzer Profiles",
+    "description": "Azure service for Internet Analyzer Profiles",
+    "tags": [],
+    "svg_path": "/icons/azure/internet-analyzer-profiles.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "intune-app-protection",
+    "provider": "azure",
+    "icon_name": "Intune App Protection",
+    "description": "Azure service for Intune App Protection",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/intune-app-protection.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "intune-for-education",
+    "provider": "azure",
+    "icon_name": "Intune For Education",
+    "description": "Azure service for Intune For Education",
+    "tags": [],
+    "svg_path": "/icons/azure/intune-for-education.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "intune-trends",
+    "provider": "azure",
+    "icon_name": "Intune Trends",
+    "description": "Azure service for Intune Trends",
+    "tags": [],
+    "svg_path": "/icons/azure/intune-trends.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "intune",
+    "provider": "azure",
+    "icon_name": "Intune",
+    "description": "Azure service for Intune",
+    "tags": [],
+    "svg_path": "/icons/azure/intune.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "iot-central-applications",
+    "provider": "azure",
+    "icon_name": "Iot Central Applications",
+    "description": "Azure service for Iot Central Applications",
+    "tags": [
+      "identity",
+      "web"
+    ],
+    "svg_path": "/icons/azure/iot-central-applications.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "iot-edge",
+    "provider": "azure",
+    "icon_name": "Iot Edge",
+    "description": "Azure service for Iot Edge",
+    "tags": [],
+    "svg_path": "/icons/azure/iot-edge.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "iot-hub",
+    "provider": "azure",
+    "icon_name": "Iot Hub",
+    "description": "Azure service for Iot Hub",
+    "tags": [],
+    "svg_path": "/icons/azure/iot-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ip-address-manager",
+    "provider": "azure",
+    "icon_name": "Ip Address Manager",
+    "description": "Azure service for Ip Address Manager",
+    "tags": [
+      "identity",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/ip-address-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ip-groups",
+    "provider": "azure",
+    "icon_name": "Ip Groups",
+    "description": "Azure service for Ip Groups",
+    "tags": [
+      "management",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/ip-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "journey-hub",
+    "provider": "azure",
+    "icon_name": "Journey Hub",
+    "description": "Azure service for Journey Hub",
+    "tags": [],
+    "svg_path": "/icons/azure/journey-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "key-vaults",
+    "provider": "azure",
+    "icon_name": "Key Vaults",
+    "description": "Azure service for Key Vaults",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/key-vaults.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "keys",
+    "provider": "azure",
+    "icon_name": "Keys",
+    "description": "Azure service for Keys",
+    "tags": [],
+    "svg_path": "/icons/azure/keys.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "kubernetes-fleet-manager",
+    "provider": "azure",
+    "icon_name": "Kubernetes Fleet Manager",
+    "description": "Azure service for Kubernetes Fleet Manager",
+    "tags": [
+      "container"
+    ],
+    "svg_path": "/icons/azure/kubernetes-fleet-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "kubernetes-services",
+    "provider": "azure",
+    "icon_name": "Kubernetes Services",
+    "description": "Azure service for Kubernetes Services",
+    "tags": [
+      "container"
+    ],
+    "svg_path": "/icons/azure/kubernetes-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "lab-accounts",
+    "provider": "azure",
+    "icon_name": "Lab Accounts",
+    "description": "Azure service for Lab Accounts",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/lab-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "lab-services",
+    "provider": "azure",
+    "icon_name": "Lab Services",
+    "description": "Azure service for Lab Services",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/lab-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "landing-zone",
+    "provider": "azure",
+    "icon_name": "Landing Zone",
+    "description": "Azure service for Landing Zone",
+    "tags": [],
+    "svg_path": "/icons/azure/landing-zone.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "language-understanding",
+    "provider": "azure",
+    "icon_name": "Language Understanding",
+    "description": "Azure service for Language Understanding",
+    "tags": [],
+    "svg_path": "/icons/azure/language-understanding.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "language",
+    "provider": "azure",
+    "icon_name": "Language",
+    "description": "Azure service for Language",
+    "tags": [],
+    "svg_path": "/icons/azure/language.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "launch-portal",
+    "provider": "azure",
+    "icon_name": "Launch Portal",
+    "description": "Azure service for Launch Portal",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/launch-portal.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "learn",
+    "provider": "azure",
+    "icon_name": "Learn",
+    "description": "Azure service for Learn",
+    "tags": [],
+    "svg_path": "/icons/azure/learn.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "load-balancer-hub",
+    "provider": "azure",
+    "icon_name": "Load Balancer Hub",
+    "description": "Azure service for Load Balancer Hub",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/load-balancer-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "load-balancers",
+    "provider": "azure",
+    "icon_name": "Load Balancers",
+    "description": "Azure service for Load Balancers",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/load-balancers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "load-test",
+    "provider": "azure",
+    "icon_name": "Load Test",
+    "description": "Azure service for Load Test",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/load-test.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "load-testing",
+    "provider": "azure",
+    "icon_name": "Load Testing",
+    "description": "Azure service for Load Testing",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/load-testing.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "local-network-gateways",
+    "provider": "azure",
+    "icon_name": "Local Network Gateways",
+    "description": "Azure service for Local Network Gateways",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/local-network-gateways.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "location",
+    "provider": "azure",
+    "icon_name": "Location",
+    "description": "Azure service for Location",
+    "tags": [],
+    "svg_path": "/icons/azure/location.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "log-analytics-query-pack",
+    "provider": "azure",
+    "icon_name": "Log Analytics Query Pack",
+    "description": "Azure service for Log Analytics Query Pack",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/log-analytics-query-pack.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "log-analytics-workspaces",
+    "provider": "azure",
+    "icon_name": "Log Analytics Workspaces",
+    "description": "Azure service for Log Analytics Workspaces",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/log-analytics-workspaces.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "log-streaming",
+    "provider": "azure",
+    "icon_name": "Log Streaming",
+    "description": "Azure service for Log Streaming",
+    "tags": [
+      "media",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/log-streaming.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "logic-apps-custom-connector",
+    "provider": "azure",
+    "icon_name": "Logic Apps Custom Connector",
+    "description": "Azure service for Logic Apps Custom Connector",
+    "tags": [
+      "integration",
+      "monitoring",
+      "web"
+    ],
+    "svg_path": "/icons/azure/logic-apps-custom-connector.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "logic-apps",
+    "provider": "azure",
+    "icon_name": "Logic Apps",
+    "description": "Azure service for Logic Apps",
+    "tags": [
+      "integration",
+      "monitoring",
+      "web"
+    ],
+    "svg_path": "/icons/azure/logic-apps.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "machine-learning-studio-(classic)-web-services",
+    "provider": "azure",
+    "icon_name": "Machine Learning Studio (Classic) Web Services",
+    "description": "Azure service for Machine Learning Studio (Classic) Web Services",
+    "tags": [
+      "ai",
+      "compute",
+      "web"
+    ],
+    "svg_path": "/icons/azure/machine-learning-studio-(classic)-web-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "machine-learning-studio-web-service-plans",
+    "provider": "azure",
+    "icon_name": "Machine Learning Studio Web Service Plans",
+    "description": "Azure service for Machine Learning Studio Web Service Plans",
+    "tags": [
+      "ai",
+      "compute",
+      "web"
+    ],
+    "svg_path": "/icons/azure/machine-learning-studio-web-service-plans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "machine-learning-studio-workspaces",
+    "provider": "azure",
+    "icon_name": "Machine Learning Studio Workspaces",
+    "description": "Azure service for Machine Learning Studio Workspaces",
+    "tags": [
+      "ai",
+      "compute"
+    ],
+    "svg_path": "/icons/azure/machine-learning-studio-workspaces.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "machine-learning",
+    "provider": "azure",
+    "icon_name": "Machine Learning",
+    "description": "Azure service for Machine Learning",
+    "tags": [
+      "ai",
+      "compute"
+    ],
+    "svg_path": "/icons/azure/machine-learning.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "machinesazurearc",
+    "provider": "azure",
+    "icon_name": "Machinesazurearc",
+    "description": "Azure service for Machinesazurearc",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/machinesazurearc.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "maintenance-configuration",
+    "provider": "azure",
+    "icon_name": "Maintenance Configuration",
+    "description": "Azure service for Maintenance Configuration",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/maintenance-configuration.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-applications-center",
+    "provider": "azure",
+    "icon_name": "Managed Applications Center",
+    "description": "Azure service for Managed Applications Center",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/managed-applications-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-database",
+    "provider": "azure",
+    "icon_name": "Managed Database",
+    "description": "Azure service for Managed Database",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/managed-database.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-desktop",
+    "provider": "azure",
+    "icon_name": "Managed Desktop",
+    "description": "Azure service for Managed Desktop",
+    "tags": [],
+    "svg_path": "/icons/azure/managed-desktop.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-devops-pools",
+    "provider": "azure",
+    "icon_name": "Managed Devops Pools",
+    "description": "Azure service for Managed Devops Pools",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/managed-devops-pools.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-file-shares",
+    "provider": "azure",
+    "icon_name": "Managed File Shares",
+    "description": "Azure service for Managed File Shares",
+    "tags": [],
+    "svg_path": "/icons/azure/managed-file-shares.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-identities",
+    "provider": "azure",
+    "icon_name": "Managed Identities",
+    "description": "Azure service for Managed Identities",
+    "tags": [],
+    "svg_path": "/icons/azure/managed-identities.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-instance-apache-cassandra",
+    "provider": "azure",
+    "icon_name": "Managed Instance Apache Cassandra",
+    "description": "Azure service for Managed Instance Apache Cassandra",
+    "tags": [],
+    "svg_path": "/icons/azure/managed-instance-apache-cassandra.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "managed-service-fabric",
+    "provider": "azure",
+    "icon_name": "Managed Service Fabric",
+    "description": "Azure service for Managed Service Fabric",
+    "tags": [],
+    "svg_path": "/icons/azure/managed-service-fabric.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "management-groups",
+    "provider": "azure",
+    "icon_name": "Management Groups",
+    "description": "Azure service for Management Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/management-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "management-portal",
+    "provider": "azure",
+    "icon_name": "Management Portal",
+    "description": "Azure service for Management Portal",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/management-portal.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "marketplace-management",
+    "provider": "azure",
+    "icon_name": "Marketplace Management",
+    "description": "Azure service for Marketplace Management",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/marketplace-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "marketplace",
+    "provider": "azure",
+    "icon_name": "Marketplace",
+    "description": "Azure service for Marketplace",
+    "tags": [],
+    "svg_path": "/icons/azure/marketplace.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "media-file",
+    "provider": "azure",
+    "icon_name": "Media File",
+    "description": "Azure service for Media File",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/media-file.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "media",
+    "provider": "azure",
+    "icon_name": "Media",
+    "description": "Azure service for Media",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/media.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "medtech-service",
+    "provider": "azure",
+    "icon_name": "Medtech Service",
+    "description": "Azure service for Medtech Service",
+    "tags": [],
+    "svg_path": "/icons/azure/medtech-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mesh-applications",
+    "provider": "azure",
+    "icon_name": "Mesh Applications",
+    "description": "Azure service for Mesh Applications",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/mesh-applications.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "metrics-advisor",
+    "provider": "azure",
+    "icon_name": "Metrics Advisor",
+    "description": "Azure service for Metrics Advisor",
+    "tags": [
+      "identity",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/metrics-advisor.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "metrics",
+    "provider": "azure",
+    "icon_name": "Metrics",
+    "description": "Azure service for Metrics",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/metrics.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "microsoft-defender-easm",
+    "provider": "azure",
+    "icon_name": "Microsoft Defender Easm",
+    "description": "Azure service for Microsoft Defender Easm",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/microsoft-defender-easm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "microsoft-defender-for-cloud",
+    "provider": "azure",
+    "icon_name": "Microsoft Defender For Cloud",
+    "description": "Azure service for Microsoft Defender For Cloud",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/microsoft-defender-for-cloud.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "microsoft-defender-for-iot",
+    "provider": "azure",
+    "icon_name": "Microsoft Defender For Iot",
+    "description": "Azure service for Microsoft Defender For Iot",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/microsoft-defender-for-iot.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "microsoft-dev-box",
+    "provider": "azure",
+    "icon_name": "Microsoft Dev Box",
+    "description": "Azure service for Microsoft Dev Box",
+    "tags": [],
+    "svg_path": "/icons/azure/microsoft-dev-box.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mindaro",
+    "provider": "azure",
+    "icon_name": "Mindaro",
+    "description": "Azure service for Mindaro",
+    "tags": [],
+    "svg_path": "/icons/azure/mindaro.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mission-landing-zone",
+    "provider": "azure",
+    "icon_name": "Mission Landing Zone",
+    "description": "Azure service for Mission Landing Zone",
+    "tags": [],
+    "svg_path": "/icons/azure/mission-landing-zone.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mobile-engagement",
+    "provider": "azure",
+    "icon_name": "Mobile Engagement",
+    "description": "Azure service for Mobile Engagement",
+    "tags": [],
+    "svg_path": "/icons/azure/mobile-engagement.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mobile-networks",
+    "provider": "azure",
+    "icon_name": "Mobile Networks",
+    "description": "Azure service for Mobile Networks",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/mobile-networks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "mobile",
+    "provider": "azure",
+    "icon_name": "Mobile",
+    "description": "Azure service for Mobile",
+    "tags": [],
+    "svg_path": "/icons/azure/mobile.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "modular-data-center",
+    "provider": "azure",
+    "icon_name": "Modular Data Center",
+    "description": "Azure service for Modular Data Center",
+    "tags": [],
+    "svg_path": "/icons/azure/modular-data-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "module",
+    "provider": "azure",
+    "icon_name": "Module",
+    "description": "Azure service for Module",
+    "tags": [],
+    "svg_path": "/icons/azure/module.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "monitor-health-models",
+    "provider": "azure",
+    "icon_name": "Monitor Health Models",
+    "description": "Azure service for Monitor Health Models",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/monitor-health-models.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "monitor",
+    "provider": "azure",
+    "icon_name": "Monitor",
+    "description": "Azure service for Monitor",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/monitor.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "multi-factor-authentication",
+    "provider": "azure",
+    "icon_name": "Multi Factor Authentication",
+    "description": "Azure service for Multi Factor Authentication",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/multi-factor-authentication.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "multi-tenancy",
+    "provider": "azure",
+    "icon_name": "Multi Tenancy",
+    "description": "Azure service for Multi Tenancy",
+    "tags": [],
+    "svg_path": "/icons/azure/multi-tenancy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "multifactor-authentication",
+    "provider": "azure",
+    "icon_name": "Multifactor Authentication",
+    "description": "Azure service for Multifactor Authentication",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/multifactor-authentication.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "my-customers",
+    "provider": "azure",
+    "icon_name": "My Customers",
+    "description": "Azure service for My Customers",
+    "tags": [],
+    "svg_path": "/icons/azure/my-customers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "nat",
+    "provider": "azure",
+    "icon_name": "Nat",
+    "description": "Azure service for Nat",
+    "tags": [],
+    "svg_path": "/icons/azure/nat.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "network-interfaces",
+    "provider": "azure",
+    "icon_name": "Network Interfaces",
+    "description": "Azure service for Network Interfaces",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/network-interfaces.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "network-managers",
+    "provider": "azure",
+    "icon_name": "Network Managers",
+    "description": "Azure service for Network Managers",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/network-managers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "network-security-groups",
+    "provider": "azure",
+    "icon_name": "Network Security Groups",
+    "description": "Azure service for Network Security Groups",
+    "tags": [
+      "management",
+      "networking",
+      "security"
+    ],
+    "svg_path": "/icons/azure/network-security-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "network-security-perimeters",
+    "provider": "azure",
+    "icon_name": "Network Security Perimeters",
+    "description": "Azure service for Network Security Perimeters",
+    "tags": [
+      "networking",
+      "security"
+    ],
+    "svg_path": "/icons/azure/network-security-perimeters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "network-watcher",
+    "provider": "azure",
+    "icon_name": "Network Watcher",
+    "description": "Azure service for Network Watcher",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/network-watcher.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "notification-hub-namespaces",
+    "provider": "azure",
+    "icon_name": "Notification Hub Namespaces",
+    "description": "Azure service for Notification Hub Namespaces",
+    "tags": [],
+    "svg_path": "/icons/azure/notification-hub-namespaces.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "notification-hubs",
+    "provider": "azure",
+    "icon_name": "Notification Hubs",
+    "description": "Azure service for Notification Hubs",
+    "tags": [],
+    "svg_path": "/icons/azure/notification-hubs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "offers",
+    "provider": "azure",
+    "icon_name": "Offers",
+    "description": "Azure service for Offers",
+    "tags": [],
+    "svg_path": "/icons/azure/offers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "on-premises-data-gateways",
+    "provider": "azure",
+    "icon_name": "On Premises Data Gateways",
+    "description": "Azure service for On Premises Data Gateways",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/on-premises-data-gateways.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "open-supply-chain-platform",
+    "provider": "azure",
+    "icon_name": "Open Supply Chain Platform",
+    "description": "Azure service for Open Supply Chain Platform",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/open-supply-chain-platform.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "operation-log-(classic)",
+    "provider": "azure",
+    "icon_name": "Operation Log (Classic)",
+    "description": "Azure service for Operation Log (Classic)",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/operation-log-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "oracle-database",
+    "provider": "azure",
+    "icon_name": "Oracle Database",
+    "description": "Azure service for Oracle Database",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/oracle-database.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "os-images-(classic)",
+    "provider": "azure",
+    "icon_name": "Os Images (Classic)",
+    "description": "Azure service for Os Images (Classic)",
+    "tags": [],
+    "svg_path": "/icons/azure/os-images-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "osconfig",
+    "provider": "azure",
+    "icon_name": "Osconfig",
+    "description": "Azure service for Osconfig",
+    "tags": [],
+    "svg_path": "/icons/azure/osconfig.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "outbound-connection",
+    "provider": "azure",
+    "icon_name": "Outbound Connection",
+    "description": "Azure service for Outbound Connection",
+    "tags": [],
+    "svg_path": "/icons/azure/outbound-connection.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "partner-namespace",
+    "provider": "azure",
+    "icon_name": "Partner Namespace",
+    "description": "Azure service for Partner Namespace",
+    "tags": [],
+    "svg_path": "/icons/azure/partner-namespace.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "partner-registration",
+    "provider": "azure",
+    "icon_name": "Partner Registration",
+    "description": "Azure service for Partner Registration",
+    "tags": [],
+    "svg_path": "/icons/azure/partner-registration.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "partner-topic",
+    "provider": "azure",
+    "icon_name": "Partner Topic",
+    "description": "Azure service for Partner Topic",
+    "tags": [],
+    "svg_path": "/icons/azure/partner-topic.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "peering-service",
+    "provider": "azure",
+    "icon_name": "Peering Service",
+    "description": "Azure service for Peering Service",
+    "tags": [],
+    "svg_path": "/icons/azure/peering-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "peerings",
+    "provider": "azure",
+    "icon_name": "Peerings",
+    "description": "Azure service for Peerings",
+    "tags": [],
+    "svg_path": "/icons/azure/peerings.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "personalizers",
+    "provider": "azure",
+    "icon_name": "Personalizers",
+    "description": "Azure service for Personalizers",
+    "tags": [],
+    "svg_path": "/icons/azure/personalizers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "plans",
+    "provider": "azure",
+    "icon_name": "Plans",
+    "description": "Azure service for Plans",
+    "tags": [],
+    "svg_path": "/icons/azure/plans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "policy",
+    "provider": "azure",
+    "icon_name": "Policy",
+    "description": "Azure service for Policy",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/policy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "power-bi-embedded",
+    "provider": "azure",
+    "icon_name": "Power Bi Embedded",
+    "description": "Azure service for Power Bi Embedded",
+    "tags": [],
+    "svg_path": "/icons/azure/power-bi-embedded.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "power-platform",
+    "provider": "azure",
+    "icon_name": "Power Platform",
+    "description": "Azure service for Power Platform",
+    "tags": [],
+    "svg_path": "/icons/azure/power-platform.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "power-up",
+    "provider": "azure",
+    "icon_name": "Power Up",
+    "description": "Azure service for Power Up",
+    "tags": [],
+    "svg_path": "/icons/azure/power-up.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "power",
+    "provider": "azure",
+    "icon_name": "Power",
+    "description": "Azure service for Power",
+    "tags": [],
+    "svg_path": "/icons/azure/power.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "powershell",
+    "provider": "azure",
+    "icon_name": "Powershell",
+    "description": "Azure service for Powershell",
+    "tags": [],
+    "svg_path": "/icons/azure/powershell.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "preview-features",
+    "provider": "azure",
+    "icon_name": "Preview Features",
+    "description": "Azure service for Preview Features",
+    "tags": [],
+    "svg_path": "/icons/azure/preview-features.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "private-endpoints",
+    "provider": "azure",
+    "icon_name": "Private Endpoints",
+    "description": "Azure service for Private Endpoints",
+    "tags": [],
+    "svg_path": "/icons/azure/private-endpoints.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "private-link-service",
+    "provider": "azure",
+    "icon_name": "Private Link Service",
+    "description": "Azure service for Private Link Service",
+    "tags": [],
+    "svg_path": "/icons/azure/private-link-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "private-link-services",
+    "provider": "azure",
+    "icon_name": "Private Link Services",
+    "description": "Azure service for Private Link Services",
+    "tags": [],
+    "svg_path": "/icons/azure/private-link-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "private-link",
+    "provider": "azure",
+    "icon_name": "Private Link",
+    "description": "Azure service for Private Link",
+    "tags": [],
+    "svg_path": "/icons/azure/private-link.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "process-explorer",
+    "provider": "azure",
+    "icon_name": "Process Explorer",
+    "description": "Azure service for Process Explorer",
+    "tags": [],
+    "svg_path": "/icons/azure/process-explorer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "production-ready-database",
+    "provider": "azure",
+    "icon_name": "Production Ready Database",
+    "description": "Azure service for Production Ready Database",
+    "tags": [
+      "database",
+      "identity"
+    ],
+    "svg_path": "/icons/azure/production-ready-database.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "proximity-placement-groups",
+    "provider": "azure",
+    "icon_name": "Proximity Placement Groups",
+    "description": "Azure service for Proximity Placement Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/proximity-placement-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "public-ip-addresses-(classic)",
+    "provider": "azure",
+    "icon_name": "Public Ip Addresses (Classic)",
+    "description": "Azure service for Public Ip Addresses (Classic)",
+    "tags": [
+      "identity",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/public-ip-addresses-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "public-ip-addresses",
+    "provider": "azure",
+    "icon_name": "Public Ip Addresses",
+    "description": "Azure service for Public Ip Addresses",
+    "tags": [
+      "identity",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/public-ip-addresses.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "public-ip-prefixes",
+    "provider": "azure",
+    "icon_name": "Public Ip Prefixes",
+    "description": "Azure service for Public Ip Prefixes",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/public-ip-prefixes.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "qna-makers",
+    "provider": "azure",
+    "icon_name": "Qna Makers",
+    "description": "Azure service for Qna Makers",
+    "tags": [],
+    "svg_path": "/icons/azure/qna-makers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "quickstart-center",
+    "provider": "azure",
+    "icon_name": "Quickstart Center",
+    "description": "Azure service for Quickstart Center",
+    "tags": [],
+    "svg_path": "/icons/azure/quickstart-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "recent",
+    "provider": "azure",
+    "icon_name": "Recent",
+    "description": "Azure service for Recent",
+    "tags": [],
+    "svg_path": "/icons/azure/recent.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "recovery-services-vaults",
+    "provider": "azure",
+    "icon_name": "Recovery Services Vaults",
+    "description": "Azure service for Recovery Services Vaults",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/recovery-services-vaults.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "region-management",
+    "provider": "azure",
+    "icon_name": "Region Management",
+    "description": "Azure service for Region Management",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/region-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "relays",
+    "provider": "azure",
+    "icon_name": "Relays",
+    "description": "Azure service for Relays",
+    "tags": [],
+    "svg_path": "/icons/azure/relays.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "remote-rendering",
+    "provider": "azure",
+    "icon_name": "Remote Rendering",
+    "description": "Azure service for Remote Rendering",
+    "tags": [],
+    "svg_path": "/icons/azure/remote-rendering.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "reservations",
+    "provider": "azure",
+    "icon_name": "Reservations",
+    "description": "Azure service for Reservations",
+    "tags": [],
+    "svg_path": "/icons/azure/reservations.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "reserved-capacity",
+    "provider": "azure",
+    "icon_name": "Reserved Capacity",
+    "description": "Azure service for Reserved Capacity",
+    "tags": [],
+    "svg_path": "/icons/azure/reserved-capacity.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "reserved-ip-addresses-(classic)",
+    "provider": "azure",
+    "icon_name": "Reserved Ip Addresses (Classic)",
+    "description": "Azure service for Reserved Ip Addresses (Classic)",
+    "tags": [
+      "identity",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/reserved-ip-addresses-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-explorer",
+    "provider": "azure",
+    "icon_name": "Resource Explorer",
+    "description": "Azure service for Resource Explorer",
+    "tags": [],
+    "svg_path": "/icons/azure/resource-explorer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-graph-explorer",
+    "provider": "azure",
+    "icon_name": "Resource Graph Explorer",
+    "description": "Azure service for Resource Graph Explorer",
+    "tags": [],
+    "svg_path": "/icons/azure/resource-graph-explorer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-group-list",
+    "provider": "azure",
+    "icon_name": "Resource Group List",
+    "description": "Azure service for Resource Group List",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/resource-group-list.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-groups",
+    "provider": "azure",
+    "icon_name": "Resource Groups",
+    "description": "Azure service for Resource Groups",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/resource-groups.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-guard",
+    "provider": "azure",
+    "icon_name": "Resource Guard",
+    "description": "Azure service for Resource Guard",
+    "tags": [],
+    "svg_path": "/icons/azure/resource-guard.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-linked",
+    "provider": "azure",
+    "icon_name": "Resource Linked",
+    "description": "Azure service for Resource Linked",
+    "tags": [],
+    "svg_path": "/icons/azure/resource-linked.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-management-private-link",
+    "provider": "azure",
+    "icon_name": "Resource Management Private Link",
+    "description": "Azure service for Resource Management Private Link",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/resource-management-private-link.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resource-mover",
+    "provider": "azure",
+    "icon_name": "Resource Mover",
+    "description": "Azure service for Resource Mover",
+    "tags": [],
+    "svg_path": "/icons/azure/resource-mover.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "resources-provider",
+    "provider": "azure",
+    "icon_name": "Resources Provider",
+    "description": "Azure service for Resources Provider",
+    "tags": [],
+    "svg_path": "/icons/azure/resources-provider.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "restore-points-collections",
+    "provider": "azure",
+    "icon_name": "Restore Points Collections",
+    "description": "Azure service for Restore Points Collections",
+    "tags": [],
+    "svg_path": "/icons/azure/restore-points-collections.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "restore-points",
+    "provider": "azure",
+    "icon_name": "Restore Points",
+    "description": "Azure service for Restore Points",
+    "tags": [],
+    "svg_path": "/icons/azure/restore-points.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "route-filters",
+    "provider": "azure",
+    "icon_name": "Route Filters",
+    "description": "Azure service for Route Filters",
+    "tags": [],
+    "svg_path": "/icons/azure/route-filters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "route-tables",
+    "provider": "azure",
+    "icon_name": "Route Tables",
+    "description": "Azure service for Route Tables",
+    "tags": [],
+    "svg_path": "/icons/azure/route-tables.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "rtos",
+    "provider": "azure",
+    "icon_name": "Rtos",
+    "description": "Azure service for Rtos",
+    "tags": [],
+    "svg_path": "/icons/azure/rtos.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "savings-plans",
+    "provider": "azure",
+    "icon_name": "Savings Plans",
+    "description": "Azure service for Savings Plans",
+    "tags": [],
+    "svg_path": "/icons/azure/savings-plans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "scheduler-job-collections",
+    "provider": "azure",
+    "icon_name": "Scheduler Job Collections",
+    "description": "Azure service for Scheduler Job Collections",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/scheduler-job-collections.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "scheduler",
+    "provider": "azure",
+    "icon_name": "Scheduler",
+    "description": "Azure service for Scheduler",
+    "tags": [],
+    "svg_path": "/icons/azure/scheduler.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "scvmm-management-servers",
+    "provider": "azure",
+    "icon_name": "Scvmm Management Servers",
+    "description": "Azure service for Scvmm Management Servers",
+    "tags": [
+      "compute",
+      "management"
+    ],
+    "svg_path": "/icons/azure/scvmm-management-servers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "search-grid",
+    "provider": "azure",
+    "icon_name": "Search Grid",
+    "description": "Azure service for Search Grid",
+    "tags": [],
+    "svg_path": "/icons/azure/search-grid.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "search",
+    "provider": "azure",
+    "icon_name": "Search",
+    "description": "Azure service for Search",
+    "tags": [],
+    "svg_path": "/icons/azure/search.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "security-baselines",
+    "provider": "azure",
+    "icon_name": "Security Baselines",
+    "description": "Azure service for Security Baselines",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/security-baselines.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "security",
+    "provider": "azure",
+    "icon_name": "Security",
+    "description": "Azure service for Security",
+    "tags": [
+      "security"
+    ],
+    "svg_path": "/icons/azure/security.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sendgrid-accounts",
+    "provider": "azure",
+    "icon_name": "Sendgrid Accounts",
+    "description": "Azure service for Sendgrid Accounts",
+    "tags": [],
+    "svg_path": "/icons/azure/sendgrid-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "server-farm",
+    "provider": "azure",
+    "icon_name": "Server Farm",
+    "description": "Azure service for Server Farm",
+    "tags": [],
+    "svg_path": "/icons/azure/server-farm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "serverless-search",
+    "provider": "azure",
+    "icon_name": "Serverless Search",
+    "description": "Azure service for Serverless Search",
+    "tags": [],
+    "svg_path": "/icons/azure/serverless-search.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "service-catalog-mad",
+    "provider": "azure",
+    "icon_name": "Service Catalog Mad",
+    "description": "Azure service for Service Catalog Mad",
+    "tags": [
+      "identity",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/service-catalog-mad.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "service-endpoint-policies",
+    "provider": "azure",
+    "icon_name": "Service Endpoint Policies",
+    "description": "Azure service for Service Endpoint Policies",
+    "tags": [],
+    "svg_path": "/icons/azure/service-endpoint-policies.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "service-fabric-clusters",
+    "provider": "azure",
+    "icon_name": "Service Fabric Clusters",
+    "description": "Azure service for Service Fabric Clusters",
+    "tags": [],
+    "svg_path": "/icons/azure/service-fabric-clusters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "service-health",
+    "provider": "azure",
+    "icon_name": "Service Health",
+    "description": "Azure service for Service Health",
+    "tags": [],
+    "svg_path": "/icons/azure/service-health.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "service-providers",
+    "provider": "azure",
+    "icon_name": "Service Providers",
+    "description": "Azure service for Service Providers",
+    "tags": [],
+    "svg_path": "/icons/azure/service-providers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "shared-image-galleries",
+    "provider": "azure",
+    "icon_name": "Shared Image Galleries",
+    "description": "Azure service for Shared Image Galleries",
+    "tags": [],
+    "svg_path": "/icons/azure/shared-image-galleries.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "signalr",
+    "provider": "azure",
+    "icon_name": "Signalr",
+    "description": "Azure service for Signalr",
+    "tags": [],
+    "svg_path": "/icons/azure/signalr.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "software-as-a-service",
+    "provider": "azure",
+    "icon_name": "Software As A Service",
+    "description": "Azure service for Software As A Service",
+    "tags": [],
+    "svg_path": "/icons/azure/software-as-a-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "software-updates",
+    "provider": "azure",
+    "icon_name": "Software Updates",
+    "description": "Azure service for Software Updates",
+    "tags": [],
+    "svg_path": "/icons/azure/software-updates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "solutions",
+    "provider": "azure",
+    "icon_name": "Solutions",
+    "description": "Azure service for Solutions",
+    "tags": [],
+    "svg_path": "/icons/azure/solutions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sonic-dash",
+    "provider": "azure",
+    "icon_name": "Sonic Dash",
+    "description": "Azure service for Sonic Dash",
+    "tags": [],
+    "svg_path": "/icons/azure/sonic-dash.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "spatial-anchor-accounts",
+    "provider": "azure",
+    "icon_name": "Spatial Anchor Accounts",
+    "description": "Azure service for Spatial Anchor Accounts",
+    "tags": [],
+    "svg_path": "/icons/azure/spatial-anchor-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "speech-services",
+    "provider": "azure",
+    "icon_name": "Speech Services",
+    "description": "Azure service for Speech Services",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/speech-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "spot-vm",
+    "provider": "azure",
+    "icon_name": "Spot Vm",
+    "description": "Azure service for Spot Vm",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/spot-vm.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "spot-vmss",
+    "provider": "azure",
+    "icon_name": "Spot Vmss",
+    "description": "Azure service for Spot Vmss",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/spot-vmss.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-data-warehouses",
+    "provider": "azure",
+    "icon_name": "Sql Data Warehouses",
+    "description": "Azure service for Sql Data Warehouses",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-data-warehouses.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-database-fleet-manager",
+    "provider": "azure",
+    "icon_name": "Sql Database Fleet Manager",
+    "description": "Azure service for Sql Database Fleet Manager",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-database-fleet-manager.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-database",
+    "provider": "azure",
+    "icon_name": "Sql Database",
+    "description": "Azure service for Sql Database",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-database.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-elastic-pools",
+    "provider": "azure",
+    "icon_name": "Sql Elastic Pools",
+    "description": "Azure service for Sql Elastic Pools",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-elastic-pools.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-managed-instance",
+    "provider": "azure",
+    "icon_name": "Sql Managed Instance",
+    "description": "Azure service for Sql Managed Instance",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-managed-instance.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-server-registries",
+    "provider": "azure",
+    "icon_name": "Sql Server Registries",
+    "description": "Azure service for Sql Server Registries",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-server-registries.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "sql-server",
+    "provider": "azure",
+    "icon_name": "Sql Server",
+    "description": "Azure service for Sql Server",
+    "tags": [
+      "database"
+    ],
+    "svg_path": "/icons/azure/sql-server.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ssd",
+    "provider": "azure",
+    "icon_name": "Ssd",
+    "description": "Azure service for Ssd",
+    "tags": [],
+    "svg_path": "/icons/azure/ssd.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ssh-keys",
+    "provider": "azure",
+    "icon_name": "Ssh Keys",
+    "description": "Azure service for Ssh Keys",
+    "tags": [],
+    "svg_path": "/icons/azure/ssh-keys.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "ssis-lift-and-shift-ir",
+    "provider": "azure",
+    "icon_name": "Ssis Lift And Shift Ir",
+    "description": "Azure service for Ssis Lift And Shift Ir",
+    "tags": [],
+    "svg_path": "/icons/azure/ssis-lift-and-shift-ir.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "stack-hci-premium",
+    "provider": "azure",
+    "icon_name": "Stack Hci Premium",
+    "description": "Azure service for Stack Hci Premium",
+    "tags": [],
+    "svg_path": "/icons/azure/stack-hci-premium.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "static-apps",
+    "provider": "azure",
+    "icon_name": "Static Apps",
+    "description": "Azure service for Static Apps",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/static-apps.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-accounts-(classic)",
+    "provider": "azure",
+    "icon_name": "Storage Accounts (Classic)",
+    "description": "Azure service for Storage Accounts (Classic)",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-accounts-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-accounts",
+    "provider": "azure",
+    "icon_name": "Storage Accounts",
+    "description": "Azure service for Storage Accounts",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-accounts.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-actions",
+    "provider": "azure",
+    "icon_name": "Storage Actions",
+    "description": "Azure service for Storage Actions",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-actions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-azure-files",
+    "provider": "azure",
+    "icon_name": "Storage Azure Files",
+    "description": "Azure service for Storage Azure Files",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-azure-files.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-container",
+    "provider": "azure",
+    "icon_name": "Storage Container",
+    "description": "Azure service for Storage Container",
+    "tags": [
+      "ai",
+      "container",
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-container.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-explorer",
+    "provider": "azure",
+    "icon_name": "Storage Explorer",
+    "description": "Azure service for Storage Explorer",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-explorer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-functions",
+    "provider": "azure",
+    "icon_name": "Storage Functions",
+    "description": "Azure service for Storage Functions",
+    "tags": [
+      "integration",
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-functions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-queue",
+    "provider": "azure",
+    "icon_name": "Storage Queue",
+    "description": "Azure service for Storage Queue",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-queue.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storage-sync-services",
+    "provider": "azure",
+    "icon_name": "Storage Sync Services",
+    "description": "Azure service for Storage Sync Services",
+    "tags": [
+      "storage"
+    ],
+    "svg_path": "/icons/azure/storage-sync-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storsimple-data-managers",
+    "provider": "azure",
+    "icon_name": "Storsimple Data Managers",
+    "description": "Azure service for Storsimple Data Managers",
+    "tags": [],
+    "svg_path": "/icons/azure/storsimple-data-managers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "storsimple-device-managers",
+    "provider": "azure",
+    "icon_name": "Storsimple Device Managers",
+    "description": "Azure service for Storsimple Device Managers",
+    "tags": [],
+    "svg_path": "/icons/azure/storsimple-device-managers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "stream-analytics-jobs",
+    "provider": "azure",
+    "icon_name": "Stream Analytics Jobs",
+    "description": "Azure service for Stream Analytics Jobs",
+    "tags": [
+      "media",
+      "web"
+    ],
+    "svg_path": "/icons/azure/stream-analytics-jobs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "subnet",
+    "provider": "azure",
+    "icon_name": "Subnet",
+    "description": "Azure service for Subnet",
+    "tags": [],
+    "svg_path": "/icons/azure/subnet.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "subscriptions",
+    "provider": "azure",
+    "icon_name": "Subscriptions",
+    "description": "Azure service for Subscriptions",
+    "tags": [
+      "management",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/subscriptions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "system-topic",
+    "provider": "azure",
+    "icon_name": "System Topic",
+    "description": "Azure service for System Topic",
+    "tags": [],
+    "svg_path": "/icons/azure/system-topic.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "table",
+    "provider": "azure",
+    "icon_name": "Table",
+    "description": "Azure service for Table",
+    "tags": [],
+    "svg_path": "/icons/azure/table.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "tag",
+    "provider": "azure",
+    "icon_name": "Tag",
+    "description": "Azure service for Tag",
+    "tags": [],
+    "svg_path": "/icons/azure/tag.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "tags",
+    "provider": "azure",
+    "icon_name": "Tags",
+    "description": "Azure service for Tags",
+    "tags": [],
+    "svg_path": "/icons/azure/tags.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "targets-management",
+    "provider": "azure",
+    "icon_name": "Targets Management",
+    "description": "Azure service for Targets Management",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/targets-management.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "template-specs",
+    "provider": "azure",
+    "icon_name": "Template Specs",
+    "description": "Azure service for Template Specs",
+    "tags": [],
+    "svg_path": "/icons/azure/template-specs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "templates",
+    "provider": "azure",
+    "icon_name": "Templates",
+    "description": "Azure service for Templates",
+    "tags": [],
+    "svg_path": "/icons/azure/templates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "tenant-properties",
+    "provider": "azure",
+    "icon_name": "Tenant Properties",
+    "description": "Azure service for Tenant Properties",
+    "tags": [],
+    "svg_path": "/icons/azure/tenant-properties.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "tenant-status",
+    "provider": "azure",
+    "icon_name": "Tenant Status",
+    "description": "Azure service for Tenant Status",
+    "tags": [],
+    "svg_path": "/icons/azure/tenant-status.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "test-base",
+    "provider": "azure",
+    "icon_name": "Test Base",
+    "description": "Azure service for Test Base",
+    "tags": [],
+    "svg_path": "/icons/azure/test-base.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "tfs-vc-repository",
+    "provider": "azure",
+    "icon_name": "Tfs Vc Repository",
+    "description": "Azure service for Tfs Vc Repository",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/tfs-vc-repository.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "time-series-data-sets",
+    "provider": "azure",
+    "icon_name": "Time Series Data Sets",
+    "description": "Azure service for Time Series Data Sets",
+    "tags": [],
+    "svg_path": "/icons/azure/time-series-data-sets.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "time-series-insights-access-policies",
+    "provider": "azure",
+    "icon_name": "Time Series Insights Access Policies",
+    "description": "Azure service for Time Series Insights Access Policies",
+    "tags": [
+      "identity",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/time-series-insights-access-policies.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "time-series-insights-environments",
+    "provider": "azure",
+    "icon_name": "Time Series Insights Environments",
+    "description": "Azure service for Time Series Insights Environments",
+    "tags": [
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/time-series-insights-environments.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "time-series-insights-event-sources",
+    "provider": "azure",
+    "icon_name": "Time Series Insights Event Sources",
+    "description": "Azure service for Time Series Insights Event Sources",
+    "tags": [
+      "integration",
+      "monitoring"
+    ],
+    "svg_path": "/icons/azure/time-series-insights-event-sources.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "toolbox",
+    "provider": "azure",
+    "icon_name": "Toolbox",
+    "description": "Azure service for Toolbox",
+    "tags": [],
+    "svg_path": "/icons/azure/toolbox.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "toolchain-orchestrator",
+    "provider": "azure",
+    "icon_name": "Toolchain Orchestrator",
+    "description": "Azure service for Toolchain Orchestrator",
+    "tags": [
+      "ai"
+    ],
+    "svg_path": "/icons/azure/toolchain-orchestrator.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "traffic-manager-profiles",
+    "provider": "azure",
+    "icon_name": "Traffic Manager Profiles",
+    "description": "Azure service for Traffic Manager Profiles",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/traffic-manager-profiles.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "translator-text",
+    "provider": "azure",
+    "icon_name": "Translator Text",
+    "description": "Azure service for Translator Text",
+    "tags": [],
+    "svg_path": "/icons/azure/translator-text.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "troubleshoot",
+    "provider": "azure",
+    "icon_name": "Troubleshoot",
+    "description": "Azure service for Troubleshoot",
+    "tags": [],
+    "svg_path": "/icons/azure/troubleshoot.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "universal-print",
+    "provider": "azure",
+    "icon_name": "Universal Print",
+    "description": "Azure service for Universal Print",
+    "tags": [],
+    "svg_path": "/icons/azure/universal-print.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "update-management-center",
+    "provider": "azure",
+    "icon_name": "Update Management Center",
+    "description": "Azure service for Update Management Center",
+    "tags": [
+      "management"
+    ],
+    "svg_path": "/icons/azure/update-management-center.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "updates",
+    "provider": "azure",
+    "icon_name": "Updates",
+    "description": "Azure service for Updates",
+    "tags": [],
+    "svg_path": "/icons/azure/updates.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "user-privacy",
+    "provider": "azure",
+    "icon_name": "User Privacy",
+    "description": "Azure service for User Privacy",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/user-privacy.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "user-settings",
+    "provider": "azure",
+    "icon_name": "User Settings",
+    "description": "Azure service for User Settings",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/user-settings.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "user-subscriptions",
+    "provider": "azure",
+    "icon_name": "User Subscriptions",
+    "description": "Azure service for User Subscriptions",
+    "tags": [
+      "identity",
+      "management",
+      "networking"
+    ],
+    "svg_path": "/icons/azure/user-subscriptions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "users",
+    "provider": "azure",
+    "icon_name": "Users",
+    "description": "Azure service for Users",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/users.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "verifiable-credentials",
+    "provider": "azure",
+    "icon_name": "Verifiable Credentials",
+    "description": "Azure service for Verifiable Credentials",
+    "tags": [],
+    "svg_path": "/icons/azure/verifiable-credentials.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "verification-as-a-service",
+    "provider": "azure",
+    "icon_name": "Verification As A Service",
+    "description": "Azure service for Verification As A Service",
+    "tags": [],
+    "svg_path": "/icons/azure/verification-as-a-service.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "versions",
+    "provider": "azure",
+    "icon_name": "Versions",
+    "description": "Azure service for Versions",
+    "tags": [],
+    "svg_path": "/icons/azure/versions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "video-analyzers",
+    "provider": "azure",
+    "icon_name": "Video Analyzers",
+    "description": "Azure service for Video Analyzers",
+    "tags": [
+      "media"
+    ],
+    "svg_path": "/icons/azure/video-analyzers.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-clusters",
+    "provider": "azure",
+    "icon_name": "Virtual Clusters",
+    "description": "Azure service for Virtual Clusters",
+    "tags": [],
+    "svg_path": "/icons/azure/virtual-clusters.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-enclaves",
+    "provider": "azure",
+    "icon_name": "Virtual Enclaves",
+    "description": "Azure service for Virtual Enclaves",
+    "tags": [],
+    "svg_path": "/icons/azure/virtual-enclaves.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-instance-for-sap",
+    "provider": "azure",
+    "icon_name": "Virtual Instance For Sap",
+    "description": "Azure service for Virtual Instance For Sap",
+    "tags": [],
+    "svg_path": "/icons/azure/virtual-instance-for-sap.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-machine",
+    "provider": "azure",
+    "icon_name": "Virtual Machine",
+    "description": "Azure service for Virtual Machine",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/virtual-machine.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-machines-(classic)",
+    "provider": "azure",
+    "icon_name": "Virtual Machines (Classic)",
+    "description": "Azure service for Virtual Machines (Classic)",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/virtual-machines-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-network-gateways",
+    "provider": "azure",
+    "icon_name": "Virtual Network Gateways",
+    "description": "Azure service for Virtual Network Gateways",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/virtual-network-gateways.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-networks-(classic)",
+    "provider": "azure",
+    "icon_name": "Virtual Networks (Classic)",
+    "description": "Azure service for Virtual Networks (Classic)",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/virtual-networks-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-networks",
+    "provider": "azure",
+    "icon_name": "Virtual Networks",
+    "description": "Azure service for Virtual Networks",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/virtual-networks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-router",
+    "provider": "azure",
+    "icon_name": "Virtual Router",
+    "description": "Azure service for Virtual Router",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/virtual-router.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-visits-builder",
+    "provider": "azure",
+    "icon_name": "Virtual Visits Builder",
+    "description": "Azure service for Virtual Visits Builder",
+    "tags": [
+      "devops"
+    ],
+    "svg_path": "/icons/azure/virtual-visits-builder.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-wan-hub",
+    "provider": "azure",
+    "icon_name": "Virtual Wan Hub",
+    "description": "Azure service for Virtual Wan Hub",
+    "tags": [],
+    "svg_path": "/icons/azure/virtual-wan-hub.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "virtual-wans",
+    "provider": "azure",
+    "icon_name": "Virtual Wans",
+    "description": "Azure service for Virtual Wans",
+    "tags": [],
+    "svg_path": "/icons/azure/virtual-wans.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vm-app-definitions",
+    "provider": "azure",
+    "icon_name": "Vm App Definitions",
+    "description": "Azure service for Vm App Definitions",
+    "tags": [
+      "compute",
+      "web"
+    ],
+    "svg_path": "/icons/azure/vm-app-definitions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vm-app-versions",
+    "provider": "azure",
+    "icon_name": "Vm App Versions",
+    "description": "Azure service for Vm App Versions",
+    "tags": [
+      "compute",
+      "web"
+    ],
+    "svg_path": "/icons/azure/vm-app-versions.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vm-image-version",
+    "provider": "azure",
+    "icon_name": "Vm Image Version",
+    "description": "Azure service for Vm Image Version",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/vm-image-version.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vm-images-(classic)",
+    "provider": "azure",
+    "icon_name": "Vm Images (Classic)",
+    "description": "Azure service for Vm Images (Classic)",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/vm-images-(classic).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vm-scale-sets",
+    "provider": "azure",
+    "icon_name": "Vm Scale Sets",
+    "description": "Azure service for Vm Scale Sets",
+    "tags": [
+      "compute"
+    ],
+    "svg_path": "/icons/azure/vm-scale-sets.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "vpnclientwindows",
+    "provider": "azure",
+    "icon_name": "Vpnclientwindows",
+    "description": "Azure service for Vpnclientwindows",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/vpnclientwindows.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "wac-installer",
+    "provider": "azure",
+    "icon_name": "Wac Installer",
+    "description": "Azure service for Wac Installer",
+    "tags": [],
+    "svg_path": "/icons/azure/wac-installer.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "wac",
+    "provider": "azure",
+    "icon_name": "Wac",
+    "description": "Azure service for Wac",
+    "tags": [],
+    "svg_path": "/icons/azure/wac.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "web-app-+-database",
+    "provider": "azure",
+    "icon_name": "Web App + Database",
+    "description": "Azure service for Web App + Database",
+    "tags": [
+      "database",
+      "web"
+    ],
+    "svg_path": "/icons/azure/web-app-+-database.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "web-application-firewall-policies(waf)",
+    "provider": "azure",
+    "icon_name": "Web Application Firewall Policies(Waf)",
+    "description": "Azure service for Web Application Firewall Policies(Waf)",
+    "tags": [
+      "security",
+      "web"
+    ],
+    "svg_path": "/icons/azure/web-application-firewall-policies(waf).svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "web-jobs",
+    "provider": "azure",
+    "icon_name": "Web Jobs",
+    "description": "Azure service for Web Jobs",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/web-jobs.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "web-slots",
+    "provider": "azure",
+    "icon_name": "Web Slots",
+    "description": "Azure service for Web Slots",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/web-slots.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "web-test",
+    "provider": "azure",
+    "icon_name": "Web Test",
+    "description": "Azure service for Web Test",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/web-test.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "website-power",
+    "provider": "azure",
+    "icon_name": "Website Power",
+    "description": "Azure service for Website Power",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/website-power.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "website-staging",
+    "provider": "azure",
+    "icon_name": "Website Staging",
+    "description": "Azure service for Website Staging",
+    "tags": [
+      "web"
+    ],
+    "svg_path": "/icons/azure/website-staging.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "windows-notification-services",
+    "provider": "azure",
+    "icon_name": "Windows Notification Services",
+    "description": "Azure service for Windows Notification Services",
+    "tags": [],
+    "svg_path": "/icons/azure/windows-notification-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "windows10-core-services",
+    "provider": "azure",
+    "icon_name": "Windows10 Core Services",
+    "description": "Azure service for Windows10 Core Services",
+    "tags": [],
+    "svg_path": "/icons/azure/windows10-core-services.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "workbooks",
+    "provider": "azure",
+    "icon_name": "Workbooks",
+    "description": "Azure service for Workbooks",
+    "tags": [],
+    "svg_path": "/icons/azure/workbooks.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "worker-container-app",
+    "provider": "azure",
+    "icon_name": "Worker Container App",
+    "description": "Azure service for Worker Container App",
+    "tags": [
+      "ai",
+      "container",
+      "web"
+    ],
+    "svg_path": "/icons/azure/worker-container-app.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "workflow",
+    "provider": "azure",
+    "icon_name": "Workflow",
+    "description": "Azure service for Workflow",
+    "tags": [],
+    "svg_path": "/icons/azure/workflow.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "workload-orchestration",
+    "provider": "azure",
+    "icon_name": "Workload Orchestration",
+    "description": "Azure service for Workload Orchestration",
+    "tags": [
+      "identity"
+    ],
+    "svg_path": "/icons/azure/workload-orchestration.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "workspace-gateway",
+    "provider": "azure",
+    "icon_name": "Workspace Gateway",
+    "description": "Azure service for Workspace Gateway",
+    "tags": [
+      "networking"
+    ],
+    "svg_path": "/icons/azure/workspace-gateway.svg",
+    "license": "Microsoft Azure trademark"
+  },
+  {
+    "id": "workspaces",
+    "provider": "azure",
+    "icon_name": "Workspaces",
+    "description": "Azure service for Workspaces",
+    "tags": [],
+    "svg_path": "/icons/azure/workspaces.svg",
+    "license": "Microsoft Azure trademark"
+  }
+]
