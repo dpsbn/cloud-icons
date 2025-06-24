@@ -4,8 +4,10 @@ import path from 'path';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import compression from 'compression';
-import iconsRouter, { readIconsData } from './routes/icons';
+import iconsRouter from './routes/icons';
+import { readIconsData } from './services/iconService';
 import Redis from 'ioredis';
+import { Icon } from './types/icon';
 
 const app = express();
 const PORT = process.env.PORT ?? 3002;
@@ -104,7 +106,7 @@ try {
 async function getIconWithCache(provider: string, iconName: string) {
   if (!redis) {
     const icons = await readIconsData();
-    return icons.find(i =>
+    return icons.find((i: Icon) =>
       i.provider.toLowerCase() === provider.toLowerCase() &&
       i.id.toLowerCase() === iconName.toLowerCase()
     );
@@ -119,7 +121,7 @@ async function getIconWithCache(provider: string, iconName: string) {
 
     // If not in cache, fetch and store
     const icons = await readIconsData();
-    const icon = icons.find(i =>
+    const icon = icons.find((i: Icon) =>
       i.provider.toLowerCase() === provider.toLowerCase() &&
       i.id.toLowerCase() === iconName.toLowerCase()
     );
@@ -133,7 +135,7 @@ async function getIconWithCache(provider: string, iconName: string) {
     console.error('Redis error:', err);
     // Fallback to direct read if Redis fails
     const icons = await readIconsData();
-    return icons.find(i =>
+    return icons.find((i: Icon) =>
       i.provider.toLowerCase() === provider.toLowerCase() &&
       i.id.toLowerCase() === iconName.toLowerCase()
     );
