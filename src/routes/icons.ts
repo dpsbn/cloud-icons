@@ -167,4 +167,7 @@ router.get('/:provider/icon/:icon_name', async (
   }
 });
 
+// Make readIconsData function exportable
+export { readIconsData };
+
 export default router;

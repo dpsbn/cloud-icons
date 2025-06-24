@@ -4,7 +4,8 @@ import path from 'path';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import compression from 'compression';
-import iconsRouter from './routes/icons';
+import iconsRouter, { readIconsData } from './routes/icons';
+import Redis from 'ioredis';
 
 const app = express();
 const PORT = process.env.PORT ?? 3002;
@@ -21,11 +22,18 @@ app.use(helmet({
 }));
 
 // Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 300, // Limit each IP to 100 requests per windowMs
+const iconRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: (req) => {
+    if (req.path.endsWith('.svg')) return 500;  // More lenient for SVGs
+    if (req.path === '/icons') return 100;      // Stricter for metadata
+    return 200;                                 // Default limit
+  },
+  keyGenerator: (req) => {
+    return req.ip + req.path;  // Rate limit per IP and endpoint
+  }
 });
-app.use(limiter);
+app.use(iconRateLimit);
 
 // CORS configuration
 app.use(cors({
@@ -83,6 +91,54 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('Unhandled error:', err);
   res.status(500).json({ error: 'Internal server error' });
 });
+
+// Using Redis for caching (if available)
+let redis: Redis | null = null;
+try {
+  redis = new Redis();
+  console.log('Redis connected successfully');
+} catch (err) {
+  console.log('Redis not available, continuing without caching');
+}
+
+async function getIconWithCache(provider: string, iconName: string) {
+  if (!redis) {
+    const icons = await readIconsData();
+    return icons.find(i =>
+      i.provider.toLowerCase() === provider.toLowerCase() &&
+      i.id.toLowerCase() === iconName.toLowerCase()
+    );
+  }
+
+  const cacheKey = `icon:${provider}:${iconName}`;
+
+  // Try cache first
+  try {
+    const cached = await redis.get(cacheKey);
+    if (cached) return JSON.parse(cached);
+
+    // If not in cache, fetch and store
+    const icons = await readIconsData();
+    const icon = icons.find(i =>
+      i.provider.toLowerCase() === provider.toLowerCase() &&
+      i.id.toLowerCase() === iconName.toLowerCase()
+    );
+
+    if (icon) {
+      await redis.set(cacheKey, JSON.stringify(icon), 'EX', 3600); // 1 hour cache
+    }
+
+    return icon;
+  } catch (err) {
+    console.error('Redis error:', err);
+    // Fallback to direct read if Redis fails
+    const icons = await readIconsData();
+    return icons.find(i =>
+      i.provider.toLowerCase() === provider.toLowerCase() &&
+      i.id.toLowerCase() === iconName.toLowerCase()
+    );
+  }
+}
 
 // Start server
 app.listen(PORT, () => {
