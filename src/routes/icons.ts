@@ -1,11 +1,11 @@
-import { Router, Request, Response, RequestHandler } from 'express';
+import { Router, Request, Response } from 'express';
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs/promises';
 
 const router = Router();
 
-// TypeScript types
-export interface Icon {
+// TypeScript interfaces
+interface Icon {
   id: string;
   provider: string;
   icon_name: string;
@@ -16,163 +16,155 @@ export interface Icon {
   license: string;
 }
 
-export interface PaginatedIcons {
+interface PaginatedResponse<T> {
   total: number;
   page: number;
   pageSize: number;
-  icons: Icon[];
+  data: T[];
 }
 
-const iconsFilePath = path.resolve(process.cwd(), 'src/data/icons.json');
+interface ErrorResponse {
+  error: string;
+}
 
-function readIconsData(): Icon[] {
-  console.log('Reading icons from:', iconsFilePath);
+type IconResponse = Icon | ErrorResponse | string;
+
+// Constants
+const ICONS_FILE_PATH = path.resolve(process.cwd(), 'src/data/icons.json');
+const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_ICON_SIZE = 24;
+
+// Helper functions
+async function readIconsData(): Promise<Icon[]> {
   try {
-    const data = fs.readFileSync(iconsFilePath, 'utf-8');
-    const icons = JSON.parse(data);
+    const data = await fs.readFile(ICONS_FILE_PATH, 'utf-8');
+    const icons = JSON.parse(data) as Icon[];
     console.log('Icons loaded successfully. Total icons:', icons.length);
     return icons;
   } catch (err) {
     console.error('Error reading icons file:', err);
-    return [];
+    throw new Error('Failed to read icons data');
   }
 }
 
 function modifySvgSize(svgContent: string, size: number): string {
-  // Extract the original viewBox values
-  const viewBoxMatch = svgContent.match(/viewBox=["']([^"']+)["']/i);
-  if (!viewBoxMatch || !viewBoxMatch[1]) {
-    // If no viewBox found, just set width and height
+  const viewBoxRegex = /viewBox=["']([^"']+)["']/i;
+  const viewBoxMatch = viewBoxRegex.exec(svgContent);
+
+  if (!viewBoxMatch?.[1]) {
     return svgContent.replace(
       /<svg([^>]*)>/i,
-      (match, attributes) => {
+      (_match, attributes) => {
         const cleanedAttributes = attributes.replace(/\s*(width|height)=["'][^"']*["']/g, '');
         return `<svg${cleanedAttributes} width="${size}" height="${size}">`;
       }
     );
   }
 
-  // Get the original viewBox values
-  const viewBox = viewBoxMatch[1];
-  const [, , vbWidth, vbHeight] = viewBox.split(/\s+/).map(Number);
 
-  // Calculate the scaling factor to maintain aspect ratio
-  const scale = size / Math.max(vbWidth, vbHeight);
-  const width = Math.round(vbWidth * scale);
-  const height = Math.round(vbHeight * scale);
-
-  // Update the SVG attributes while preserving the viewBox
-  const modifiedSvg = svgContent.replace(
+  return svgContent.replace(
     /<svg([^>]*)>/i,
-    (match, attributes) => {
-      // Remove existing width and height attributes
+    (_match, attributes) => {
       const cleanedAttributes = attributes.replace(/\s*(width|height)=["'][^"']*["']/g, '');
       return `<svg${cleanedAttributes} width="${size}" height="${size}" preserveAspectRatio="xMidYMid meet">`;
     }
   );
-
-  return modifiedSvg;
 }
 
-// GET /icons - all icons
-router.get('/icons', (_, res: Response<Icon[]>) => {
+// Route handlers
+router.get('/icons', async (_req: Request, res: Response<Icon[] | ErrorResponse>) => {
   try {
-    const icons = readIconsData();
+    const icons = await readIconsData();
     res.json(icons);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to load icons' } as any);
+    res.status(500).json({ error: 'Failed to load icons' });
   }
 });
 
-// GET /cloud-providers - list unique providers
-router.get('/cloud-providers', (_, res: Response<string[]>) => {
+router.get('/cloud-providers', async (_req: Request, res: Response<string[] | ErrorResponse>) => {
   try {
-    const icons = readIconsData();
-    const providers = Array.from(new Set(icons.map(icon => icon.provider)));
+    const icons = await readIconsData();
+    const providers = [...new Set(icons.map(icon => icon.provider))];
     res.json(providers);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to load providers' } as any);
+    res.status(500).json({ error: 'Failed to load providers' });
   }
 });
 
-const iconHandler: RequestHandler<{ provider: string }> = (req, res) => {
-  const { page = '1', pageSize = '10' } = req.query as { page?: string; pageSize?: string };
+router.get('/:provider/icons', async (
+  req: Request<{ provider: string }, unknown, unknown, { page?: string; pageSize?: string }>,
+  res: Response<PaginatedResponse<Icon> | ErrorResponse>
+) => {
   const { provider } = req.params;
-  if (!provider) {
-    res.status(400).json({ error: 'provider param is required' } as any);
-    return;
-  }
+  const page = Math.max(1, parseInt(req.query.page ?? '1'));
+  const pageSize = Math.max(1, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE)));
+
   try {
-    const icons = readIconsData().filter(icon => icon.provider === provider);
-    const p = parseInt(page, 10) || 1;
-    const ps = parseInt(pageSize, 10) || 10;
-    const start = (p - 1) * ps;
-    const paginated = icons.slice(start, start + ps);
+    const icons = (await readIconsData()).filter(icon =>
+      icon.provider.toLowerCase() === provider.toLowerCase()
+    );
+
+    const start = (page - 1) * pageSize;
+    const paginatedIcons = icons.slice(start, start + pageSize);
+
     res.json({
       total: icons.length,
-      page: p,
-      pageSize: ps,
-      icons: paginated
+      page,
+      pageSize,
+      data: paginatedIcons
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to load icons' } as any);
+    res.status(500).json({ error: 'Failed to load icons' });
   }
-};
+});
 
-// GET /:provider/icons?page=1&pageSize=10
-router.get('/:provider/icons', iconHandler);
+router.get('/:provider/icon/:icon_name', async (
+  req: Request<
+    { provider: string; icon_name: string },
+    unknown,
+    unknown,
+    { format?: string; size?: string }
+  >,
+  res: Response<IconResponse>
+) => {
+  const { provider, icon_name } = req.params;
+  const format = req.query.format ?? 'json';
+  const size = Math.max(1, parseInt(req.query.size ?? String(DEFAULT_ICON_SIZE)));
 
-// GET /:provider/icon/:icon_name
-router.get(
-  '/:provider/icon/:icon_name',
-  (req: Request<{ provider: string; icon_name: string }>, res: Response) => {
-    const { provider, icon_name } = req.params;
-    const format = req.query.format as string || 'json';
-    const size = parseInt(req.query.size as string) || 24; // Default size is 24px
+  try {
+    const icons = await readIconsData();
+    const normalizedIconName = icon_name.replace(/\.[^/.]+$/, '').toLowerCase();
 
-    if (!provider || !icon_name) {
-      res.status(400).json({ error: 'provider and icon_name params are required' });
+    const icon = icons.find(i =>
+      i.provider.toLowerCase() === provider.toLowerCase() &&
+      i.id.toLowerCase() === normalizedIconName
+    );
+
+    if (!icon) {
+      res.status(404).json({ error: 'Icon not found' });
       return;
     }
 
-    try {
-      const icons = readIconsData();
-      const normalizedIconName = icon_name.replace(/\.[^/.]+$/, '').toLowerCase();
-
-      const icon = icons.find(i =>
-        i.provider.toLowerCase() === provider.toLowerCase() &&
-        i.id.toLowerCase() === normalizedIconName
-      );
-
-      if (!icon) {
-        res.status(404).json({ error: 'Icon not found' });
-        return;
-      }
-
-      // If format=json, return JSON response
-      if (format === 'json') {
-        res.json(icon);
-      } else {
-        // Serve the SVG file with specified size
-        const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
-        if (fs.existsSync(svgPath)) {
-          const svgContent = fs.readFileSync(svgPath, 'utf-8');
-          const modifiedSvg = modifySvgSize(svgContent, size);
-
-          res.setHeader('Content-Type', 'image/svg+xml');
-          res.send(modifiedSvg);
-        } else {
-          res.status(404).json({ error: 'SVG file not found' });
-        }
-      }
-    } catch (err) {
-      console.error('Error:', err);
-      res.status(500).json({ error: 'Failed to load icon' });
+    if (format === 'json') {
+      res.json(icon);
+      return;
     }
+
+    const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
+
+    try {
+      const svgContent = await fs.readFile(svgPath, 'utf-8');
+      const modifiedSvg = modifySvgSize(svgContent, size);
+
+      res.setHeader('Content-Type', 'image/svg+xml');
+      res.send(modifiedSvg);
+    } catch (err) {
+      res.status(404).json({ error: 'SVG file not found' });
+    }
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).json({ error: 'Failed to load icon' });
   }
-);
+});
 
 export default router;
