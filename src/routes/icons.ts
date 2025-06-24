@@ -16,6 +16,10 @@ interface Icon {
   license: string;
 }
 
+interface IconWithContent extends Icon {
+  svg_content: string;
+}
+
 interface PaginatedResponse<T> {
   total: number;
   page: number;
@@ -31,7 +35,7 @@ type IconResponse = Icon | ErrorResponse | string;
 
 // Constants
 const ICONS_FILE_PATH = path.resolve(process.cwd(), 'src/data/icons.json');
-const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE = 24;
 const DEFAULT_ICON_SIZE = 24;
 
 // Helper functions
@@ -71,12 +75,115 @@ function modifySvgSize(svgContent: string, size: number): string {
   );
 }
 
-// Route handlers
-router.get('/icons', async (_req: Request, res: Response<Icon[] | ErrorResponse>) => {
+function searchIcons(icons: Icon[], searchQuery?: string): Icon[] {
+  if (!searchQuery) return icons;
+
+  const query = searchQuery.toLowerCase().trim();
+  console.log(`Searching for: "${query}"`);
+
+  const filtered = icons.filter(icon => {
+    const matches =
+      icon.icon_name.toLowerCase().includes(query) ||
+      icon.description.toLowerCase().includes(query) ||
+      icon.id.toLowerCase().includes(query) ||
+      icon.tags.some(tag => tag.toLowerCase().includes(query));
+
+    if (matches) {
+      console.log(`Match found: ${icon.icon_name} (${icon.id})`);
+    }
+    return matches;
+  });
+
+  console.log(`Found ${filtered.length} matches`);
+  return filtered;
+}
+
+// Helper function to read SVG content
+async function getIconContent(icon: Icon): Promise<IconWithContent> {
   try {
-    const icons = await readIconsData();
-    res.json(icons);
+    const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
+    const svgContent = await fs.readFile(svgPath, 'utf-8');
+    return {
+      ...icon,
+      svg_content: modifySvgSize(svgContent, DEFAULT_ICON_SIZE)
+    };
   } catch (err) {
+    console.error(`Failed to read SVG for icon ${icon.id}:`, err);
+    return {
+      ...icon,
+      svg_content: '' // Empty string if SVG can't be read
+    };
+  }
+}
+
+// Route handlers
+router.get('/:provider/icons', async (
+  req: Request<
+    { provider: string },
+    unknown,
+    unknown,
+    { search?: string; page?: string; pageSize?: string }
+  >,
+  res: Response<PaginatedResponse<IconWithContent> | ErrorResponse>
+) => {
+  const { provider } = req.params;
+  const page = Math.max(1, parseInt(req.query.page ?? '1'));
+  const pageSize = Math.max(1, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE)));
+  const { search } = req.query;
+
+  try {
+    console.log('Received request:', { provider, search, page, pageSize });
+
+    const allIcons = await readIconsData();
+
+    // Filter by provider first (unless it's 'all')
+    let filteredIcons = allIcons;
+    if (provider.toLowerCase() !== 'all') {
+      filteredIcons = allIcons.filter(icon =>
+        icon.provider.toLowerCase() === provider.toLowerCase()
+      );
+    }
+
+    // Then apply search if provided
+    if (search) {
+      const query = search.toLowerCase().trim();
+      console.log(`Searching for: "${query}"`);
+
+      filteredIcons = filteredIcons.filter(icon => {
+        const matches =
+          icon.icon_name.toLowerCase().includes(query) ||
+          icon.description.toLowerCase().includes(query) ||
+          icon.id.toLowerCase().includes(query) ||
+          icon.tags.some(tag => tag.toLowerCase().includes(query));
+
+        if (matches) {
+          console.log(`Match found: ${icon.icon_name} (${icon.id})`);
+        }
+        return matches;
+      });
+
+      console.log(`Found ${filteredIcons.length} matches`);
+    }
+
+    const start = (page - 1) * pageSize;
+    const paginatedIcons = filteredIcons.slice(start, start + pageSize);
+
+    // Load SVG content for paginated icons
+    const iconsWithContent = await Promise.all(
+      paginatedIcons.map(getIconContent)
+    );
+
+    const response = {
+      total: filteredIcons.length,
+      page,
+      pageSize,
+      data: iconsWithContent
+    };
+
+    console.log(`Returning ${iconsWithContent.length} icons (total: ${filteredIcons.length})`);
+    res.json(response);
+  } catch (err) {
+    console.error('Failed to load icons:', err);
     res.status(500).json({ error: 'Failed to load icons' });
   }
 });
@@ -88,33 +195,6 @@ router.get('/cloud-providers', async (_req: Request, res: Response<string[] | Er
     res.json(providers);
   } catch (err) {
     res.status(500).json({ error: 'Failed to load providers' });
-  }
-});
-
-router.get('/:provider/icons', async (
-  req: Request<{ provider: string }, unknown, unknown, { page?: string; pageSize?: string }>,
-  res: Response<PaginatedResponse<Icon> | ErrorResponse>
-) => {
-  const { provider } = req.params;
-  const page = Math.max(1, parseInt(req.query.page ?? '1'));
-  const pageSize = Math.max(1, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE)));
-
-  try {
-    const icons = (await readIconsData()).filter(icon =>
-      icon.provider.toLowerCase() === provider.toLowerCase()
-    );
-
-    const start = (page - 1) * pageSize;
-    const paginatedIcons = icons.slice(start, start + pageSize);
-
-    res.json({
-      total: icons.length,
-      page,
-      pageSize,
-      data: paginatedIcons
-    });
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to load icons' });
   }
 });
 
