@@ -96,11 +96,15 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 
 // Using Redis for caching (if available)
 let redis: Redis | null = null;
-try {
-  redis = new Redis();
-  console.log('Redis connected successfully');
-} catch (err) {
-  console.log('Redis not available, continuing without caching');
+if (process.env.REDIS_URL) {
+  try {
+    redis = new Redis(process.env.REDIS_URL);
+    console.log('Redis connected successfully');
+  } catch (err) {
+    console.log('Redis connection failed:', err);
+  }
+} else {
+  console.log('No Redis URL provided, continuing without caching');
 }
 
 async function getIconWithCache(provider: string, iconName: string) {
