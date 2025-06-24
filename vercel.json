@@ -3,14 +3,13 @@
   "builds": [
     {
       "src": "dist/index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["data/**/*"]
+      }
     },
     {
       "src": "public/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "data/**",
       "use": "@vercel/static"
     }
   ],
@@ -18,10 +17,6 @@
     {
       "src": "/public/(.*)",
       "dest": "/public/$1"
-    },
-    {
-      "src": "/data/(.*)",
-      "dest": "/data/$1"
     },
     {
       "src": "/(.*)",

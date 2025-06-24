@@ -11,7 +11,22 @@ const DEFAULT_ICON_SIZE = 24;
 
 export async function readIconsData(): Promise<Icon[]> {
   try {
+    console.log('Environment:', process.env.NODE_ENV);
+    console.log('Current working directory:', process.cwd());
+    console.log('__dirname:', __dirname);
     console.log('Attempting to read icons from:', ICONS_FILE_PATH);
+
+    // List contents of the current directory
+    try {
+      const contents = await fs.readdir(process.cwd());
+      console.log('Contents of cwd:', contents);
+
+      const dataContents = await fs.readdir(path.join(process.cwd(), 'data'));
+      console.log('Contents of data directory:', dataContents);
+    } catch (e) {
+      console.error('Error listing directory contents:', e);
+    }
+
     const data = await fs.readFile(ICONS_FILE_PATH, 'utf-8');
     const icons = JSON.parse(data) as Icon[];
     console.log('Icons loaded successfully. Total icons:', icons.length);
