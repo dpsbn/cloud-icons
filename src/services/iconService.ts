@@ -3,18 +3,24 @@ import path from 'path';
 import { Icon, IconWithContent } from '../types/icon';
 
 // Constants
-const ICONS_FILE_PATH = path.resolve(process.cwd(), 'src/data/icons.json');
+const ICONS_FILE_PATH = process.env.NODE_ENV === 'production'
+  ? path.join(process.cwd(), 'data', 'icons.json')
+  : path.join(process.cwd(), 'data', 'icons.json');
+
 const DEFAULT_ICON_SIZE = 24;
 
 export async function readIconsData(): Promise<Icon[]> {
   try {
+    console.log('Attempting to read icons from:', ICONS_FILE_PATH);
     const data = await fs.readFile(ICONS_FILE_PATH, 'utf-8');
     const icons = JSON.parse(data) as Icon[];
     console.log('Icons loaded successfully. Total icons:', icons.length);
     return icons;
-  } catch (err) {
+  } catch (err: any) {
     console.error('Error reading icons file:', err);
-    throw new Error('Failed to read icons data');
+    console.error('Current working directory:', process.cwd());
+    console.error('__dirname:', __dirname);
+    throw new Error(`Failed to read icons data: ${err.message}`);
   }
 }
 
@@ -65,15 +71,19 @@ export function searchIcons(icons: Icon[], searchQuery?: string): Icon[] {
 }
 
 export async function getIconContent(icon: Icon, size: number = DEFAULT_ICON_SIZE): Promise<IconWithContent> {
+  const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
   try {
-    const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
+    console.log('Attempting to read SVG from:', svgPath);
     const svgContent = await fs.readFile(svgPath, 'utf-8');
     return {
       ...icon,
       svg_content: modifySvgSize(svgContent, size)
     };
-  } catch (err) {
+  } catch (err: any) {
     console.error(`Failed to read SVG for icon ${icon.id}:`, err);
+    console.error('SVG path attempted:', svgPath);
+    console.error('Current working directory:', process.cwd());
+    console.error('__dirname:', __dirname);
     return {
       ...icon,
       svg_content: '' // Empty string if SVG can't be read

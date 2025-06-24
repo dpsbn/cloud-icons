@@ -73,7 +73,7 @@ app.get('/health', async (_req: Request, res: Response) => {
 app.use('/', iconsRouter);
 
 // Serve static files
-app.use(express.static(path.join(__dirname, '../public'), {
+app.use(express.static(path.join(__dirname, process.env.NODE_ENV === 'production' ? '../public' : '../public'), {
   maxAge: '1d',
   setHeaders: (res, path) => {
     if (path.endsWith('.svg')) {
