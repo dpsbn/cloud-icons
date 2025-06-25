@@ -1,32 +1,13 @@
 {
-  "name": "cloudicons",
+  "name": "cloudicons-monorepo",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "private": true,
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "dev": "nodemon --watch src --exec ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "brainboard",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "compression": "^1.8.0",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "express-rate-limit": "^7.5.1",
-    "helmet": "^8.1.0",
-    "ioredis": "^5.6.1"
-  },
-  "devDependencies": {
-    "@types/compression": "^1.8.1",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.0.4",
-    "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "build:api": "cd api && npm install && npm run build",
+    "build:web": "cd cloudicons-web && npm install && npm run build",
+    "build:all": "npm run build:api && npm run build:web",
+    "dev:api": "cd api && npm run dev",
+    "dev:web": "cd cloudicons-web && npm run dev",
+    "start": "cd api && npm start"
   }
 }

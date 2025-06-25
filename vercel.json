@@ -1,22 +1,35 @@
 {
   "version": 2,
+  "buildCommand": "npm run build:all",
+  "outputDirectory": ".",
   "builds": [
     {
-      "src": "dist/index.js",
+      "src": "api/dist/index.js",
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["data/**/*", "public/**/*"]
       }
+    },
+    {
+      "src": "cloudicons-web/package.json",
+      "use": "@vercel/next"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/dist/index.js"
+    },
     {
       "src": "/public/(.*)",
       "dest": "/public/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/dist/index.js"
+      "dest": "/cloudicons-web/$1"
     }
   ],
   "env": {

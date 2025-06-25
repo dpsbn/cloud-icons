@@ -23,7 +23,7 @@ interface IconsResponse {
 }
 
 const ICON_SIZE = 64;
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cloudicons.vercel.app';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export function IconGrid() {
   const [icons, setIcons] = useState<Icon[]>([])
@@ -33,7 +33,7 @@ export function IconGrid() {
 
   const fetchIcons = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/azure/icons?page=${page}&pageSize=25&size=${ICON_SIZE}`)
+      const response = await fetch(`${API_URL}/api/azure/icons?page=${page}&pageSize=25&size=${ICON_SIZE}`)
       const data: IconsResponse = await response.json()
 
       if (page === 1) {
