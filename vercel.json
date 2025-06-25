@@ -5,12 +5,8 @@
       "src": "dist/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["data/**/*"]
+        "includeFiles": ["data/**/*", "public/**/*"]
       }
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -20,7 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "dist/index.js"
+      "dest": "/dist/index.js"
     }
   ],
   "env": {

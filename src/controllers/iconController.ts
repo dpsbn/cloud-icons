@@ -10,17 +10,18 @@ export async function getIcons(
     { provider: string },
     unknown,
     unknown,
-    { search?: string; page?: string; pageSize?: string }
+    { search?: string; page?: string; pageSize?: string; size?: string }
   >,
   res: Response<PaginatedResponse<IconWithContent> | ErrorResponse>
 ) {
   const { provider } = req.params;
   const page = Math.max(1, parseInt(req.query.page ?? '1'));
   const pageSize = Math.max(1, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE)));
+  const size = Math.max(1, parseInt(req.query.size ?? '64'));
   const { search } = req.query;
 
   try {
-    console.log('Received request:', { provider, search, page, pageSize });
+    console.log('Received request:', { provider, search, page, pageSize, size });
 
     const allIcons = await readIconsData();
     let filteredIcons = filterIconsByProvider(allIcons, provider);
@@ -31,11 +32,12 @@ export async function getIcons(
     }
 
     const start = (page - 1) * pageSize;
-    const paginatedIcons = filteredIcons.slice(start, start + pageSize);
+    const end = start + pageSize;
+    const paginatedIcons = filteredIcons.slice(start, end);
 
     // Load SVG content for paginated icons
     const iconsWithContent = await Promise.all(
-      paginatedIcons.map(getIconContent)
+      paginatedIcons.map(icon => getIconContent(icon, size))
     );
 
     const response = {

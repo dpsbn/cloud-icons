@@ -85,24 +85,22 @@ export function searchIcons(icons: Icon[], searchQuery?: string): Icon[] {
   return filtered;
 }
 
-export async function getIconContent(icon: Icon, size: number = DEFAULT_ICON_SIZE): Promise<IconWithContent> {
-  const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
+export async function getIconContent(icon: Icon, size: number = 64): Promise<IconWithContent> {
   try {
+    const svgPath = path.join(process.cwd(), 'public', icon.svg_path);
     console.log('Attempting to read SVG from:', svgPath);
     const svgContent = await fs.readFile(svgPath, 'utf-8');
+
+    // Add width and height attributes to the SVG
+    const sizedSvgContent = svgContent.replace(/<svg/, `<svg width="${size}" height="${size}"`);
+
     return {
       ...icon,
-      svg_content: modifySvgSize(svgContent, size)
+      svg_content: sizedSvgContent
     };
   } catch (err: any) {
-    console.error(`Failed to read SVG for icon ${icon.id}:`, err);
-    console.error('SVG path attempted:', svgPath);
-    console.error('Current working directory:', process.cwd());
-    console.error('__dirname:', __dirname);
-    return {
-      ...icon,
-      svg_content: '' // Empty string if SVG can't be read
-    };
+    console.error('Error reading SVG file:', err);
+    throw new Error(`Failed to read SVG file: ${err.message}`);
   }
 }
 

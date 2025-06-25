@@ -1,0 +1,1778 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+TITLE: Apply Title Template with Prefix/Suffix in Next.js
+DESCRIPTION: This snippet demonstrates how to use `title.template` in Next.js to add a consistent prefix or suffix to titles defined in child route segments. It shows configuration in both `layout.tsx` and `layout.js`, requiring a `title.default` when a template is used, and how a child page's title is then augmented.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/generate-metadata.mdx#_snippet_5
+
+LANGUAGE: tsx
+CODE:
+```
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Acme',
+    default: 'Acme', // a default is required when creating a template
+  },
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export const metadata = {
+  title: {
+    template: '%s | Acme',
+    default: 'Acme', // a default is required when creating a template
+  },
+}
+```
+
+LANGUAGE: tsx
+CODE:
+```
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About',
+}
+
+// Output: <title>About | Acme</title>
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export const metadata = {
+  title: 'About',
+}
+
+// Output: <title>About | Acme</title>
+```
+
+----------------------------------------
+
+TITLE: Create Next.js App Router root layout
+DESCRIPTION: Define the root layout component for the Next.js App Router, which is required and must contain `<html>` and `<body>` tags.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/01-installation.mdx#_snippet_3
+
+LANGUAGE: tsx
+CODE:
+```
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Implement Cached User Authentication in Data Access Layer
+DESCRIPTION: This TypeScript snippet demonstrates how to implement a cached `getCurrentUser` helper function within the Data Access Layer. It uses `react`'s `cache` and `next/headers` `cookies` to securely retrieve and decrypt an authentication token, returning a `User` object. This approach centralizes user authentication, prevents sensitive data exposure to client components, and allows for efficient reuse across server components.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/data-security.mdx#_snippet_1
+
+LANGUAGE: ts
+CODE:
+```
+import { cache } from 'react'\nimport { cookies } from 'next/headers'\n\n// Cached helper methods makes it easy to get the same value in many places\n// without manually passing it around. This discourages passing it from Server\n// Component to Server Component which minimizes risk of passing it to a Client\n// Component.\nexport const getCurrentUser = cache(async () => {\n  const token = cookies().get('AUTH_TOKEN')\n  const decodedToken = await decryptAndValidate(token)\n  // Don't include secret tokens or private information as public fields.\n  // Use classes to avoid accidentally passing the whole object to the client.\n  return new User(decodedToken.id)\n})
+```
+
+----------------------------------------
+
+TITLE: Create Next.js App with Default Template
+DESCRIPTION: Command to start the interactive `create-next-app` process, prompting the user for project configuration details.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/06-cli/create-next-app.mdx#_snippet_2
+
+LANGUAGE: bash
+CODE:
+```
+npx create-next-app@latest
+```
+
+----------------------------------------
+
+TITLE: Implementing Sequential Data Fetching with React Suspense
+DESCRIPTION: Demonstrates a sequential data fetching pattern where the `<Playlists>` component fetches data only after the `<Artist>` component has completed its fetch, as `<Playlists>` depends on the `artistID` prop. React `<Suspense>` is used to show a fallback UI while data is being fetched, improving user experience and enabling streaming.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/07-fetching-data.mdx#_snippet_8
+
+LANGUAGE: tsx
+CODE:
+```
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}) {
+  const { username } = await params
+  // Get artist information
+  const artist = await getArtist(username)
+
+  return (
+    <>
+      <h1>{artist.name}</h1>
+      {/* Show fallback UI while the Playlists component is loading */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {/* Pass the artist ID to the Playlists component */}
+        <Playlists artistID={artist.id} />
+      </Suspense>
+    </>
+  )
+}
+
+async function Playlists({ artistID }: { artistID: string }) {
+  // Use the artist ID to fetch playlists
+  const playlists = await getArtistPlaylists(artistID)
+
+  return (
+    <ul>
+      {playlists.map((playlist) => (
+        <li key={playlist.id}>{playlist.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export default async function Page({ params }) {
+  const { username } = await params
+  // Get artist information
+  const artist = await getArtist(username)
+
+  return (
+    <>
+      <h1>{artist.name}</h1>
+      {/* Show fallback UI while the Playlists component is loading */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {/* Pass the artist ID to the Playlists component */}
+        <Playlists artistID={artist.id} />
+      </Suspense>
+    </>
+  )
+}
+
+async function Playlists({ artistID }) {
+  // Use the artist ID to fetch playlists
+  const playlists = await getArtistPlaylists(artistID)
+
+  return (
+    <ul>
+      {playlists.map((playlist) => (
+        <li key={playlist.id}>{playlist.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Configure Next.js for Incremental Partial Prerendering
+DESCRIPTION: This configuration enables incremental Partial Prerendering (PPR) in Next.js 15 by setting the `ppr` option to `incremental` within the `experimental` object in `next.config.js`. This is a crucial step for opting into PPR.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/05-config/01-next-config-js/ppr.mdx#_snippet_0
+
+LANGUAGE: JavaScript
+CODE:
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    ppr: 'incremental',
+  },
+}
+
+module.exports = nextConfig
+```
+
+----------------------------------------
+
+TITLE: Create a Submit Button with React useFormStatus Hook
+DESCRIPTION: This snippet shows how to create a reusable `SubmitButton` component that leverages the `useFormStatus` hook. This hook provides access to the pending state of the nearest parent form, allowing the button to be disabled automatically during form submission. This approach requires nesting the button component inside the form.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/forms.mdx#_snippet_7
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+import { useFormStatus } from 'react-dom'
+
+export function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button disabled={pending} type="submit">
+      Sign Up
+    </button>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+import { useFormStatus } from 'react-dom'
+
+export function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button disabled={pending} type="submit">
+      Sign Up
+    </button>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Define Server Functions at File Top with `use server` (Next.js/React)
+DESCRIPTION: The `use server` directive placed at the top of a file designates all functions within that file to be executed on the server side. This example demonstrates creating a `createUser` server function that interacts with a database client to persist user data.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/01-directives/use-server.mdx#_snippet_0
+
+LANGUAGE: jsx
+CODE:
+```
+'use server'
+import { db } from '@/lib/db' // Your database client
+
+export async function createUser(data) {
+  const user = await db.user.create({ data })
+  return user
+}
+```
+
+----------------------------------------
+
+TITLE: Set Document Title as a Simple String in Next.js
+DESCRIPTION: This snippet demonstrates how to set the document title using a simple string within the `metadata` object in Next.js. It shows the configuration in `layout.js` or `page.js` and the resulting HTML output in the `<head>` section.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/generate-metadata.mdx#_snippet_3
+
+LANGUAGE: jsx
+CODE:
+```
+export const metadata = {
+  title: 'Next.js',
+}
+```
+
+LANGUAGE: html
+CODE:
+```
+<title>Next.js</title>
+```
+
+----------------------------------------
+
+TITLE: Next.js Server Components for Data Fetching (App Router)
+DESCRIPTION: Highlights the benefits of using Server Components for efficient server-side data fetching in the App Router.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/production-checklist.mdx#_snippet_6
+
+LANGUAGE: APIDOC
+CODE:
+```
+Concept: Server Components
+  Purpose: Efficient server-side data fetching
+```
+
+----------------------------------------
+
+TITLE: Install server-only Package to Prevent Client-Side Execution
+DESCRIPTION: These commands demonstrate how to install the `server-only` package using different package managers (npm, yarn, pnpm). This package is crucial for marking modules that should strictly run on the server, ensuring that proprietary code or internal business logic is not inadvertently bundled or executed on the client.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/data-security.mdx#_snippet_9
+
+LANGUAGE: Bash
+CODE:
+```
+npm install server-only
+```
+
+LANGUAGE: Bash
+CODE:
+```
+yarn add server-only
+```
+
+LANGUAGE: Bash
+CODE:
+```
+pnpm add server-only
+```
+
+----------------------------------------
+
+TITLE: Set Intrinsic Image Dimensions with width and height
+DESCRIPTION: The `width` and `height` properties define the intrinsic pixel size of an image, crucial for browsers to infer the correct aspect ratio and prevent layout shifts during loading. These properties do not control the rendered size, which is managed by CSS. They are mandatory unless the image is statically imported or uses the `fill` property.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/02-components/image.mdx#_snippet_5
+
+LANGUAGE: jsx
+CODE:
+```
+<Image src="/profile.png" width={500} height={500} />
+```
+
+----------------------------------------
+
+TITLE: Revalidating Cache Tag in Next.js Server Action
+DESCRIPTION: Demonstrates how to use `revalidateTag` within a Next.js Server Action to invalidate cached data after an operation, such as adding a new post. This example shows the typical pattern of importing `revalidateTag` from 'next/cache' and calling it with a specific tag like 'posts' to ensure data freshness.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/revalidateTag.mdx#_snippet_1
+
+LANGUAGE: ts
+CODE:
+```
+'use server'
+
+import { revalidateTag } from 'next/cache'
+
+export default async function submit() {
+  await addPost()
+  revalidateTag('posts')
+}
+```
+
+LANGUAGE: js
+CODE:
+```
+'use server'
+
+import { revalidateTag } from 'next/cache'
+
+export default async function submit() {
+  await addPost()
+  revalidateTag('posts')
+}
+```
+
+----------------------------------------
+
+TITLE: Next.js Link Component for Navigation
+DESCRIPTION: Explains the usage of the <Link> component for client-side navigation and prefetching in both App Router and Pages Router environments.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/production-checklist.mdx#_snippet_0
+
+LANGUAGE: APIDOC
+CODE:
+```
+Component: <Link>
+  Purpose: Client-side navigation and prefetching
+  Applicability: App Router, Pages Router
+```
+
+----------------------------------------
+
+TITLE: Run Next.js Development Server
+DESCRIPTION: Provides commands to start the Next.js development server using npm, yarn, pnpm, or bun. The server will be accessible at http://localhost:3000.
+SOURCE: https://github.com/vercel/next.js/blob/canary/packages/create-next-app/templates/default-tw/ts/README-template.md#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+----------------------------------------
+
+TITLE: Invoke Server Function with HTML Form Action
+DESCRIPTION: This snippet demonstrates how to trigger a Next.js Server Function by assigning it directly to the "action" prop of an HTML <form> element. The Server Function automatically receives the FormData object, allowing easy extraction of form inputs. This method is suitable for both Server and Client Components.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/08-updating-data.mdx#_snippet_5
+
+LANGUAGE: tsx
+CODE:
+```
+import { createPost } from '@/app/actions'
+
+export function Form() {
+  return (
+    <form action={createPost}>
+      <input type="text" name="title" />
+      <input type="text" name="content" />
+      <button type="submit">Create</button>
+    </form>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import { createPost } from '@/app/actions'
+
+export function Form() {
+  return (
+    <form action={createPost}>
+      <input type="text" name="title" />
+      <input type="text" name="content" />
+      <button type="submit">Create</button>
+    </form>
+  )
+}
+```
+
+LANGUAGE: ts
+CODE:
+```
+'use server'
+
+export async function createPost(formData: FormData) {
+  const title = formData.get('title')
+  const content = formData.get('content')
+
+  // Update data
+  // Revalidate cache
+}
+```
+
+LANGUAGE: js
+CODE:
+```
+'use server'
+
+export async function createPost(formData) {
+  const title = formData.get('title')
+  const content = formData.get('content')
+
+  // Update data
+  // Revalidate cache
+}
+```
+
+----------------------------------------
+
+TITLE: Revalidate Cached Data On-Demand with `revalidateTag` in Server Actions
+DESCRIPTION: Illustrates how to invalidate cached data associated with a specific tag using `revalidateTag`. This is typically done in a Server Action or Route Handler after an operation that modifies the underlying data, ensuring users see the most up-to-date information.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/cacheTag.mdx#_snippet_2
+
+LANGUAGE: tsx
+CODE:
+```
+'use server'
+
+import { revalidateTag } from 'next/cache'
+
+export default async function submit() {
+  await addPost()
+  revalidateTag('my-data')
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use server'
+
+import { revalidateTag } from 'next/cache'
+
+export default async function submit() {
+  await addPost()
+  revalidateTag('my-data')
+}
+```
+
+----------------------------------------
+
+TITLE: Secure Next.js API Route with Authentication and Role-Based Authorization
+DESCRIPTION: This snippet demonstrates how to implement robust security for Next.js API Routes. It includes checks for user authentication using `getSession` and then verifies if the authenticated user possesses the required 'admin' role, returning 401 Unauthorized errors if conditions are not met.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/authentication.mdx#_snippet_34
+
+LANGUAGE: typescript
+CODE:
+```
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const session = await getSession(req)
+
+  // Check if the user is authenticated
+  if (!session) {
+    res.status(401).json({
+      error: 'User is not authenticated',
+    })
+    return
+  }
+
+  // Check if the user has the 'admin' role
+  if (session.user.role !== 'admin') {
+    res.status(401).json({
+      error: 'Unauthorized access: User does not have admin privileges.',
+    })
+    return
+  }
+
+  // Proceed with the route for authorized users
+  // ... implementation of the API Route
+}
+```
+
+LANGUAGE: javascript
+CODE:
+```
+export default async function handler(req, res) {
+  const session = await getSession(req)
+
+  // Check if the user is authenticated
+  if (!session) {
+    res.status(401).json({
+      error: 'User is not authenticated',
+    })
+    return
+  }
+
+  // Check if the user has the 'admin' role
+  if (session.user.role !== 'admin') {
+    res.status(401).json({
+      error: 'Unauthorized access: User does not have admin privileges.',
+    })
+    return
+  }
+
+  // Proceed with the route for authorized users
+  // ... implementation of the API Route
+}
+```
+
+----------------------------------------
+
+TITLE: Creating Dynamic Navigation Links with Next.js Link Component
+DESCRIPTION: This code snippet illustrates how to use the Next.js `<Link>` component to create a list of navigable blog posts. It imports `Link` from `next/link` and iterates through a collection of posts, generating a list item for each. Each list item contains a `<Link>` component with a dynamically constructed `href` based on the post's slug, enabling efficient client-side navigation and prefetching.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/03-layouts-and-pages.mdx#_snippet_6
+
+LANGUAGE: tsx
+CODE:
+```
+import Link from 'next/link'
+
+export default async function Post({ post }) {
+  const posts = await getPosts()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.slug}>
+          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import Link from 'next/link'
+
+export default async function Post({ post }) {
+  const posts = await getPosts()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.slug}>
+          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Configure Module Path Aliases with Base URL
+DESCRIPTION: In addition to `baseUrl`, the `paths` option can be used within `compilerOptions` in `tsconfig.json` or `jsconfig.json` to create specific module aliases. This configuration maps `@/styles/*` and `@/components/*` to directories relative to the `baseUrl` location, further simplifying import paths.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/01-installation.mdx#_snippet_13
+
+LANGUAGE: json
+CODE:
+```
+{
+  "compilerOptions": {
+    "baseUrl": "src/",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"]
+    }
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Passing Data from Server to Client Components via Props
+DESCRIPTION: This snippet demonstrates how to pass data from a Server Component to a Client Component using props. It shows a Server Component fetching post data asynchronously and then rendering a 'LikeButton' Client Component, passing the fetched 'likes' count as a prop. Props passed to Client Components must be serializable by React.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx#_snippet_4
+
+LANGUAGE: tsx
+CODE:
+```
+import LikeButton from '@/app/ui/like-button'
+import { getPost } from '@/lib/data'
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const post = await getPost(params.id)
+
+  return <LikeButton likes={post.likes} />
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import LikeButton from '@/app/ui/like-button'
+import { getPost } from '@/lib/data'
+
+export default async function Page({ params }) {
+  const post = await getPost(params.id)
+
+  return <LikeButton likes={post.likes} />
+}
+```
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+export default function LikeButton({ likes }: { likes: number }) {
+  // ...
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+export default function LikeButton({ likes }) {
+  // ...
+}
+```
+
+----------------------------------------
+
+TITLE: Using `useSearchParams` in Next.js App Directory in JSX
+DESCRIPTION: This snippet shows the simplified usage of `useSearchParams` from `next/navigation` when a component is exclusively used within the Next.js `app` directory. In this context, the `next/compat/router` is no longer needed, and `searchParams` are immediately available, streamlining the code.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/02-pages/04-api-reference/03-functions/use-router.mdx#_snippet_21
+
+LANGUAGE: jsx
+CODE:
+```
+import { useSearchParams } from 'next/navigation'
+const MyComponent = () => {
+  const searchParams = useSearchParams()
+  // As this component is only used in `app/`, the compat router can be removed.
+  const search = searchParams.get('search')
+  // ...
+}
+```
+
+----------------------------------------
+
+TITLE: Importing Global Styles in Root Layout (App Router - TypeScript)
+DESCRIPTION: Import the global CSS file (`./globals.css`) into your root layout file (`app/layout.tsx`) to apply styles across all routes in your Next.js application when using the App Router. This ensures Tailwind's styles are available throughout your project.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/tailwind-css.mdx#_snippet_3
+
+LANGUAGE: typescript
+CODE:
+```
+import type { Metadata } from 'next'
+
+// These styles apply to every route in the application
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'Create Next App',
+  description: 'Generated by create next app',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Run Next.js Development Server
+DESCRIPTION: Commands to start the local development server for a Next.js application using various package managers like npm, yarn, pnpm, or bun. The server will typically run on http://localhost:3000.
+SOURCE: https://github.com/vercel/next.js/blob/canary/packages/create-next-app/templates/app-api/js/README-template.md#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+npm run dev
+```
+
+LANGUAGE: bash
+CODE:
+```
+yarn dev
+```
+
+LANGUAGE: bash
+CODE:
+```
+pnpm dev
+```
+
+LANGUAGE: bash
+CODE:
+```
+bun dev
+```
+
+----------------------------------------
+
+TITLE: Next.js App Router Routing File Conventions
+DESCRIPTION: Details the specific file conventions used within the Next.js App Router for defining layouts, pages, loading states, error boundaries, API routes, and parallel routes.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/02-project-structure.mdx#_snippet_2
+
+LANGUAGE: APIDOC
+CODE:
+```
+layout: .js .jsx .tsx | Layout
+page: .js .jsx .tsx | Page
+loading: .js .jsx .tsx | Loading UI
+not-found: .js .jsx .tsx | Not found UI
+error: .js .jsx .tsx | Error UI
+global-error: .js .jsx .tsx | Global error UI
+route: .js .ts | API endpoint
+template: .js .jsx .tsx | Re-rendered layout
+default: .js .jsx .tsx | Parallel route fallback page
+```
+
+----------------------------------------
+
+TITLE: Render Third-Party Client Components within an Existing Next.js Client Component
+DESCRIPTION: This example demonstrates how to successfully integrate a third-party component, such as <Carousel />, which relies on client-only features like useState, by using it inside an existing Next.js Client Component. This approach ensures the component functions correctly and avoids errors that would occur if directly used within a Server Component.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx#_snippet_9
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+import { useState } from 'react'
+import { Carousel } from 'acme-carousel'
+
+export default function Gallery() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(true)}>View pictures</button>
+      {/* Works, since Carousel is used within a Client Component */}
+      {isOpen && <Carousel />}
+    </div>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+import { useState } from 'react'
+import { Carousel } from 'acme-carousel'
+
+export default function Gallery() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(true)}>View pictures</button>
+      {/*  Works, since Carousel is used within a Client Component */}
+      {isOpen && <Carousel />}
+    </div>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Next.js Tainting for Sensitive Data Protection
+DESCRIPTION: Prevent sensitive data from being exposed to the client by tainting data objects or specific values in Next.js applications.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/production-checklist.mdx#_snippet_19
+
+LANGUAGE: APIDOC
+CODE:
+```
+Next.js Tainting:
+  Purpose: Prevent sensitive server-side data from reaching the client.
+  Mechanism: Mark data objects or specific values as 'tainted'.
+```
+
+----------------------------------------
+
+TITLE: Install Next.js automatically with create-next-app
+DESCRIPTION: Use the `create-next-app` CLI to quickly scaffold a new Next.js project with interactive prompts for configuration.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/01-installation.mdx#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+npx create-next-app@latest
+```
+
+LANGUAGE: txt
+CODE:
+```
+What is your project named? my-app
+Would you like to use TypeScript? No / Yes
+Would you like to use ESLint? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like your code inside a \`src/\` directory? No / Yes
+Would you like to use App Router? (recommended) No / Yes
+Would you like to use Turbopack for \`next dev\`?  No / Yes
+Would you like to customize the import alias (\`@/*\` by default)? No / Yes
+What import alias would you like configured? @/*
+```
+
+----------------------------------------
+
+TITLE: Next.js Server Component Fetching Data and Using Client Component
+DESCRIPTION: This example demonstrates a Next.js Server Component (`Page`) that asynchronously fetches data and passes it as props to a Client Component (`LikeButton`). It illustrates how Server Components can handle data fetching efficiently on the server while delegating interactive UI elements to Client Components.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx#_snippet_0
+
+LANGUAGE: tsx
+CODE:
+```
+import LikeButton from '@/app/ui/like-button'
+import { getPost } from '@/lib/data'
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const post = await getPost(params.id)
+
+  return (
+    <div>
+      <main>
+        <h1>{post.title}</h1>
+        {/* ... */}
+        <LikeButton likes={post.likes} />
+      </main>
+    </div>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import LikeButton from '@/app/ui/like-button'
+import { getPost } from '@/lib/data'
+
+export default async function Page({ params }) {
+  const post = await getPost(params.id)
+
+  return (
+    <div>
+      <main>
+        <h1>{post.title}</h1>
+        {/* ... */}
+        <LikeButton likes={post.likes} />
+      </main>
+    </div>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Creating Client Components with 'use client' Directive
+DESCRIPTION: This snippet demonstrates how to declare a React component as a Client Component in Next.js by adding the 'use client' directive at the top of the file, above imports. It shows a simple interactive counter component that uses React's useState hook, highlighting the boundary between Server and Client module graphs.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx#_snippet_2
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>{count} likes</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>{count} likes</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Run Next.js Development Server
+DESCRIPTION: Commands to start the Next.js development server using various package managers. The server will be accessible locally at http://localhost:3000, and the page will auto-update upon file edits.
+SOURCE: https://github.com/vercel/next.js/blob/canary/packages/create-next-app/templates/default/ts/README-template.md#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+----------------------------------------
+
+TITLE: Consume User Promise with React `use` Hook in Client Component
+DESCRIPTION: This snippet illustrates how a Client Component (`Profile`) can consume the `userPromise` provided via the `UserContext`. It uses the custom `useUser` hook to retrieve the promise and then unwraps the promise's value using React's `use` hook, allowing the component to suspend until the data is resolved.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/single-page-applications.mdx#_snippet_2
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+import { use } from 'react'
+import { useUser } from './user-provider'
+
+export function Profile() {
+  const { userPromise } = useUser()
+  const user = use(userPromise)
+
+  return '...'
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+import { use } from 'react'
+import { useUser } from './user-provider'
+
+export function Profile() {
+  const { userPromise } = useUser()
+  const user = use(userPromise)
+
+  return '...'
+}
+```
+
+----------------------------------------
+
+TITLE: Next.js App Router Server-Side Rendering with `fetch()` and `no-store` Cache
+DESCRIPTION: Illustrates how to achieve server-side rendering behavior in the Next.js App Router, similar to `getServerSideProps`. Data is fetched directly within an `async` Server Component using `fetch()` with `cache: 'no-store'`, ensuring data is refetched on every request and reducing client-side JavaScript.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/migrating/app-router-migration.mdx#_snippet_16
+
+LANGUAGE: tsx
+CODE:
+```
+// `app` directory
+
+// This function can be named anything
+async function getProjects() {
+  const res = await fetch(`https://...`, { cache: 'no-store' })
+  const projects = await res.json()
+
+  return projects
+}
+
+export default async function Dashboard() {
+  const projects = await getProjects()
+
+  return (
+    <ul>
+      {projects.map((project) => (
+        <li key={project.id}>{project.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+// `app` directory
+
+// This function can be named anything
+async function getProjects() {
+  const res = await fetch(`https://...`, { cache: 'no-store' })
+  const projects = await res.json()
+
+  return projects
+}
+
+export default async function Dashboard() {
+  const projects = await getProjects()
+
+  return (
+    <ul>
+      {projects.map((project) => (
+        <li key={project.id}>{project.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Creating a Next.js Page Component
+DESCRIPTION: Demonstrates how to define a page in Next.js by creating a `page` file inside the `app` directory and default exporting a React component. This component will render UI for a specific route.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/03-layouts-and-pages.mdx#_snippet_0
+
+LANGUAGE: tsx
+CODE:
+```
+export default function Page() {
+  return <h1>Hello Next.js!</h1>
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export default function Page() {
+  return <h1>Hello Next.js!</h1>
+}
+```
+
+----------------------------------------
+
+TITLE: Configure Next.js Build and Start Scripts in package.json
+DESCRIPTION: This JSON snippet illustrates the essential `scripts` configuration within a `package.json` file for a Next.js application. It defines commands for development (`dev`), production build (`build`), and starting the production server (`start`), which are crucial for deploying Next.js as a Node.js server.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/16-deploying.mdx#_snippet_0
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Dynamically Load External Library (fuse.js) in Next.js App Router
+DESCRIPTION: Illustrates how to dynamically load an external JavaScript library like `fuse.js` on demand within a Next.js App Router component. The library is imported only when needed (e.g., on user input), reducing the initial bundle size. The component uses the `'use client'` directive.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/lazy-loading.mdx#_snippet_3
+
+LANGUAGE: JSX
+CODE:
+```
+'use client'
+
+import { useState } from 'react'
+
+const names = ['Tim', 'Joe', 'Bel', 'Lee']
+
+export default function Page() {
+  const [results, setResults] = useState()
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search"
+        onChange={async (e) => {
+          const { value } = e.currentTarget
+          // Dynamically load fuse.js
+          const Fuse = (await import('fuse.js')).default
+          const fuse = new Fuse(names)
+
+          setResults(fuse.search(value))
+        }}
+      />
+      <pre>Results: {JSON.stringify(results, null, 2)}</pre>
+    </div>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Navigate with Next.js Link Component
+DESCRIPTION: Demonstrates basic client-side navigation in Next.js using the `Link` component to create links to static pages like Home, About Us, and a specific blog post.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/02-pages/03-building-your-application/01-routing/03-linking-and-navigating.mdx#_snippet_0
+
+LANGUAGE: jsx
+CODE:
+```
+import Link from 'next/link'
+
+function Home() {
+  return (
+    <ul>
+      <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
+        <Link href="/about">About Us</Link>
+      </li>
+      <li>
+        <Link href="/blog/hello-world">Blog Post</Link>
+      </li>
+    </ul>
+  )
+}
+
+export default Home
+```
+
+----------------------------------------
+
+TITLE: Accessing Runtime Environment Variables in App Router
+DESCRIPTION: This example demonstrates how to safely access environment variables at runtime within the Next.js App Router. By using dynamic rendering features, such as importing `connection` from `next/server` or other Dynamic APIs (cookies, headers), the environment variable `process.env.MY_VALUE` is evaluated at request time on the server, allowing for different values across environments without rebuilding.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/environment-variables.mdx#_snippet_11
+
+LANGUAGE: tsx
+CODE:
+```
+import { connection } from 'next/server'
+
+export default async function Component() {
+  await connection()
+  // cookies, headers, and other Dynamic APIs
+  // will also opt into dynamic rendering, meaning
+  // this env variable is evaluated at runtime
+  const value = process.env.MY_VALUE
+  // ...
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import { connection } from 'next/server'
+
+export default async function Component() {
+  await connection()
+  // cookies, headers, and other Dynamic APIs
+  // will also opt into dynamic rendering, meaning
+  // this env variable is evaluated at runtime
+  const value = process.env.MY_VALUE
+  // ...
+}
+```
+
+----------------------------------------
+
+TITLE: Next.js Image Component `src` Prop Usage Examples
+DESCRIPTION: Provides code examples demonstrating various ways to define the `src` prop for the `next/image` component, including relative paths, external URLs, and importing static image files.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/02-components/image.mdx#_snippet_3
+
+LANGUAGE: jsx
+CODE:
+```
+<Image src="/profile.png" />
+```
+
+LANGUAGE: jsx
+CODE:
+```
+<Image src="https://example.com/profile.png" />
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import profile from './profile.png'
+
+export default function Page() {
+  return <Image src={profile} />
+}
+```
+
+----------------------------------------
+
+TITLE: Revalidate Cache Entries by Tag
+DESCRIPTION: Shows how to use `revalidateTag` to purge cache entries associated with a specific tag. This function can be employed in Route Handlers for third-party events or Server Actions for user interactions to invalidate the cache.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/caching.mdx#_snippet_22
+
+LANGUAGE: jsx
+CODE:
+```
+revalidateTag('a')
+```
+
+----------------------------------------
+
+TITLE: Using Next.js Image Component for Display
+DESCRIPTION: Illustrates the basic usage of the Next.js `Image` component to embed an image. It specifies the image source, alternative text for accessibility, and explicit width and height for layout shift prevention and optimization.
+SOURCE: https://github.com/vercel/next.js/blob/canary/test/e2e/app-dir/mdx/app/image/page.mdx#_snippet_1
+
+LANGUAGE: JSX
+CODE:
+```
+<Image src="/test.jpg" alt="Next.js Logo" width={180} height={37} />
+```
+
+----------------------------------------
+
+TITLE: Implement Various HTTP Methods in Route Handlers
+DESCRIPTION: Shows how to define handlers for all supported HTTP methods (GET, HEAD, POST, PUT, DELETE, PATCH, OPTIONS) in a Next.js route file. Next.js automatically handles OPTIONS if not explicitly defined.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/03-file-conventions/route.mdx#_snippet_1
+
+LANGUAGE: ts
+CODE:
+```
+export async function GET(request: Request) {}
+
+export async function HEAD(request: Request) {}
+
+export async function POST(request: Request) {}
+
+export async function PUT(request: Request) {}
+
+export async function DELETE(request: Request) {}
+
+export async function PATCH(request: Request) {}
+
+// If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and set the appropriate Response `Allow` header depending on the other methods defined in the Route Handler.
+export async function OPTIONS(request: Request) {}
+```
+
+LANGUAGE: js
+CODE:
+```
+export async function GET(request) {}
+
+export async function HEAD(request) {}
+
+export async function POST(request) {}
+
+export async function PUT(request) {}
+
+export async function DELETE(request) {}
+
+export async function PATCH(request) {}
+
+// If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and set the appropriate Response `Allow` header depending on the other methods defined in the Route Handler.
+export async function OPTIONS(request) {}
+```
+
+----------------------------------------
+
+TITLE: Implement Role-Based Access Control (RBAC) in Next.js Server Components
+DESCRIPTION: This snippet demonstrates how to use Server Components in Next.js for role-based access control. It shows how to verify a user's session and conditionally render different dashboard components (Admin or User) based on their assigned role, redirecting unauthorized users to a login page.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/authentication.mdx#_snippet_27
+
+LANGUAGE: tsx
+CODE:
+```
+import { verifySession } from '@/app/lib/dal'
+
+export default function Dashboard() {
+  const session = await verifySession()
+  const userRole = session?.user?.role // Assuming 'role' is part of the session object
+
+  if (userRole === 'admin') {
+    return <AdminDashboard />
+  } else if (userRole === 'user') {
+    return <UserDashboard />
+  } else {
+    redirect('/login')
+  }
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import { verifySession } from '@/app/lib/dal'
+
+export default function Dashboard() {
+  const session = await verifySession()
+  const userRole = session.role // Assuming 'role' is part of the session object
+
+  if (userRole === 'admin') {
+    return <AdminDashboard />
+  } else if (userRole === 'user') {
+    return <UserDashboard />
+  } else {
+    redirect('/login')
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Defining a Next.js Layout Component
+DESCRIPTION: Illustrates how to create a shared UI layout in Next.js by defining a `layout` file in the `app` directory. The layout component accepts a `children` prop to render nested pages or layouts, preserving state and interactivity on navigation. Root layouts are required and must include `html` and `body` tags.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/03-layouts-and-pages.mdx#_snippet_1
+
+LANGUAGE: tsx
+CODE:
+```
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        {/* Layout UI */}
+        {/* Place children where you want to render a page or nested layout */}
+        <main>{children}</main>
+      </body>
+    </html>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export default function DashboardLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {/* Layout UI */}
+        {/* Place children where you want to render a page or nested layout */}
+        <main>{children}</main>
+      </body>
+    </html>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Read HTTP Cookies in Next.js Server Component
+DESCRIPTION: This code snippet demonstrates how to import and use the `cookies` function from `next/headers` to read an incoming HTTP cookie named 'theme' within a Next.js Server Component.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/cookies.mdx#_snippet_0
+
+LANGUAGE: tsx
+CODE:
+```
+import { cookies } from 'next/headers'
+
+export default async function Page() {
+  const cookieStore = await cookies()
+  const theme = cookieStore.get('theme')
+  return '...'
+}
+```
+
+LANGUAGE: js
+CODE:
+```
+import { cookies } from 'next/headers'
+
+export default async function Page() {
+  const cookieStore = await cookies()
+  const theme = cookieStore.get('theme')
+  return '...'
+}
+```
+
+----------------------------------------
+
+TITLE: Fetch Data in Next.js Server Components with `fetch` API
+DESCRIPTION: This snippet demonstrates how to fetch data in a Next.js Server Component using the native `fetch` API. The component is made asynchronous, and the `fetch` call is awaited to retrieve and parse JSON data, which is then rendered as a list of posts.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/07-fetching-data.mdx#_snippet_0
+
+LANGUAGE: tsx
+CODE:
+```
+export default async function Page() {
+  const data = await fetch('https://api.vercel.app/blog')
+  const posts = await data.json()
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+export default async function Page() {
+  const data = await fetch('https://api.vercel.app/blog')
+  const posts = await data.json()
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Next.js `getStaticPaths` and `getStaticProps` with `fallback: false`
+DESCRIPTION: This example demonstrates pre-rendering blog posts using `getStaticPaths` and `getStaticProps` in Next.js. It fetches a list of posts from an API, generates static paths for each, and sets `fallback: false` to ensure that only these specific paths are built at compile time, resulting in a 404 for any unlisted routes. `getStaticProps` then fetches the detailed data for each post.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/02-pages/04-api-reference/03-functions/get-static-paths.mdx#_snippet_2
+
+LANGUAGE: jsx
+CODE:
+```
+function Post({ post }) {
+  // Render post...
+}
+
+// This function gets called at build time
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const res = await fetch('https://.../posts')
+  const posts = await res.json()
+
+  // Get the paths we want to pre-render based on posts
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+
+// This also gets called at build time
+export async function getStaticProps({ params }) {
+  // params contains the post `id`.
+  // If the route is like /posts/1, then params.id is 1
+  const res = await fetch(`https://.../posts/${params.id}`)
+  const post = await res.json()
+
+  // Pass post data to the page via props
+  return { props: { post } }
+}
+
+export default Post
+```
+
+----------------------------------------
+
+TITLE: Next.js Dynamic Route File Conventions
+DESCRIPTION: Outlines the file naming conventions for defining dynamic route segments in Next.js, including single dynamic segments, catch-all segments, and optional catch-all segments.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/02-project-structure.mdx#_snippet_4
+
+LANGUAGE: APIDOC
+CODE:
+```
+`[folder]`: Dynamic route segment
+`[...folder]`: Catch-all route segment
+`[[...folder]]`: Optional catch-all route segment
+```
+
+----------------------------------------
+
+TITLE: Call a Server Action from a Next.js Client Component
+DESCRIPTION: This snippet shows how to import and invoke a Server Action directly from a Next.js Client Component. It demonstrates the simplified pattern for triggering server-side logic from the client without needing to define separate API routes.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/single-page-applications.mdx#_snippet_8
+
+LANGUAGE: tsx
+CODE:
+```
+'use client'
+
+import { create } from './actions'
+
+export function Button() {
+  return <button onClick={() => create()}>Create</button>
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+import { create } from './actions'
+
+export function Button() {
+  return <button onClick={() => create()}>Create</button>
+}
+```
+
+----------------------------------------
+
+TITLE: Implement Global Error Boundary in Next.js Root Layout (TS/JS)
+DESCRIPTION: This example shows how to define a global error boundary using `global-error.tsx` or `global-error.js` in the root `app` directory of a Next.js application. This component handles errors that bubble up to the root layout, replacing the entire application UI, and must include its own `<html>` and `<body>` tags.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/10-error-handling.mdx#_snippet_6
+
+LANGUAGE: tsx
+CODE:
+```
+'use client' // Error boundaries must be Client Components
+
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  return (
+    // global-error must include html and body tags
+    <html>
+      <body>
+        <h2>Something went wrong!</h2>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
+  )
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+'use client' // Error boundaries must be Client Components
+
+export default function GlobalError({ error, reset }) {
+  return (
+    // global-error must include html and body tags
+    <html>
+      <body>
+        <h2>Something went wrong!</h2>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Revalidate Data and Re-render Route Segments by Path
+DESCRIPTION: Provides an example of `revalidatePath`, which simultaneously revalidates the Data Cache and invalidates the Full Route Cache, leading to a re-render of route segments below the specified path. It's useful in Route Handlers for external events or Server Actions for user-driven updates.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/caching.mdx#_snippet_23
+
+LANGUAGE: jsx
+CODE:
+```
+revalidatePath('/')
+```
+
+----------------------------------------
+
+TITLE: Handle Async `params` and `searchParams` in Next.js Synchronous Layouts
+DESCRIPTION: This snippet demonstrates how to handle `params` and `searchParams` (which are Promises) within synchronous Next.js layouts. The `use` hook from React is employed to unwrap these Promises and access their underlying values.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/upgrading/version-15.mdx#_snippet_10
+
+LANGUAGE: tsx
+CODE:
+```
+// Before
+type Params = { slug: string }
+
+export default function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Params
+}) {
+  const { slug } = params
+}
+
+// After
+import { use } from 'react'
+
+type Params = Promise<{ slug: string }>
+
+export default function Layout(props: {
+  children: React.ReactNode
+  params: Params
+}) {
+  const params = use(props.params)
+  const slug = params.slug
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+// Before
+export default function Layout({ children, params }) {
+  const { slug } = params
+}
+
+// After
+import { use } from 'react'
+export default async function Layout(props) {
+  const params = use(props.params)
+  const slug = params.slug
+}
+```
+
+----------------------------------------
+
+TITLE: Resolve Next.js Crypto API SSR Issue with React Suspense Fallback
+DESCRIPTION: This solution demonstrates how to wrap a Client Component that synchronously calls a crypto API (e.g., `crypto.randomUUID()`) with a React `Suspense` boundary. By providing a `fallback` UI, Next.js can prerender a placeholder during Server-Side Rendering (SSR) and then hydrate the actual component with a unique random value once the page is requested by the user, ensuring the value is not fixed.
+SOURCE: https://github.com/vercel/next.js/blob/canary/errors/next-prerender-crypto-client.mdx#_snippet_0
+
+LANGUAGE: jsx
+CODE:
+```
+'use client'
+
+export default function Page() {
+  const newBlogId = crypto.randomUUID()
+  return <BlogAuthoringView id={newBlogId} />
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+"use client"
+
+import { Suspense } from 'react'
+
+export default function Page() {
+  return (
+    <Suspense fallback={<BlogAuthorSkeleton />}>
+      <DynamicAuthoringView />
+    </Suspense>
+  )
+}
+
+function BlogAuthorSkeleton() {
+  ...
+}
+
+function DynamicAuthoringView() {
+  const newBlogId = crypto.randomUUID()
+  return <BlogAuthoringView id={newBlogId} />
+}
+```
+
+----------------------------------------
+
+TITLE: Basic Usage of Next.js Link Component
+DESCRIPTION: Demonstrates how to import and use the `Link` component for simple client-side navigation to a dashboard route in Next.js applications, applicable for both App Router and Pages Router.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/02-components/link.mdx#_snippet_0
+
+LANGUAGE: tsx
+CODE:
+```
+import Link from 'next/link'
+
+export default function Page() {
+  return <Link href="/dashboard">Dashboard</Link>
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import Link from 'next/link'
+
+export default function Page() {
+  return <Link href="/dashboard">Dashboard</Link>
+}
+```
+
+----------------------------------------
+
+TITLE: Basic Usage of create-next-app CLI
+DESCRIPTION: Shows the fundamental command structure for initializing a Next.js project using `create-next-app` with optional project name and configuration flags.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/06-cli/create-next-app.mdx#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+npx create-next-app@latest [project-name] [options]
+```
+
+----------------------------------------
+
+TITLE: Calling revalidateTag to invalidate cache entries in Next.js
+DESCRIPTION: `revalidateTag` is used to invalidate cache entries associated with a specific tag. It should be called within a Route Handler or Server Action after a data mutation event. This example demonstrates revalidating all entries tagged 'user' after an update.
+SOURCE: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/09-caching-and-revalidating.mdx#_snippet_6
+
+LANGUAGE: tsx
+CODE:
+```
+import { revalidateTag } from 'next/cache'
+
+export async function updateUser(id: string) {
+  // Mutate data
+  revalidateTag('user')
+}
+```
+
+LANGUAGE: jsx
+CODE:
+```
+import { revalidateTag } from 'next/cache'
+
+export async function updateUser(id) {
+  // Mutate data
+  revalidateTag('user')
+}
+```
