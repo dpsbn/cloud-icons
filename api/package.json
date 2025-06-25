@@ -1,11 +1,11 @@
 {
-  "name": "cloudicons",
+  "name": "cloudicons-api",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "start": "node index.js",
+    "build": "tsc && cp -r data/ dist/ && cp -r public/ dist/",
+    "dev": "nodemon --watch . --exec ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

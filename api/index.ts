@@ -69,7 +69,7 @@ app.get('/health', async (_req: Request, res: Response) => {
   }
 });
 
-// Mount the icons router
+// Mount the icons router at /api
 app.use('/', iconsRouter);
 
 // Serve static files

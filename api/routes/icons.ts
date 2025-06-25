@@ -4,8 +4,8 @@ import { getIcons, getProviders, getIconByName } from '../controllers/iconContro
 const router = Router();
 
 // Routes
-router.get('/:provider/icons', getIcons);
-router.get('/cloud-providers', getProviders);
-router.get('/:provider/icon/:icon_name', getIconByName);
+router.get('/api/:provider/icons', getIcons);
+router.get('/api/cloud-providers', getProviders);
+router.get('/api/:provider/icon/:icon_name', getIconByName);
 
 export default router;
