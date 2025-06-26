@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { createLogger } from '../services/logger';
+import rateLimit from 'express-rate-limit';
 
 const logger = createLogger('apiKeyMiddleware');
 
@@ -44,6 +45,24 @@ const loadApiKeys = (): ApiKeyConfig[] => {
 
 // Cache the API keys to avoid parsing them on every request
 const apiKeys = loadApiKeys();
+
+// Create a rate limiter for non-API key requests
+export const publicRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute window
+  max: 60, // limit each IP to 60 requests per windowMs
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+  keyGenerator: async (req: Request) => {
+    // Use IP address as the key for rate limiting
+    return req.ip || '';
+  },
+  skip: (req) => {
+    // Skip rate limiting if a valid API key is provided
+    const apiKey = req.headers['x-api-key'] || (req.query.api_key as string);
+    return apiKeys.some(k => k.key === apiKey);
+  },
+});
 
 // Middleware to extract and validate API key
 export const apiKeyMiddleware = (req: Request, res: Response, next: NextFunction) => {

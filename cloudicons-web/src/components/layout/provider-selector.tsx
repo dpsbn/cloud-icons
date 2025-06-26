@@ -16,7 +16,7 @@ export function ProviderSelector({ onProviderChange, currentProvider }: Provider
   useEffect(() => {
     async function fetchProviders() {
       try {
-        const response = await fetch(`${API_URL}/api/cloud-providers`)
+        const response = await fetch(`${API_URL}/api/providers`)
         const data = await response.json()
         setProviders(data)
       } catch (error) {

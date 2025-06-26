@@ -50,10 +50,15 @@ export function IconGrid({
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const { showToast, ToastContainer } = useToast()
+  const [isFetching, setIsFetching] = useState(false)
 
-  const fetchIcons = useCallback(async () => {
+  const fetchIcons = useCallback(async (pageNum: number, shouldAppend = true) => {
+    // Don't fetch if already fetching
+    if (isFetching) return;
+
     // Reset error state before fetching
     setError(null);
+    setIsFetching(true);
 
     try {
       // Build URL with search query and tags if provided
@@ -65,7 +70,7 @@ export function IconGrid({
         tagsParam = `&tags=${tags.join(',')}`;
       }
 
-      const url = `${API_URL}/api/${provider}/icons?page=${page}&pageSize=25&size=${iconSize}${searchParam}${tagsParam}`;
+      const url = `${API_URL}/api/${provider}/icons?page=${pageNum}&pageSize=25&size=${iconSize}${searchParam}${tagsParam}`;
 
       const response = await fetch(url);
 
@@ -81,19 +86,18 @@ export function IconGrid({
         throw new Error('Invalid response format from API');
       }
 
-      if (page === 1) {
+      if (shouldAppend) {
+        setIcons(prev => [...prev, ...data.data])
+      } else {
         setIcons(data.data)
         // Update total count only on first page load
-        // Notify parent component about the total count
         if (onTotalCountChange) {
           onTotalCountChange(data.total)
         }
-      } else {
-        setIcons(prev => [...prev, ...data.data])
       }
 
       setHasMore(data.data.length === 25)
-      setPage(prev => prev + 1)
+      setPage(pageNum + 1)
     } catch (error) {
       console.error('Error fetching icons:', error)
       setError(error instanceof Error ? error.message : 'Failed to load icons. Please try again.');
@@ -101,49 +105,35 @@ export function IconGrid({
       setLoading(false)
       setIsFetching(false)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, onTotalCountChange, provider, searchQuery, tags, iconSize ])
+  }, [onTotalCountChange, provider, searchQuery, tags, iconSize])
 
-  const { targetRef, isFetching, setIsFetching } = useInfiniteScroll(
-    useCallback(() => {
-      if (hasMore && !loading) {
-        fetchIcons()
-      }
-    }, [hasMore, loading, fetchIcons])
-  )
-
-  // Initial fetch
+  // Initial fetch and reset when filters change
   useEffect(() => {
-    fetchIcons()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Reset and fetch when provider, search query, or tags change
-  useEffect(() => {
-    // Skip on initial render
-    if (page === 1 && icons.length === 0) return;
-
-    // Reset state when provider, search query, or tags change
-    setPage(1)
-    setIcons([])
-    setHasMore(true)
     setLoading(true)
+    setPage(1)
+    setIcons([]) // Clear existing icons
+    fetchIcons(1, false)
+  }, [provider, searchQuery, tags, iconSize, fetchIcons])
 
-    // Fetch icons with the new parameters
-    fetchIcons()
-  }, [provider, searchQuery, tags, fetchIcons, icons.length, page])
+  const { targetRef } = useInfiniteScroll(
+    useCallback(() => {
+      if (hasMore && !loading && !isFetching && icons.length > 0) {
+        fetchIcons(page, true)
+      }
+    }, [hasMore, loading, isFetching, page, fetchIcons, icons.length])
+  )
 
   // Show error message if there's an error
   if (error) {
     return <ErrorMessage message={error} onRetry={() => {
       setPage(1);
       setLoading(true);
-      fetchIcons();
+      fetchIcons(1, false);
     }} />
   }
 
   // Show skeleton while loading initial data
-  if (loading && page === 1) {
+  if (loading && icons.length === 0) {
     return <IconGridSkeleton count={25} />
   }
 
@@ -221,7 +211,6 @@ export function IconGrid({
                     e.stopPropagation();
                     navigator.clipboard.writeText(icon.svg_content)
                       .then(() => {
-                        // Show a success toast notification
                         showToast(`${icon.icon_name} SVG copied to clipboard!`, 'success');
                       })
                       .catch(err => {
@@ -256,22 +245,12 @@ export function IconGrid({
                       </svg>
                     </button>
                   </DropdownTrigger>
-                  <DropdownMenu aria-label={`Download options for ${icon.icon_name}`}>
-                    <DropdownItem
-                      onClick={() => {
-                        downloadSvg(icon.svg_content, icon.id);
-                        showToast(`${icon.icon_name} downloaded as SVG`, 'success');
-                      }}
-                    >
-                      Download as SVG
+                  <DropdownMenu>
+                    <DropdownItem onClick={() => downloadSvg(icon.svg_content, icon.icon_name)}>
+                      Download SVG
                     </DropdownItem>
-                    <DropdownItem
-                      onClick={() => {
-                        downloadPng(icon.svg_content, icon.id, iconSize);
-                        showToast(`${icon.icon_name} downloaded as PNG (${iconSize}px)`, 'success');
-                      }}
-                    >
-                      Download as PNG ({iconSize}px)
+                    <DropdownItem onClick={() => downloadPng(icon.svg_content, icon.icon_name, iconSize)}>
+                      Download PNG
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
@@ -280,25 +259,16 @@ export function IconGrid({
           </Card>
         ))}
       </div>
-      {hasMore && (
-        <div
-          ref={targetRef}
-          className="h-16 w-full flex items-center justify-center mt-4"
-          role="status"
-          aria-live="polite"
-        >
-          {isFetching ? (
-            <div className="flex items-center space-x-2" aria-label="Loading more icons">
-              <div className="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0ms' }} aria-hidden="true"></div>
-              <div className="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }} aria-hidden="true"></div>
-              <div className="w-4 h-4 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '300ms' }} aria-hidden="true"></div>
-              <span className="ml-2 text-gray-600 dark:text-gray-300">Loading more icons...</span>
-            </div>
-          ) : (
-            <div className="text-sm text-gray-500 dark:text-gray-400">Scroll for more</div>
-          )}
+
+      {/* Loading indicator */}
+      {isFetching && hasMore && (
+        <div className="mt-4 text-center">
+          <IconGridSkeleton count={5} />
         </div>
       )}
+
+      {/* Infinite scroll trigger */}
+      <div ref={targetRef} style={{ height: '20px' }} />
     </>
   )
 }
