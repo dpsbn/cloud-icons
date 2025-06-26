@@ -14,6 +14,16 @@ const logger = createLogger('iconController');
 // Constants
 const DEFAULT_PAGE_SIZE = 24;
 
+/**
+ * Get paginated icons for a specific provider with optional search and filtering
+ * 
+ * This endpoint returns a paginated list of icons for the specified provider.
+ * It supports searching by name, description, id, or tags, and can resize icons to the specified size.
+ * 
+ * @param {Request} req - Express request object with provider parameter and optional query parameters
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>} A promise that resolves when the response is sent
+ */
 export async function getIcons(
   req: Request<
     { provider: string },
@@ -82,6 +92,16 @@ export async function getIcons(
   }
 }
 
+/**
+ * Get a list of all available cloud providers
+ * 
+ * This endpoint returns a list of all cloud providers that have icons available.
+ * The list is derived from the unique provider values in the icons data.
+ * 
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>} A promise that resolves when the response is sent
+ */
 export async function getProviders(req: Request, res: Response<string[] | ErrorResponse>) {
   try {
     logger.info({ ip: req.ip }, 'Request for providers');
@@ -95,6 +115,16 @@ export async function getProviders(req: Request, res: Response<string[] | ErrorR
   }
 }
 
+/**
+ * Get a specific icon by name from a provider
+ * 
+ * This endpoint returns a specific icon in either JSON or SVG format.
+ * The icon can be resized to the specified size.
+ * 
+ * @param {Request} req - Express request object with provider and icon_name parameters
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>} A promise that resolves when the response is sent
+ */
 export async function getIconByName(
   req: Request<
     { provider: string; icon_name: string },

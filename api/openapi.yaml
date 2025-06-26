@@ -1,0 +1,309 @@
+openapi: 3.0.3
+info:
+  title: Cloud Icons API
+  description: |
+    A service for serving cloud provider icons with dynamic sizing.
+    
+    This API provides access to a collection of cloud provider icons in SVG format with dynamic resizing capabilities.
+    It supports multiple cloud providers and offers both JSON metadata and SVG format responses.
+  version: 1.0.0
+  contact:
+    name: Brainboard
+    url: https://github.com/yourusername/cloudicons
+  license:
+    name: ISC
+    url: https://opensource.org/licenses/ISC
+
+servers:
+  - url: http://localhost:3002
+    description: Local development server
+  - url: https://api.cloudicons.example.com
+    description: Production server
+
+tags:
+  - name: icons
+    description: Operations related to cloud provider icons
+  - name: providers
+    description: Operations related to cloud providers
+
+paths:
+  /cloud-providers:
+    get:
+      summary: Get all cloud providers
+      description: Returns a list of all supported cloud providers
+      operationId: getCloudProviders
+      tags:
+        - providers
+      responses:
+        '200':
+          description: A list of cloud providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example: ["azure", "aws", "gcp"]
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /{provider}/icons:
+    get:
+      summary: Get icons for a specific provider
+      description: Returns a paginated list of icons for the specified cloud provider
+      operationId: getIcons
+      tags:
+        - icons
+      parameters:
+        - $ref: '#/components/parameters/ProviderParam'
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/TagsParam'
+      responses:
+        '200':
+          description: A paginated list of icons
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedIconsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /{provider}/icon/{icon_name}:
+    get:
+      summary: Get a specific icon
+      description: Returns a specific icon in the requested format and size
+      operationId: getIconByName
+      tags:
+        - icons
+      parameters:
+        - $ref: '#/components/parameters/ProviderParam'
+        - name: icon_name
+          in: path
+          description: The name of the icon
+          required: true
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: The format of the response (json or svg)
+          required: false
+          schema:
+            type: string
+            enum: [json, svg]
+            default: json
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: The requested icon
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Icon'
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  parameters:
+    ProviderParam:
+      name: provider
+      in: path
+      description: The cloud provider (e.g., azure, aws)
+      required: true
+      schema:
+        type: string
+    
+    PageParam:
+      name: page
+      in: query
+      description: The page number for pagination
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    
+    PageSizeParam:
+      name: pageSize
+      in: query
+      description: The number of items per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 24
+    
+    SearchParam:
+      name: search
+      in: query
+      description: Search term to filter icons
+      required: false
+      schema:
+        type: string
+    
+    SizeParam:
+      name: size
+      in: query
+      description: The size of the icon in pixels
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 512
+        default: 64
+    
+    TagsParam:
+      name: tags
+      in: query
+      description: Comma-separated list of tags to filter icons
+      required: false
+      schema:
+        type: string
+
+  schemas:
+    Icon:
+      type: object
+      required:
+        - id
+        - provider
+        - icon_name
+        - svg_path
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the icon
+        provider:
+          type: string
+          description: The cloud provider of the icon
+        icon_name:
+          type: string
+          description: The display name of the icon
+        description:
+          type: string
+          description: A description of the icon
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the icon
+        svg_path:
+          type: string
+          description: The path to the SVG file
+        license:
+          type: string
+          description: The license information for the icon
+        svg_content:
+          type: string
+          description: The SVG content of the icon (only included when format=json)
+      example:
+        id: "storage-accounts"
+        provider: "azure"
+        icon_name: "Storage Accounts"
+        description: "Azure service for Storage Accounts"
+        tags: ["storage", "data"]
+        svg_path: "/icons/azure/storage-accounts.svg"
+        license: "Microsoft Azure trademark"
+        svg_content: "<svg>...</svg>"
+
+    PaginatedIconsResponse:
+      type: object
+      required:
+        - total
+        - page
+        - pageSize
+        - data
+      properties:
+        total:
+          type: integer
+          description: The total number of icons matching the query
+        page:
+          type: integer
+          description: The current page number
+        pageSize:
+          type: integer
+          description: The number of icons per page
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Icon'
+          description: The list of icons for the current page
+      example:
+        total: 683
+        page: 1
+        pageSize: 24
+        data: [
+          {
+            "id": "storage-accounts",
+            "provider": "azure",
+            "icon_name": "Storage Accounts",
+            "description": "Azure service for Storage Accounts",
+            "tags": ["storage", "data"],
+            "svg_path": "/icons/azure/storage-accounts.svg",
+            "license": "Microsoft Azure trademark",
+            "svg_content": "<svg>...</svg>"
+          }
+        ]
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+      example:
+        error: "Icon not found"
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Invalid request parameters"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Icon not found"
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Failed to load icons"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Optional API key for higher rate limits
+
+security:
+  - ApiKeyAuth: []

@@ -22,6 +22,12 @@ const PORT = process.env.PORT ?? 3002;
 // Serve static files from the root public directory
 app.use('/icons', express.static(path.join(process.cwd(), '..', 'public', 'icons')));
 
+// Add JSON body parser middleware
+app.use(express.json());
+
+// Add compression middleware
+app.use(compression());
+
 // Security middleware with enhanced headers
 app.use(
   helmet({
@@ -149,6 +155,9 @@ const iconRateLimit = rateLimit({
 });
 app.use(iconRateLimit);
 
+// Mount routes
+app.use('/', iconsRouter);
+
 // CORS configuration with enhanced security
 app.use(
   cors({
@@ -223,10 +232,11 @@ app.use((req: Request, _res: Response, next: NextFunction) => {
   next();
 });
 
-app.use(express.json());
-
 // Apply ETag middleware for client-side caching
 app.use(etagMiddleware);
+
+// Parse JSON request bodies
+app.use(express.json());
 
 // Health check with deep checks
 app.get('/health', async (_req: Request, res: Response) => {
@@ -275,9 +285,8 @@ app.get('/health', async (_req: Request, res: Response) => {
   }
 });
 
-// Mount the icons router at /api and at root for backward compatibility
+// Mount the icons router at /api
 app.use('/api', iconsRouter);
-app.use('/', iconsRouter);
 
 // Serve static files with optimized cache headers
 app.use(

@@ -35,7 +35,7 @@ export function useInfiniteScroll(callback: () => void) {
         currentObserver.unobserve(currentTarget)
       }
     }
-  }, [targetRef.current])
+  }, [])
 
   return { targetRef, isFetching, setIsFetching }
 }

@@ -10,8 +10,8 @@ import {
 const router = Router();
 
 // Routes with validation
-router.get('/:provider/icons', validate(getIconsSchema), getIcons);
 router.get('/cloud-providers', validate(cloudProvidersSchema), getProviders);
+router.get('/:provider/icons', validate(getIconsSchema), getIcons);
 router.get('/:provider/icon/:icon_name', validate(getIconByNameSchema), getIconByName);
 
 export default router;

@@ -34,6 +34,15 @@ logger.debug(
 
 const DEFAULT_ICON_SIZE = 24;
 
+/**
+ * Reads icon metadata from the JSON file
+ * 
+ * This function attempts to read the icons data from multiple possible paths
+ * and returns the parsed JSON data as an array of Icon objects.
+ * 
+ * @returns {Promise<Icon[]>} A promise that resolves to an array of Icon objects
+ * @throws {Error} If the icons data cannot be read from any of the possible paths
+ */
 export async function readIconsData(): Promise<Icon[]> {
   try {
     logger.debug(
@@ -91,11 +100,16 @@ export async function readIconsData(): Promise<Icon[]> {
 
 /**
  * Efficiently modifies SVG size attributes
+ * 
  * This optimized version:
  * 1. Uses a single regex operation to find the SVG opening tag
  * 2. Parses attributes only once
  * 3. Handles viewBox detection more efficiently
  * 4. Constructs the new SVG tag in a single operation
+ * 
+ * @param {string} svgContent - The original SVG content as a string
+ * @param {number} size - The desired size in pixels (both width and height)
+ * @returns {string} The modified SVG content with updated size attributes
  */
 export function modifySvgSize(svgContent: string, size: number): string {
   // Find the SVG opening tag and capture its attributes
@@ -122,6 +136,16 @@ export function modifySvgSize(svgContent: string, size: number): string {
   return svgContent.replace(svgTagRegex, newSvgTag);
 }
 
+/**
+ * Searches for icons based on a search query
+ * 
+ * This function filters the provided array of icons based on the search query.
+ * It searches in icon name, description, id, and tags.
+ * 
+ * @param {Icon[]} icons - The array of icons to search through
+ * @param {string} [searchQuery] - The search query string (optional)
+ * @returns {Icon[]} An array of icons that match the search query
+ */
 export function searchIcons(icons: Icon[], searchQuery?: string): Icon[] {
   if (!searchQuery) {
     return icons;
@@ -152,7 +176,18 @@ const svgMemoryCache = new Map<string, string>();
 
 /**
  * Get icon content with SVG data, with multi-level caching
- * Uses both in-memory cache and Redis for persistent caching
+ * 
+ * This function retrieves the SVG content for an icon, using a multi-level caching strategy:
+ * 1. First checks an in-memory cache (fastest)
+ * 2. Then checks Redis cache if available
+ * 3. Finally reads from the file system, sanitizes, and resizes the SVG
+ * 
+ * The function also updates both caches with the retrieved content for future requests.
+ * 
+ * @param {Icon} icon - The icon object containing metadata
+ * @param {number} [size=64] - The desired size of the icon in pixels
+ * @returns {Promise<IconWithContent>} A promise that resolves to the icon with its SVG content
+ * @throws {Error} If the SVG file cannot be read or processed
  */
 export async function getIconContent(icon: Icon, size: number = 64): Promise<IconWithContent> {
   try {
@@ -244,6 +279,16 @@ export async function getIconContent(icon: Icon, size: number = 64): Promise<Ico
   }
 }
 
+/**
+ * Filters icons by provider
+ * 
+ * This function filters the provided array of icons to include only those
+ * from the specified provider. If the provider is 'all', all icons are returned.
+ * 
+ * @param {Icon[]} icons - The array of icons to filter
+ * @param {string} provider - The provider to filter by (e.g., 'azure', 'aws')
+ * @returns {Icon[]} An array of icons from the specified provider
+ */
 export function filterIconsByProvider(icons: Icon[], provider: string): Icon[] {
   if (provider.toLowerCase() === 'all') {
     return icons;
