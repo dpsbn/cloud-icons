@@ -1,4 +1,5 @@
-import express, { Request, Response, NextFunction } from 'express';
+import dotenv from 'dotenv';
+import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import path from 'path';
 import rateLimit from 'express-rate-limit';
@@ -6,150 +7,335 @@ import helmet from 'helmet';
 import compression from 'compression';
 import iconsRouter from './routes/icons';
 import { readIconsData } from './services/iconService';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { etagMiddleware } from './middleware/etagMiddleware';
+import { apiKeyMiddleware } from './middleware/apiKeyMiddleware';
+import logger from './services/logger';
 import Redis from 'ioredis';
-import { Icon } from './types/icon';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT ?? 3002;
 
-// Security middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "blob:"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-    },
-  },
-}));
+// Serve static files from the root public directory
+app.use('/icons', express.static(path.join(process.cwd(), '..', 'public', 'icons')));
 
-// Rate limiting
+// Security middleware with enhanced headers
+app.use(
+  helmet({
+    xContentTypeOptions: true, // instead of contentTypeNosniff
+    // Content Security Policy
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'blob:'],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        baseUri: ["'self'"],
+        formAction: ["'self'"],
+        frameAncestors: ["'none'"], // Prevents clickjacking
+      },
+      reportOnly: false,
+    },
+
+    // HTTP Strict Transport Security
+    // Only enable HSTS in production to avoid issues with local development
+    hsts:
+      process.env.NODE_ENV === 'production'
+        ? {
+            maxAge: 15552000, // 180 days in seconds
+            includeSubDomains: true,
+            preload: true,
+          }
+        : false,
+
+    // X-Content-Type-Options to prevent MIME type sniffing
+    // contentTypeNosniff: true,
+
+    // X-Frame-Options to prevent clickjacking
+    frameguard: {
+      action: 'deny',
+    },
+
+    // X-XSS-Protection as an additional layer of XSS protection
+    xssFilter: true,
+
+    // Disable X-Powered-By header to hide Express
+    hidePoweredBy: true,
+
+    // Referrer Policy to control the Referer header
+    referrerPolicy: {
+      policy: 'strict-origin-when-cross-origin',
+    },
+
+    // Permissions Policy is not supported in helmet v8.1.0
+    // If needed, it can be implemented separately using a custom middleware
+
+    // Cross-Origin-Embedder-Policy
+    crossOriginEmbedderPolicy: false, // Set to false to allow loading resources from different origins
+
+    // Cross-Origin-Opener-Policy
+    crossOriginOpenerPolicy: { policy: 'same-origin' },
+
+    // Cross-Origin-Resource-Policy
+    crossOriginResourcePolicy: { policy: 'same-site' },
+
+    // Origin-Agent-Cluster
+    originAgentCluster: true,
+  })
+);
+
+// Apply API key middleware before rate limiting
+app.use(apiKeyMiddleware);
+
+// Rate limiting with API key support
 const iconRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: (req) => {
-    if (req.path.endsWith('.svg')) return 500;  // More lenient for SVGs
-    if (req.path === '/icons') return 100;      // Stricter for metadata
-    return 200;                                 // Default limit
+  max: req => {
+    // Check if request has a valid API key with custom rate limits
+    const apiKeyConfig = (req as any).apiKeyConfig;
+
+    if (apiKeyConfig) {
+      // Use the rate limits from the API key configuration
+      if (req.path.endsWith('.svg')) {
+        return apiKeyConfig.rateLimit.svg;
+      }
+      if (req.path === '/icons' || req.path.includes('/icons')) {
+        return apiKeyConfig.rateLimit.metadata;
+      }
+      return apiKeyConfig.rateLimit.standard;
+    }
+
+    // Default rate limits for requests without API key
+    if (req.path.endsWith('.svg')) {
+      return 500;
+    } // More lenient for SVGs
+    if (req.path === '/icons' || req.path.includes('/icons')) {
+      return 100;
+    } // Stricter for metadata
+    return 200; // Default limit
   },
-  keyGenerator: (req) => {
-    return req.ip + req.path;  // Rate limit per IP and endpoint
-  }
+  keyGenerator: req => {
+    // Include API key in the rate limit key if available
+    const apiKey = (req as any).apiKeyConfig?.key || '';
+    return apiKey ? `${apiKey}:${req.path}` : `${req.ip}:${req.path}`;
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Add custom message for rate limited requests
+  message: (req: Request, res: Response) => {
+    const apiKeyConfig = (req as any).apiKeyConfig;
+    const isApiKey = !!apiKeyConfig;
+
+    logger.warn(
+      {
+        ip: req.ip,
+        path: req.path,
+        apiKey: isApiKey ? apiKeyConfig.name : 'none',
+      },
+      'Rate limit exceeded'
+    );
+
+    return {
+      status: 'error',
+      message: 'Too many requests, please try again later',
+      apiKeyUsed: isApiKey,
+      retryAfter: res.getHeader('Retry-After'),
+    };
+  },
 });
 app.use(iconRateLimit);
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-  methods: ['GET'],
-  maxAge: 86400, // 24 hours
-}));
+// CORS configuration with enhanced security
+app.use(
+  cors({
+    // Only allow specific origins defined in the environment variable
+    origin: (origin, callback) => {
+      // Get allowed origins from environment variable
+      const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
 
-// Compression
-app.use(compression());
+      // Allow requests with no origin (like mobile apps, curl requests, etc.)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // In development, allow all origins if no specific origins are configured
+      if (process.env.NODE_ENV === 'development' && allowedOrigins.length === 0) {
+        logger.warn({ origin }, 'CORS: All origins allowed in development mode');
+        return callback(null, true);
+      }
+
+      // In production, require specific origins
+      if (process.env.NODE_ENV === 'production' && allowedOrigins.length === 0) {
+        logger.warn('CORS: No allowed origins configured in production mode');
+        // Default to a restrictive policy in production if no origins are specified
+        allowedOrigins.push('https://cloudicons.example.com');
+      }
+
+      // Check if the request origin is in the allowed list
+      if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+        logger.debug({ origin }, 'CORS: Origin allowed');
+        return callback(null, true);
+      }
+
+      // Origin not allowed
+      logger.warn({ origin, allowedOrigins }, 'CORS: Origin not allowed');
+      return callback(new Error('CORS: Origin not allowed'), false);
+    },
+    methods: ['GET'], // Only allow GET requests
+    maxAge: 86400, // 24 hours cache for preflight requests
+    credentials: false, // Don't allow cookies
+    allowedHeaders: ['Content-Type', 'X-API-Key'], // Only allow these headers
+    exposedHeaders: [
+      'Content-Length',
+      'ETag',
+      'RateLimit-Limit',
+      'RateLimit-Remaining',
+      'RateLimit-Reset',
+    ], // Expose these headers to clients
+  })
+);
+
+// Compression with optimized settings
+app.use(
+  compression({
+    level: 6, // Compression level (0-9, where 9 is best compression but slowest)
+    threshold: 1024, // Only compress responses larger than 1KB
+    filter: (req, res) => {
+      // Don't compress responses with this header
+      if (req.headers['x-no-compression']) {
+        return false;
+      }
+
+      // Use compression filter function from the compression library
+      // to determine if the response should be compressed
+      return compression.filter(req, res);
+    },
+  })
+);
 
 // Request logging
 app.use((req: Request, _res: Response, next: NextFunction) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  logger.info({ method: req.method, url: req.url, ip: req.ip }, 'Request received');
   next();
 });
 
 app.use(express.json());
 
+// Apply ETag middleware for client-side caching
+app.use(etagMiddleware);
+
 // Health check with deep checks
 app.get('/health', async (_req: Request, res: Response) => {
   try {
-    // Add your deep health checks here
-    res.json({
-      status: 'ok',
+    // Check Redis connectivity if configured
+    let redisStatus = 'not_configured';
+    if (process.env.REDIS_URL) {
+      try {
+        const redis = new Redis(process.env.REDIS_URL);
+        await redis.ping();
+        redisStatus = 'connected';
+        redis.disconnect();
+      } catch (err) {
+        logger.error({ err }, 'Redis health check failed');
+        redisStatus = 'error';
+      }
+    }
+
+    // Check data access
+    let dataStatus = 'error';
+    try {
+      const icons = await readIconsData();
+      dataStatus = icons && icons.length > 0 ? 'ok' : 'empty';
+    } catch (err) {
+      logger.error({ err }, 'Data health check failed');
+    }
+
+    const isHealthy = redisStatus !== 'error' && dataStatus === 'ok';
+    const statusCode = isHealthy ? 200 : 503;
+
+    const response = {
+      status: isHealthy ? 'ok' : 'error',
       timestamp: new Date().toISOString(),
-      uptime: process.uptime()
-    });
+      uptime: process.uptime(),
+      services: {
+        redis: redisStatus,
+        data: dataStatus,
+      },
+    };
+
+    logger.info({ health: response }, 'Health check');
+    res.status(statusCode).json(response);
   } catch (error) {
+    logger.error({ err: error }, 'Health check failed');
     res.status(503).json({ status: 'error', error: 'Service unavailable' });
   }
 });
 
-// Mount the icons router at /api
+// Mount the icons router at /api and at root for backward compatibility
+app.use('/api', iconsRouter);
 app.use('/', iconsRouter);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, process.env.NODE_ENV === 'production' ? '../public' : '../public'), {
-  maxAge: '1d',
-  setHeaders: (res, path) => {
-    if (path.endsWith('.svg')) {
-      res.setHeader('Cache-Control', 'public, max-age=86400');
+// Serve static files with optimized cache headers
+app.use(
+  express.static(
+    path.join(__dirname, process.env.NODE_ENV === 'production' ? '../public' : '../public'),
+    {
+      // Don't set a default maxAge here, we'll set it based on file type
+      setHeaders: (res, filePath) => {
+        // Set different cache policies based on file type
+        if (filePath.endsWith('.svg')) {
+          // SVG icons - cache for 7 days
+          res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+        } else if (filePath.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+          // Images - cache for 30 days
+          res.setHeader('Cache-Control', 'public, max-age=2592000, stale-while-revalidate=86400');
+        } else if (filePath.match(/\.(css|js)$/i)) {
+          // CSS and JS files - cache for 7 days but allow revalidation
+          res.setHeader('Cache-Control', 'public, max-age=604800, must-revalidate');
+        } else if (filePath.match(/\.(woff|woff2|ttf|eot|otf)$/i)) {
+          // Fonts - cache for 1 year (rarely change)
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else {
+          // Other static assets - cache for 1 day
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+        }
+
+        // Add Vary header for proper caching with compression
+        res.setHeader('Vary', 'Accept-Encoding');
+
+        // Add ETag support (in addition to the ETag middleware)
+        // This is handled by express.static automatically
+
+        // Prevent caching for HTML files in development
+        if (process.env.NODE_ENV !== 'production' && filePath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'no-store, max-age=0');
+        }
+      },
     }
-  }
-}));
+  )
+);
 
 // 404 handler
-app.use((req: Request, res: Response) => {
-  console.log('404 Not Found:', req.method, req.url);
-  res.status(404).json({ error: `Cannot ${req.method} ${req.url}` });
-});
+app.use(notFoundHandler);
 
-// Error handling
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
-  console.error('Unhandled error:', err);
-  res.status(500).json({ error: 'Internal server error' });
-});
+// Error handling middleware
+app.use(errorHandler);
 
-// Using Redis for caching (if available)
-let redis: Redis | null = null;
-if (process.env.REDIS_URL) {
-  try {
-    redis = new Redis(process.env.REDIS_URL);
-    console.log('Redis connected successfully');
-  } catch (err) {
-    console.log('Redis connection failed:', err);
-  }
-} else {
-  console.log('No Redis URL provided, continuing without caching');
+// Export the app for testing
+export { app };
+
+// Start server if this file is run directly
+if (require.main === module) {
+  app
+    .listen(PORT, () => {
+      logger.info(`Server is running on port ${PORT}`);
+    })
+    .on('error', (err: Error) => {
+      logger.error({ err }, 'Failed to start server');
+      process.exit(1);
+    });
 }
-
-async function getIconWithCache(provider: string, iconName: string) {
-  if (!redis) {
-    const icons = await readIconsData();
-    return icons.find((i: Icon) =>
-      i.provider.toLowerCase() === provider.toLowerCase() &&
-      i.id.toLowerCase() === iconName.toLowerCase()
-    );
-  }
-
-  const cacheKey = `icon:${provider}:${iconName}`;
-
-  // Try cache first
-  try {
-    const cached = await redis.get(cacheKey);
-    if (cached) return JSON.parse(cached);
-
-    // If not in cache, fetch and store
-    const icons = await readIconsData();
-    const icon = icons.find((i: Icon) =>
-      i.provider.toLowerCase() === provider.toLowerCase() &&
-      i.id.toLowerCase() === iconName.toLowerCase()
-    );
-
-    if (icon) {
-      await redis.set(cacheKey, JSON.stringify(icon), 'EX', 3600); // 1 hour cache
-    }
-
-    return icon;
-  } catch (err) {
-    console.error('Redis error:', err);
-    // Fallback to direct read if Redis fails
-    const icons = await readIconsData();
-    return icons.find((i: Icon) =>
-      i.provider.toLowerCase() === provider.toLowerCase() &&
-      i.id.toLowerCase() === iconName.toLowerCase()
-    );
-  }
-}
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-}).on('error', (err: Error) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});

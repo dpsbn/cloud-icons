@@ -1,6 +1,15 @@
 import { Request, Response } from 'express';
-import { IconWithContent, PaginatedResponse, ErrorResponse } from '../types/icon';
-import { readIconsData, searchIcons, getIconContent, filterIconsByProvider } from '../services/iconService';
+import { ErrorResponse, IconWithContent, PaginatedResponse } from '../types/icon';
+import {
+  filterIconsByProvider,
+  getIconContent,
+  readIconsData,
+  searchIcons,
+} from '../services/iconService';
+import { createLogger } from '../services/logger';
+
+// Create a namespaced logger for this controller
+const logger = createLogger('iconController');
 
 // Constants
 const DEFAULT_PAGE_SIZE = 24;
@@ -21,7 +30,17 @@ export async function getIcons(
   const { search } = req.query;
 
   try {
-    console.log('Received request:', { provider, search, page, pageSize, size });
+    logger.info(
+      {
+        provider,
+        search,
+        page,
+        pageSize,
+        size,
+        ip: req.ip,
+      },
+      'Received request for icons'
+    );
 
     const allIcons = await readIconsData();
     let filteredIcons = filterIconsByProvider(allIcons, provider);
@@ -44,26 +63,34 @@ export async function getIcons(
       total: filteredIcons.length,
       page,
       pageSize,
-      data: iconsWithContent
+      data: iconsWithContent,
     };
 
-    console.log(`Returning ${iconsWithContent.length} icons (total: ${filteredIcons.length})`);
+    logger.info(
+      {
+        count: iconsWithContent.length,
+        total: filteredIcons.length,
+        provider,
+      },
+      'Returning icons'
+    );
+
     res.json(response);
   } catch (err) {
-    console.error('Failed to load icons:', err);
+    logger.error({ err, provider }, 'Failed to load icons');
     res.status(500).json({ error: 'Failed to load icons' });
   }
 }
 
-export async function getProviders(
-  _req: Request,
-  res: Response<string[] | ErrorResponse>
-) {
+export async function getProviders(req: Request, res: Response<string[] | ErrorResponse>) {
   try {
+    logger.info({ ip: req.ip }, 'Request for providers');
     const icons = await readIconsData();
     const providers = [...new Set(icons.map(icon => icon.provider))];
+    logger.info({ count: providers.length }, 'Returning providers');
     res.json(providers);
   } catch (err) {
+    logger.error({ err }, 'Failed to load providers');
     res.status(500).json({ error: 'Failed to load providers' });
   }
 }
@@ -81,22 +108,43 @@ export async function getIconByName(
   const format = req.query.format ?? 'json';
   const size = Math.max(1, parseInt(req.query.size ?? '24'));
 
+  logger.info(
+    {
+      provider,
+      icon_name,
+      format,
+      size,
+      ip: req.ip,
+    },
+    'Request for specific icon'
+  );
+
   try {
     const icons = await readIconsData();
     const normalizedIconName = icon_name.replace(/\.[^/.]+$/, '').toLowerCase();
 
-    const icon = icons.find(i =>
-      i.provider.toLowerCase() === provider.toLowerCase() &&
-      i.id.toLowerCase() === normalizedIconName
+    const icon = icons.find(
+      i =>
+        i.provider.toLowerCase() === provider.toLowerCase() &&
+        i.id.toLowerCase() === normalizedIconName
     );
 
     if (!icon) {
+      logger.warn({ provider, icon_name }, 'Icon not found');
       res.status(404).json({ error: 'Icon not found' });
       return;
     }
 
     if (format === 'json') {
       const iconWithContent = await getIconContent(icon, size);
+      logger.info(
+        {
+          provider,
+          icon_name,
+          format,
+        },
+        'Returning icon in JSON format'
+      );
       res.json(iconWithContent);
       return;
     }
@@ -104,14 +152,31 @@ export async function getIconByName(
     const iconWithContent = await getIconContent(icon, size);
 
     if (!iconWithContent.svg_content) {
+      logger.warn(
+        {
+          provider,
+          icon_name,
+          svgPath: icon.svg_path,
+        },
+        'SVG file not found'
+      );
       res.status(404).json({ error: 'SVG file not found' });
       return;
     }
 
+    logger.info(
+      {
+        provider,
+        icon_name,
+        format: 'svg',
+        size,
+      },
+      'Returning icon in SVG format'
+    );
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(iconWithContent.svg_content);
   } catch (err) {
-    console.error('Error:', err);
+    logger.error({ err, provider, icon_name }, 'Failed to load icon');
     res.status(500).json({ error: 'Failed to load icon' });
   }
 }

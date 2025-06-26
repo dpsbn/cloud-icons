@@ -1,11 +1,17 @@
 import { Router } from 'express';
-import { getIcons, getProviders, getIconByName } from '../controllers/iconController';
+import { getIconByName, getIcons, getProviders } from '../controllers/iconController';
+import { validate } from '../middleware/validationMiddleware';
+import {
+  cloudProvidersSchema,
+  getIconByNameSchema,
+  getIconsSchema,
+} from '../middleware/validationSchemas';
 
 const router = Router();
 
-// Routes
-router.get('/api/:provider/icons', getIcons);
-router.get('/api/cloud-providers', getProviders);
-router.get('/api/:provider/icon/:icon_name', getIconByName);
+// Routes with validation
+router.get('/:provider/icons', validate(getIconsSchema), getIcons);
+router.get('/cloud-providers', validate(cloudProvidersSchema), getProviders);
+router.get('/:provider/icon/:icon_name', validate(getIconByNameSchema), getIconByName);
 
 export default router;
