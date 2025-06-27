@@ -38,8 +38,8 @@ services:
       - SVG_CACHE_TTL=86400
       - MEMORY_CACHE_SIZE=1000
       # Security configuration
-      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3002,http://web:3000
-      - API_KEYS=dev-key:development:1000:500:2000
+      - ALLOWED_ORIGINS=http://localhost:3000
+      - API_KEYS=development:Development:1000:500:2000
       # Database configuration
       - DB_HOST=postgres
       - DB_PORT=5432
@@ -76,6 +76,8 @@ services:
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_KEY=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3002
     depends_on:
       - api
     restart: unless-stopped

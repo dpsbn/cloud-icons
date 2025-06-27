@@ -1,41 +1,64 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
-export function useInfiniteScroll(callback: () => void) {
-  const [isFetching, setIsFetching] = useState(false)
-  const observerRef = useRef<IntersectionObserver>(null)
-  const targetRef = useRef<HTMLDivElement>(null)
+export function useInfiniteScroll(onLoadMore: () => Promise<void>, options = { threshold: 200 }) {
+  const [isLoading, setIsLoading] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const onLoadMoreRef = useRef(onLoadMore)
+  const loadingRef = useRef(false) // Add ref to track loading state
 
+  // Keep the callback reference updated
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 1.0,
-    }
+    onLoadMoreRef.current = onLoadMore
+  }, [onLoadMore])
 
-    observerRef.current = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !isFetching) {
-        setIsFetching(true)
-        callback()
+  const handleScroll = useCallback(async () => {
+    // Use ref instead of state to prevent race conditions
+    if (loadingRef.current || !containerRef.current) return
+
+    const container = containerRef.current
+    const scrollBottom = container.scrollTop + container.clientHeight
+    const threshold = options.threshold
+
+    // Check if we're near the bottom
+    if (scrollBottom + threshold >= container.scrollHeight) {
+      try {
+        loadingRef.current = true // Set loading ref
+        setIsLoading(true)
+        await onLoadMoreRef.current()
+      } finally {
+        loadingRef.current = false // Reset loading ref
+        setIsLoading(false)
       }
-    }, options)
-
-    return () => observerRef.current?.disconnect()
-  }, [callback, isFetching])
+    }
+  }, [options.threshold])
 
   useEffect(() => {
-    const currentTarget = targetRef.current
-    const currentObserver = observerRef.current
+    const currentContainer = containerRef.current
+    if (!currentContainer) return
 
-    if (currentTarget && currentObserver) {
-      currentObserver.observe(currentTarget)
-    }
+    // Only use scroll event, remove wheel event to prevent duplicate triggers
+    const debouncedScroll = debounce(handleScroll, 100) // Add debounce
+    currentContainer.addEventListener('scroll', debouncedScroll)
 
     return () => {
-      if (currentTarget && currentObserver) {
-        currentObserver.unobserve(currentTarget)
-      }
+      currentContainer.removeEventListener('scroll', debouncedScroll)
     }
-  }, [])
+  }, [handleScroll])
 
-  return { targetRef, isFetching, setIsFetching }
+  // Add debounce utility function
+  function debounce<T extends unknown[]>(
+    fn: (...args: T) => void,
+    ms: number
+  ): (...args: T) => void {
+    let timer: NodeJS.Timeout
+    return function (this: unknown, ...args: T) {
+      clearTimeout(timer)
+      timer = setTimeout(() => fn.apply(this, args), ms)
+    }
+  }
+
+  return {
+    containerRef,
+    isLoading
+  }
 }

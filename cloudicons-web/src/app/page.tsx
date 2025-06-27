@@ -30,11 +30,11 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 mb-4">
-            <ProviderSelector 
-              onProviderChange={setCurrentProvider} 
-              currentProvider={currentProvider} 
+            <ProviderSelector
+              onProviderChange={setCurrentProvider}
+              currentProvider={currentProvider}
             />
-            <SearchInput 
+            <SearchInput
               onSearch={setSearchQuery}
               placeholder={`Search ${currentProvider} icons...`}
             />
@@ -45,25 +45,25 @@ export default function Home() {
           </div>
 
           <div className="mt-6 mb-4">
-            <TagFilter 
+            <TagFilter
               onTagsChange={setSelectedTags}
               provider={currentProvider}
             />
           </div>
 
           <p className='text-sm text-gray-500 mt-4'>
-            {totalIcons > 0 
+            {totalIcons > 0
               ? `${totalIcons} ${currentProvider} icons found${searchQuery ? ` for "${searchQuery}"` : ''}${selectedTags.length > 0 ? ` with tags: ${selectedTags.join(', ')}` : ''}`
               : 'Loading icons...'}
           </p>
         </div>
 
-        <IconGrid 
-          onTotalCountChange={setTotalIcons} 
+        <IconGrid
+          onTotalCountChange={setTotalIcons}
           provider={currentProvider}
           searchQuery={searchQuery}
           tags={selectedTags}
-          iconSize={iconSize}
+          iconSize={iconSize.toString()}
         />
       </section>
     </main>
