@@ -29,6 +29,9 @@ export default function InfiniteScroll({
 }: InfiniteScrollProps) {
   const observer = React.useRef<IntersectionObserver>(null);
 
+  // Flatten children before using them in the callback
+  const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);
+
   const observerRef = React.useCallback(
     (element: HTMLElement | null) => {
       let safeThreshold = threshold;
@@ -46,7 +49,8 @@ export default function InfiniteScroll({
 
       observer.current = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting && hasMore) {
+          // Only call next if we have children, are intersecting, and have more items
+          if (entries[0].isIntersecting && hasMore && flattenChildren.length > 0) {
             next();
           }
         },
@@ -54,10 +58,8 @@ export default function InfiniteScroll({
       );
       observer.current.observe(element);
     },
-    [hasMore, isLoading, next, threshold, root, rootMargin],
+    [hasMore, isLoading, next, threshold, root, rootMargin, flattenChildren],
   );
-
-  const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);
 
   return (
     <>

@@ -1,8 +1,8 @@
 "use client"
 
 import InfiniteScroll from '@/components/ui/infinite-scroll'
-import IconCard from '@/components/icon-card'
-import { useIcons } from '@/hooks/use-icons'
+import { IconCard } from '@/components/icon-card'
+import { useIcons } from '@/hooks'
 
 interface IconGridProps {
   provider: string
@@ -12,19 +12,19 @@ interface IconGridProps {
   onTotalCountChange?: (count: number) => void
 }
 
-export const IconGrid = ({ 
-  provider, 
-  iconSize, 
-  searchQuery = '', 
-  tags = [], 
-  onTotalCountChange 
+export const IconGrid = ({
+  provider,
+  iconSize,
+  searchQuery = '',
+  tags = [],
+  onTotalCountChange
 }: IconGridProps) => {
-  const { 
-    icons, 
-    loading, 
-    error, 
-    hasMore, 
-    fetchMore 
+  const {
+    icons,
+    loading,
+    error,
+    hasMore,
+    fetchMore
   } = useIcons({
     provider,
     iconSize,
@@ -33,8 +33,14 @@ export const IconGrid = ({
     onTotalCountChange
   })
 
+  // Show error message if there's an error and no icons
   if (error && icons.length === 0) {
     return <div className="text-center text-red-500">{error}</div>
+  }
+
+  // Show empty state message if no icons and not loading
+  if (icons.length === 0 && !loading) {
+    return <div className="text-center text-gray-500">No icons found. Try changing your search criteria.</div>
   }
 
   return (
@@ -44,8 +50,8 @@ export const IconGrid = ({
       next={fetchMore}
       threshold={0.8}
     >
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
-        {icons.map((icon) => (
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {icons?.map((icon) => (
           <IconCard key={icon.id} icon={icon} />
         ))}
         {loading && (

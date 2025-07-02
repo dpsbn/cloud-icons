@@ -57,7 +57,6 @@ export default function Home() {
               : 'Loading icons...'}
           </p>
         </div>
-
         <IconGrid
           onTotalCountChange={setTotalIcons}
           provider={currentProvider}

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react"
-import { useToast } from "@/lib/toast"
+import { getIcons } from '@/api/icons'
 import { Icon } from '@/types/icon'
 
 interface UseIconsProps {
@@ -9,11 +9,6 @@ interface UseIconsProps {
   tags?: string[]
   pageSize?: number
   onTotalCountChange?: (count: number) => void
-}
-
-interface IconsResponse {
-  icons: Icon[]
-  total: number
 }
 
 export function useIcons({
@@ -29,69 +24,83 @@ export function useIcons({
   const [error, setError] = useState<string | null>(null)
   const [hasMore, setHasMore] = useState(true)
   const [page, setPage] = useState(1)
-  const { showToast, toast } = useToast()
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
-  const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+  // Memoize the search parameters to prevent unnecessary re-renders
+  const searchParams = useCallback(() => ({
+    provider,
+    pageSize,
+    size: iconSize,
+    search: searchQuery,
+    tags: tags.length > 0 ? tags : undefined,
+  }), [provider, pageSize, iconSize, searchQuery, tags])
 
-  const fetchIcons = useCallback(async () => {
+  const fetchIcons = useCallback(async (isInitialFetch = false) => {
+    if (!provider) {
+      setError('Provider is required')
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
 
-      const searchParam = searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ''
-      const tagsParam = tags.length > 0 ? `&tags=${tags.join(',')}` : ''
-      const url = `${API_URL}/api/${provider}/icons?page=${page}&pageSize=${pageSize}&size=${iconSize}${searchParam}${tagsParam}`
+      const params = {
+        ...searchParams(),
+        page: isInitialFetch ? 1 : page,
+      }
+      console.log('Fetching icons with params:', params)
 
-      const response = await fetch(url, {
-        headers: API_KEY ? {
-          'X-API-Key': API_KEY
-        } : undefined
-      })
+      const response = await getIcons(params)
+      console.log('Received data:', response)
 
-      if (!response.ok) {
-        if (response.status === 429) {
-          showToast('Please wait a moment before trying again.', 'warning', 'Rate limit exceeded')
-          return
-        }
-        throw new Error(`API error: ${response.status} ${response.statusText}`)
+      // Handle the new API response format where icons are in the data property
+      const newIcons = Array.isArray(response?.data) ? response.data : []
+      console.log('Processed icons:', newIcons)
+
+      if (isInitialFetch) {
+        console.log('Setting initial icons')
+        setIcons(newIcons)
+        setPage(2)
+      } else {
+        console.log('Appending icons')
+        setIcons(prev => {
+          const updated = [...prev, ...newIcons]
+          console.log('Updated icons array:', updated)
+          return updated
+        })
+        setPage(prev => prev + 1)
       }
 
-      const data: IconsResponse = await response.json()
-
-      setIcons(prev => [...prev, ...data.icons])
-      setHasMore(data.icons.length === pageSize)
-      setPage(prev => prev + 1)
-      onTotalCountChange?.(data.total)
+      setHasMore(newIcons.length === pageSize && newIcons.length > 0)
+      onTotalCountChange?.(response?.total || 0)
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred'
       setError(errorMessage)
-      showToast(errorMessage, 'error')
+      console.error('Error fetching icons:', errorMessage)
     } finally {
       setLoading(false)
     }
-  }, [provider, iconSize, searchQuery, tags, page, pageSize, showToast, onTotalCountChange, API_URL, API_KEY])
+  }, [provider, page, searchParams, pageSize, onTotalCountChange])
 
-  // Reset and initial load when search params change
+  // Effect for initial load and search parameter changes
   useEffect(() => {
-    setIcons([])
-    setPage(1)
+    console.log('Search params changed:', {
+      provider,
+      iconSize,
+      searchQuery,
+      tags: tags.join(','),
+      pageSize
+    })
     setHasMore(true)
     setError(null)
-  }, [provider, iconSize, searchQuery, tags])
-
-  // Load initial data when page is reset
-  useEffect(() => {
-    if (page === 1) {
-      fetchIcons()
-    }
-  }, [page, fetchIcons])
+    fetchIcons(true)
+  }, [provider, iconSize, searchQuery, tags.join(','), pageSize]) // Only re-run when search parameters change
 
   return {
     icons,
     loading,
     error,
     hasMore,
-    fetchMore: fetchIcons
+    fetchMore: () => fetchIcons(false)
   }
 }

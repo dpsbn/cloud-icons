@@ -8,6 +8,3 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
-// Re-export the standardized toast utility for backward compatibility
-export { useToast } from "./toast"

@@ -7,4 +7,5 @@ export interface Icon {
   svg_path: string
   license: string
   svg_content: string
+  png_url: string
 }

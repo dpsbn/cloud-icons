@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useProviders } from "@/hooks"
 
 interface ProviderSelectorProps {
   onProviderChange: (provider: string) => void
@@ -9,27 +9,7 @@ interface ProviderSelectorProps {
 }
 
 export function ProviderSelector({ onProviderChange, currentProvider }: ProviderSelectorProps) {
-  const [providers, setProviders] = useState<string[]>([])
-  const [loading, setLoading] = useState(true)
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
-
-  useEffect(() => {
-    async function fetchProviders() {
-      try {
-        const response = await fetch(`${API_URL}/api/providers`)
-        const data = await response.json()
-        setProviders(data)
-      } catch (error) {
-        console.error('Error fetching providers:', error)
-        // Fallback to at least having Azure
-        setProviders(['azure'])
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchProviders()
-  }, [API_URL])
+  const { providers, loading } = useProviders()
 
   if (loading) {
     return <div className="w-full max-w-xs">Loading providers...</div>
