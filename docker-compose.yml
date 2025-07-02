@@ -64,7 +64,7 @@ services:
       # Override specific settings for Docker
       - NODE_ENV=development
       # Override API URL for Docker internal networking
-      - NEXT_PUBLIC_API_URL=http://localhost:3002
+      - NEXT_PUBLIC_API_URL=http://api:3002
       - NEXT_PUBLIC_API_KEY=development
     depends_on:
       - api
