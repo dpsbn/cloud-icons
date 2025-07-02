@@ -1,6 +1,12 @@
 # Use Node.js LTS as the base image
 FROM node:20-alpine AS base
 
+# Install system dependencies for PostgreSQL client and other tools
+RUN apk add --no-cache \
+    postgresql-client \
+    wget \
+    curl
+
 # Set working directory
 WORKDIR /app
 
@@ -20,6 +26,12 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
+# Install runtime dependencies
+RUN apk add --no-cache \
+    postgresql-client \
+    wget \
+    curl
+
 # Set environment variables
 ENV NODE_ENV production
 ENV PORT 3002
@@ -32,15 +44,20 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder --chown=cloudicons:nodejs /app/dist ./dist
 COPY --from=builder --chown=cloudicons:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=cloudicons:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=cloudicons:nodejs /app/scripts ./scripts
 
-# Create data and public directories
-RUN mkdir -p data public && chown -R cloudicons:nodejs data public
+# Create data, public, and backups directories
+RUN mkdir -p data public backups && chown -R cloudicons:nodejs data public backups
 
 # Switch to non-root user
 USER cloudicons
 
 # Expose the port the app runs on
 EXPOSE 3002
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3002/health || exit 1
 
 # Start the server
 CMD ["node", "dist/index.js"]

@@ -27,9 +27,23 @@ A comprehensive service for serving cloud provider icons with dynamic sizing and
 
 ## Getting Started
 
-### Prerequisites
+### Quick Start with Docker (Recommended)
+
+The fastest way to get Cloud Icons running with full database support:
+
+```bash
+# One-command setup
+./docker-setup.sh --clean
+```
+
+This will automatically set up PostgreSQL, Redis, API, and Web services. See [DOCKER_README.md](DOCKER_README.md) for details.
+
+### Manual Installation
+
+#### Prerequisites
 - Node.js (v18 or later)
-- npm (v8 or later)
+- npm (v8 or later)  
+- PostgreSQL 12+ (for database support)
 - Redis (optional, for enhanced caching)
 - Git
 
@@ -106,19 +120,33 @@ A comprehensive service for serving cloud provider icons with dynamic sizing and
 
    This will start the API server. The web application can be deployed separately to a static hosting service.
 
-### Docker Support (if implemented)
+### Docker Support
 
-If you've implemented Docker support:
+Run the complete stack with PostgreSQL database:
 
 ```bash
-# Build and start the containers
-docker-compose up -d
+# Quick setup with database migration
+./docker-setup.sh --clean
 
-# View logs
-docker-compose logs -f
+# Or manually
+docker compose up -d --build
+docker compose exec api npm run db:migrate
+```
 
-# Stop the containers
-docker-compose down
+For detailed Docker instructions, see [DOCKER_README.md](DOCKER_README.md).
+
+### Database Setup
+
+The project now uses PostgreSQL as the primary data source. For manual database setup:
+
+```bash
+# See detailed database setup instructions
+cat DATABASE_SETUP.md
+
+# Quick setup
+createdb cloudicons
+psql cloudicons < api/scripts/setup-database.sql
+cd api && npm run db:migrate
 ```
 
 ## API Reference

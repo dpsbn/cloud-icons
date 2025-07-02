@@ -4,6 +4,7 @@ import Redis from 'ioredis';
 import { Icon, IconWithContent } from '../types/icon';
 import { createLogger } from './logger';
 import { sanitizeSvg } from '../utils/svgSanitizer';
+import * as db from './db';
 
 // Create a namespaced logger for this service
 const logger = createLogger('iconService');
@@ -35,16 +36,28 @@ logger.debug(
 const DEFAULT_ICON_SIZE = 24;
 
 /**
- * Reads icon metadata from the JSON file
+ * Reads icon metadata from the database (with fallback to JSON file)
  *
- * This function attempts to read the icons data from multiple possible paths
- * and returns the parsed JSON data as an array of Icon objects.
+ * This function attempts to read the icons data from the database first,
+ * and falls back to the JSON file if the database is not available.
  *
  * @returns {Promise<Icon[]>} A promise that resolves to an array of Icon objects
- * @throws {Error} If the icons data cannot be read from any of the possible paths
+ * @throws {Error} If the icons data cannot be read from any source
  */
 export async function readIconsData(): Promise<Icon[]> {
   try {
+    // First, try to read from the database
+    logger.debug('Attempting to read icons from database');
+    
+    try {
+      const { icons } = await db.getIcons('all', undefined, 1, 10000); // Get all icons
+      logger.info({ count: icons.length }, 'Icons loaded from database successfully');
+      return icons;
+    } catch (dbError: any) {
+      logger.warn({ err: dbError }, 'Database read failed, falling back to JSON file');
+    }
+
+    // Fallback to JSON file if database fails
     logger.debug(
       {
         env: process.env.NODE_ENV,
@@ -52,19 +65,8 @@ export async function readIconsData(): Promise<Icon[]> {
         dirname: __dirname,
         possiblePaths: POSSIBLE_ICON_PATHS,
       },
-      'Reading icons data'
+      'Reading icons data from JSON file'
     );
-
-    // List contents of the current directory
-    try {
-      const contents = await fs.readdir(process.cwd());
-      logger.debug({ contents }, 'Contents of cwd');
-
-      const dataContents = await fs.readdir(path.join(process.cwd(), 'data'));
-      logger.debug({ dataContents }, 'Contents of data directory');
-    } catch (e) {
-      logger.error({ err: e }, 'Error listing directory contents');
-    }
 
     // Try each possible path until we find one that works
     let lastError: any = null;
@@ -74,7 +76,7 @@ export async function readIconsData(): Promise<Icon[]> {
         logger.debug({ tryingPath: iconPath }, 'Trying to read icons file');
         const data = await fs.readFile(iconPath, 'utf-8');
         const icons = JSON.parse(data) as Icon[];
-        logger.info({ count: icons.length, path: iconPath }, 'Icons loaded successfully');
+        logger.info({ count: icons.length, path: iconPath }, 'Icons loaded from JSON file successfully');
         return icons;
       } catch (err) {
         lastError = err;
@@ -92,7 +94,7 @@ export async function readIconsData(): Promise<Icon[]> {
         cwd: process.cwd(),
         dirname: __dirname,
       },
-      'Error reading icons file'
+      'Error reading icons'
     );
     throw new Error(`Failed to read icons data: ${err.message}`);
   }
@@ -357,59 +359,74 @@ if (CACHE_ENABLED && process.env.REDIS_URL) {
 
 /**
  * Get an icon by provider and name, with caching
- * Uses Redis for persistent caching if available
+ * Uses database first, then Redis for persistent caching if available
  */
 export async function getIconWithCache(
   provider: string,
   iconName: string
 ): Promise<Icon | undefined> {
-  // If Redis is not available or caching is disabled, read directly from file
-  if (!redis || !CACHE_ENABLED) {
-    logger.debug({ provider, iconName }, 'Cache disabled or Redis unavailable, reading directly');
-    const icons = await readIconsData();
-    return icons.find(
-      (i: Icon) =>
-        i.provider.toLowerCase() === provider.toLowerCase() &&
-        i.id.toLowerCase() === iconName.toLowerCase()
-    );
-  }
-
   const cacheKey = `icon:${provider}:${iconName}`;
 
-  // Try cache first
+  // Try Redis cache first if available
+  if (redis && CACHE_ENABLED) {
+    try {
+      const cached = await redis.get(cacheKey);
+      if (cached) {
+        logger.debug({ provider, iconName }, 'Icon metadata cache hit');
+        return JSON.parse(cached);
+      }
+    } catch (err) {
+      logger.warn({ err, provider, iconName }, 'Redis cache error, continuing to database');
+    }
+  }
+
+  logger.debug({ provider, iconName }, 'Icon metadata cache miss, querying database');
+
   try {
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-      logger.debug({ provider, iconName }, 'Icon metadata cache hit');
-      return JSON.parse(cached);
+    // Try database first
+    const icon = await db.getIconByName(provider, iconName);
+    
+    if (icon) {
+      // Cache the result if Redis is available
+      if (redis && CACHE_ENABLED) {
+        try {
+          await redis.set(cacheKey, JSON.stringify(icon), 'EX', ICON_CACHE_TTL);
+          logger.debug(
+            {
+              provider,
+              iconName,
+              ttl: ICON_CACHE_TTL,
+            },
+            'Icon metadata cached'
+          );
+        } catch (cacheErr) {
+          logger.warn({ err: cacheErr }, 'Failed to cache icon metadata');
+        }
+      }
+      return icon;
     }
 
-    logger.debug({ provider, iconName }, 'Icon metadata cache miss');
-
-    // If not in cache, fetch and store
+    // If not found in database, try fallback to JSON file
+    logger.debug({ provider, iconName }, 'Icon not found in database, trying JSON fallback');
     const icons = await readIconsData();
-    const icon = icons.find(
+    const fallbackIcon = icons.find(
       (i: Icon) =>
         i.provider.toLowerCase() === provider.toLowerCase() &&
         i.id.toLowerCase() === iconName.toLowerCase()
     );
 
-    if (icon) {
-      await redis.set(cacheKey, JSON.stringify(icon), 'EX', ICON_CACHE_TTL);
-      logger.debug(
-        {
-          provider,
-          iconName,
-          ttl: ICON_CACHE_TTL,
-        },
-        'Icon metadata cached'
-      );
+    if (fallbackIcon && redis && CACHE_ENABLED) {
+      try {
+        await redis.set(cacheKey, JSON.stringify(fallbackIcon), 'EX', ICON_CACHE_TTL);
+      } catch (cacheErr) {
+        logger.warn({ err: cacheErr }, 'Failed to cache fallback icon metadata');
+      }
     }
 
-    return icon;
+    return fallbackIcon;
   } catch (err) {
-    logger.error({ err, provider, iconName }, 'Redis error, falling back to direct read');
-    // Fallback to direct read if Redis fails
+    logger.error({ err, provider, iconName }, 'Database query failed, falling back to JSON');
+    // Final fallback to JSON file read
     const icons = await readIconsData();
     return icons.find(
       (i: Icon) =>

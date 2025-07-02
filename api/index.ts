@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import iconsRouter from './routes/icons';
 import { readIconsData } from './services/iconService';
+import * as db from './services/db';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { etagMiddleware } from './middleware/etagMiddleware';
 import { apiKeyMiddleware } from './middleware/apiKeyMiddleware';
@@ -255,22 +256,36 @@ app.get('/health', async (_req: Request, res: Response) => {
       }
     }
 
-    // Check data access
+    // Check database access first, fallback to JSON
     let dataStatus = 'error';
+    let iconCount = 0;
     try {
-      const icons = await readIconsData();
-      dataStatus = icons && icons.length > 0 ? 'ok' : 'empty';
-    } catch (err) {
-      logger.error({ err }, 'Data health check failed');
+      const health = await db.checkHealth();
+      if (health.status === 'healthy' && health.iconCount) {
+        dataStatus = 'database_ok';
+        iconCount = health.iconCount;
+      } else {
+        throw new Error('Database health check failed');
+      }
+    } catch (dbErr) {
+      logger.warn({ err: dbErr }, 'Database health check failed, trying JSON fallback');
+      try {
+        const icons = await readIconsData();
+        dataStatus = icons && icons.length > 0 ? 'json_fallback' : 'empty';
+        iconCount = icons.length;
+      } catch (err) {
+        logger.error({ err }, 'Data health check failed completely');
+      }
     }
 
-    const isHealthy = redisStatus !== 'error' && dataStatus === 'ok';
+    const isHealthy = redisStatus !== 'error' && (dataStatus === 'database_ok' || dataStatus === 'json_fallback');
     const statusCode = isHealthy ? 200 : 503;
 
     const response = {
       status: isHealthy ? 'ok' : 'error',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
+      iconCount,
       services: {
         redis: redisStatus,
         data: dataStatus,

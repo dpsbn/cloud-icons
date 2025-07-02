@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import { createLogger } from './logger';
+import { Icon } from '../types/icon';
 
 const logger = createLogger('dbService');
 
@@ -98,64 +99,115 @@ export async function getIcons(
   provider: string,
   search?: string,
   page = 1,
-  pageSize = 24
-): Promise<{ icons: any[]; total: number }> {
-  const offset = (page - 1) * pageSize;
-  let query = `
-    SELECT i.*, array_agg(t.name) as tags
-    FROM icons i
-    LEFT JOIN icon_tags it ON i.id = it.icon_id
-    LEFT JOIN tags t ON it.tag_id = t.id
-  `;
+  pageSize = 24,
+  tags?: string[]
+): Promise<{ icons: Icon[]; total: number }> {
+  try {
+    const offset = (page - 1) * pageSize;
+    let query = `
+      SELECT i.*, 
+             COALESCE(array_agg(t.name) FILTER (WHERE t.name IS NOT NULL), '{}') as tags
+      FROM icons i
+      LEFT JOIN icon_tags it ON i.id = it.icon_id
+      LEFT JOIN tags t ON it.tag_id = t.id
+    `;
 
-  const params: any[] = [];
-  const conditions: string[] = [];
+    const params: any[] = [];
+    const conditions: string[] = [];
 
-  if (provider.toLowerCase() !== 'all') {
-    conditions.push('i.provider = $1');
-    params.push(provider);
+    // Filter by provider
+    if (provider.toLowerCase() !== 'all') {
+      conditions.push(`LOWER(i.provider) = LOWER($${params.length + 1})`);
+      params.push(provider);
+    }
+
+    // Search functionality
+    if (search) {
+      const searchParam = `%${search.toLowerCase()}%`;
+      conditions.push(`(
+        LOWER(i.icon_name) LIKE $${params.length + 1} OR
+        LOWER(i.description) LIKE $${params.length + 1} OR
+        LOWER(i.id) LIKE $${params.length + 1} OR
+        EXISTS (
+          SELECT 1 FROM icon_tags it2
+          JOIN tags t2 ON it2.tag_id = t2.id
+          WHERE it2.icon_id = i.id AND LOWER(t2.name) LIKE $${params.length + 1}
+        )
+      )`);
+      params.push(searchParam);
+    }
+
+    // Filter by tags
+    if (tags && tags.length > 0) {
+      const tagConditions = tags.map((_, index) => `LOWER(t.name) = LOWER($${params.length + index + 1})`).join(' OR ');
+      conditions.push(`EXISTS (
+        SELECT 1 FROM icon_tags it3
+        JOIN tags t3 ON it3.tag_id = t3.id
+        WHERE it3.icon_id = i.id AND (${tagConditions})
+      )`);
+      params.push(...tags);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += `
+      GROUP BY i.id, i.provider, i.icon_name, i.description, i.svg_path, i.license, i.created_at
+      ORDER BY i.provider, i.icon_name
+      LIMIT $${params.length + 1} OFFSET $${params.length + 2}
+    `;
+    params.push(pageSize, offset);
+
+    // Get total count with same conditions
+    let countQuery = 'SELECT COUNT(DISTINCT i.id) as count FROM icons i';
+    if (search || (tags && tags.length > 0)) {
+      countQuery += ' LEFT JOIN icon_tags it ON i.id = it.icon_id LEFT JOIN tags t ON it.tag_id = t.id';
+    }
+    if (conditions.length > 0) {
+      countQuery += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    const countParams = params.slice(0, -2); // Remove LIMIT and OFFSET
+
+    logger.debug({ query, params, countQuery, countParams }, 'Executing icon query');
+
+    const [icons, [countResult]] = await executeTransaction<any>([
+      { query, params },
+      { query: countQuery, params: countParams }
+    ]);
+
+    // Transform database result to Icon format
+    const transformedIcons: Icon[] = icons.map((row: any) => ({
+      id: row.id,
+      provider: row.provider,
+      icon_name: row.icon_name,
+      description: row.description || '',
+      tags: Array.isArray(row.tags) ? row.tags.filter((tag: string) => tag !== null) : [],
+      svg_path: row.svg_path,
+      license: row.license
+    }));
+
+    const total = parseInt(countResult.count || '0');
+
+    logger.info({ 
+      provider, 
+      search, 
+      tags, 
+      page, 
+      pageSize, 
+      resultCount: transformedIcons.length, 
+      total 
+    }, 'Retrieved icons from database');
+
+    return {
+      icons: transformedIcons,
+      total
+    };
+  } catch (error: any) {
+    logger.error({ error, provider, search, page, pageSize }, 'Failed to get icons from database');
+    throw new Error(`Database query failed: ${error.message}`);
   }
-
-  if (search) {
-    const searchParam = `%${search.toLowerCase()}%`;
-    conditions.push(`(
-      LOWER(i.icon_name) LIKE $${params.length + 1} OR
-      LOWER(i.description) LIKE $${params.length + 1} OR
-      EXISTS (
-        SELECT 1 FROM icon_tags it2
-        JOIN tags t2 ON it2.tag_id = t2.id
-        WHERE it2.icon_id = i.id AND LOWER(t2.name) LIKE $${params.length + 1}
-      )
-    )`);
-    params.push(searchParam);
-  }
-
-  if (conditions.length > 0) {
-    query += ' WHERE ' + conditions.join(' AND ');
-  }
-
-  query += `
-    GROUP BY i.id
-    ORDER BY i.provider, i.icon_name
-    LIMIT $${params.length + 1} OFFSET $${params.length + 2}
-  `;
-  params.push(pageSize, offset);
-
-  // Get total count
-  let countQuery = 'SELECT COUNT(*) as count FROM icons i';
-  if (conditions.length > 0) {
-    countQuery += ' WHERE ' + conditions.join(' AND ');
-  }
-
-  const [icons, [countResult]] = await executeTransaction<any>([
-    { query, params },
-    { query: countQuery, params: params.slice(0, -2) }
-  ]);
-
-  return {
-    icons,
-    total: parseInt(countResult.count)
-  };
 }
 
 /**
@@ -164,28 +216,145 @@ export async function getIcons(
 export async function getIconByName(
   provider: string,
   iconName: string
-): Promise<any | null> {
-  const query = `
-    SELECT i.*, array_agg(t.name) as tags
-    FROM icons i
-    LEFT JOIN icon_tags it ON i.id = it.icon_id
-    LEFT JOIN tags t ON it.tag_id = t.id
-    WHERE LOWER(i.provider) = LOWER($1)
-    AND LOWER(i.id) = LOWER($2)
-    GROUP BY i.id
-  `;
+): Promise<Icon | null> {
+  try {
+    const query = `
+      SELECT i.*, 
+             COALESCE(array_agg(t.name) FILTER (WHERE t.name IS NOT NULL), '{}') as tags
+      FROM icons i
+      LEFT JOIN icon_tags it ON i.id = it.icon_id
+      LEFT JOIN tags t ON it.tag_id = t.id
+      WHERE LOWER(i.provider) = LOWER($1)
+      AND LOWER(i.id) = LOWER($2)
+      GROUP BY i.id, i.provider, i.icon_name, i.description, i.svg_path, i.license, i.created_at
+    `;
 
-  const [icon] = await executeQuery(query, [provider, iconName]);
-  return icon || null;
+    logger.debug({ provider, iconName, query }, 'Getting icon by name');
+
+    const results = await executeQuery(query, [provider, iconName]);
+    const [row] = results;
+
+    if (!row) {
+      logger.debug({ provider, iconName }, 'Icon not found in database');
+      return null;
+    }
+
+    // Transform database result to Icon format
+    const icon: Icon = {
+      id: (row as any).id,
+      provider: (row as any).provider,
+      icon_name: (row as any).icon_name,
+      description: (row as any).description || '',
+      tags: Array.isArray((row as any).tags) ? (row as any).tags.filter((tag: string) => tag !== null) : [],
+      svg_path: (row as any).svg_path,
+      license: (row as any).license
+    };
+
+    logger.info({ iconId: icon.id, provider, iconName }, 'Retrieved icon from database');
+    return icon;
+  } catch (error: any) {
+    logger.error({ error, provider, iconName }, 'Failed to get icon by name from database');
+    throw new Error(`Database query failed: ${error.message}`);
+  }
 }
 
 /**
  * Get all providers
  */
 export async function getProviders(): Promise<string[]> {
-  const query = 'SELECT DISTINCT provider FROM icons ORDER BY provider';
-  const results = await executeQuery<{ provider: string }>(query);
-  return results.map(r => r.provider);
+  try {
+    const query = 'SELECT DISTINCT provider FROM icons ORDER BY provider';
+    logger.debug({ query }, 'Getting providers from database');
+    
+    const results = await executeQuery<{ provider: string }>(query);
+    const providers = results.map(r => r.provider);
+    
+    logger.info({ count: providers.length, providers }, 'Retrieved providers from database');
+    return providers;
+  } catch (error: any) {
+    logger.error({ error }, 'Failed to get providers from database');
+    throw new Error(`Database query failed: ${error.message}`);
+  }
+}
+
+/**
+ * Get all available tags
+ */
+export async function getTags(): Promise<string[]> {
+  try {
+    const query = 'SELECT DISTINCT name FROM tags ORDER BY name';
+    logger.debug({ query }, 'Getting tags from database');
+    
+    const results = await executeQuery<{ name: string }>(query);
+    const tags = results.map(r => r.name);
+    
+    logger.info({ count: tags.length }, 'Retrieved tags from database');
+    return tags;
+  } catch (error: any) {
+    logger.error({ error }, 'Failed to get tags from database');
+    throw new Error(`Database query failed: ${error.message}`);
+  }
+}
+
+/**
+ * Check if database connection is healthy
+ */
+export async function checkHealth(): Promise<{ status: string; timestamp: string; iconCount?: number }> {
+  try {
+    const query = 'SELECT COUNT(*) as count FROM icons';
+    const results = await executeQuery<{ count: string }>(query);
+    const iconCount = parseInt(results[0]?.count || '0');
+    
+    return {
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      iconCount
+    };
+  } catch (error: any) {
+    logger.error({ error }, 'Database health check failed');
+    return {
+      status: 'unhealthy',
+      timestamp: new Date().toISOString()
+    };
+  }
+}
+
+/**
+ * Get database statistics
+ */
+export async function getStats(): Promise<{
+  totalIcons: number;
+  providerCounts: Record<string, number>;
+  totalTags: number;
+}> {
+  try {
+    const queries = [
+      { query: 'SELECT COUNT(*) as count FROM icons', params: [] },
+      { query: 'SELECT provider, COUNT(*) as count FROM icons GROUP BY provider ORDER BY provider', params: [] },
+      { query: 'SELECT COUNT(*) as count FROM tags', params: [] }
+    ];
+
+    const [totalResult, providerResults, tagsResult] = await executeTransaction(queries);
+    
+    const totalIcons = parseInt((totalResult[0] as any)?.count || '0');
+    const totalTags = parseInt((tagsResult[0] as any)?.count || '0');
+    
+    const providerCounts: Record<string, number> = {};
+    providerResults.forEach((row: any) => {
+      providerCounts[row.provider] = parseInt(row.count);
+    });
+
+    logger.info({ totalIcons, providerCounts, totalTags }, 'Retrieved database statistics');
+    
+    return {
+      totalIcons,
+      providerCounts,
+      totalTags
+    };
+  } catch (error: any) {
+    logger.error({ error }, 'Failed to get database statistics');
+    throw new Error(`Database query failed: ${error.message}`);
+  }
 }
 
 // Export pool for direct access if needed

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getIcons, getProviders, getIconByName } from '../controllers/iconController';
+import { getIcons, getProviders, getIconByName, getTags, getStats } from '../controllers/iconController';
 import { validate } from '../middleware/validationMiddleware';
 import { iconSizeQuerySchema, iconNameParamSchema } from '../middleware/validationSchemas';
 import { etagMiddleware } from '../middleware/etagMiddleware';
@@ -19,11 +19,17 @@ router.get(
 );
 
 // Get a list of all providers
-router.get('/providers', etagMiddleware, getProviders);
+router.get('/cloud-providers', etagMiddleware, getProviders);
+
+// Get all available tags
+router.get('/tags', etagMiddleware, getTags);
+
+// Get database statistics
+router.get('/stats', etagMiddleware, getStats);
 
 // Get a specific icon by name
 router.get(
-  '/:provider/icons/:icon_name',
+  '/:provider/icon/:icon_name',
   validate(iconNameParamSchema),
   etagMiddleware,
   getIconByName

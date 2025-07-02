@@ -1,0 +1,68 @@
+# Docker Compose override for development
+# This file is automatically loaded by docker-compose and provides development-specific settings
+
+services:
+  # Development overrides for API service
+  api:
+    environment:
+      - NODE_ENV=development
+      - LOG_LEVEL=debug
+    volumes:
+      # Mount source code for hot reloading in development
+      - ./api:/app/src:ro
+      - ./public:/app/public:ro
+      - ./data:/app/data:ro
+      # Preserve node_modules to avoid conflicts
+      - api-node-modules:/app/node_modules
+    # Override command for development
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        until pg_isready -h postgres -p 5432 -U cloudicons; do
+          echo 'Database not ready, waiting...'
+          sleep 2
+        done &&
+        echo 'Database ready! Running migration...' &&
+        npm run db:migrate &&
+        echo 'Starting development server...' &&
+        npm start
+      "
+    # Restart on failure for development
+    restart: unless-stopped
+
+  # Development overrides for web service  
+  web:
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      # Mount source code for hot reloading
+      - ./cloudicons-web:/app/src:ro
+      - web-node-modules:/app/node_modules
+    # Development command (production container runs standalone)
+    command: node server.js
+    restart: unless-stopped
+
+  # Development overrides for postgres
+  postgres:
+    # Expose postgres port for external connections in development
+    ports:
+      - "5432:5432"
+    # Add debug logging in development
+    command: >
+      postgres
+      -c log_statement=all
+      -c log_destination=stderr
+      -c log_min_messages=info
+      -c log_connections=on
+      -c log_disconnections=on
+
+  # Development overrides for redis
+  redis:
+    # Expose redis port for external connections in development
+    ports:
+      - "6379:6379"
+
+volumes:
+  # Additional volumes for development
+  web-node-modules:

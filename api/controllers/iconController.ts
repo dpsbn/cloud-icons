@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
 import { ErrorResponse, IconWithContent, PaginatedResponse } from '../types/icon';
 import {
-  filterIconsByProvider,
   getIconContent,
-  readIconsData,
-  searchIcons,
+  getIconWithCache,
 } from '../services/iconService';
+import * as db from '../services/db';
 import { createLogger } from '../services/logger';
 
 // Create a namespaced logger for this controller
@@ -29,21 +28,23 @@ export async function getIcons(
     { provider: string },
     unknown,
     unknown,
-    { search?: string; page?: string; pageSize?: string; size?: string }
+    { search?: string; page?: string; pageSize?: string; size?: string; tags?: string }
   >,
   res: Response<PaginatedResponse<IconWithContent> | ErrorResponse>
 ) {
   const { provider } = req.params;
   const page = Math.max(1, parseInt(req.query.page ?? '1'));
-  const pageSize = Math.max(1, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE)));
+  const pageSize = Math.max(1, Math.min(100, parseInt(req.query.pageSize ?? String(DEFAULT_PAGE_SIZE))));
   const size = Math.max(1, parseInt(req.query.size ?? '64'));
-  const { search } = req.query;
+  const { search, tags } = req.query;
+  const tagsArray = tags ? tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0) : undefined;
 
   try {
     logger.info(
       {
         provider,
         search,
+        tags: tagsArray,
         page,
         pageSize,
         size,
@@ -52,25 +53,16 @@ export async function getIcons(
       'Received request for icons'
     );
 
-    const allIcons = await readIconsData();
-    let filteredIcons = filterIconsByProvider(allIcons, provider);
+    // Use database service to get icons with pagination and filtering
+    const { icons, total } = await db.getIcons(provider, search, page, pageSize, tagsArray);
 
-    // Apply search if provided
-    if (search) {
-      filteredIcons = searchIcons(filteredIcons, search);
-    }
-
-    const start = (page - 1) * pageSize;
-    const end = start + pageSize;
-    const paginatedIcons = filteredIcons.slice(start, end);
-
-    // Load SVG content for paginated icons
+    // Load SVG content for the icons
     const iconsWithContent = await Promise.all(
-      paginatedIcons.map(icon => getIconContent(icon, size))
+      icons.map(icon => getIconContent(icon, size))
     );
 
     const response = {
-      total: filteredIcons.length,
+      total,
       page,
       pageSize,
       data: iconsWithContent,
@@ -79,15 +71,15 @@ export async function getIcons(
     logger.info(
       {
         count: iconsWithContent.length,
-        total: filteredIcons.length,
+        total,
         provider,
       },
-      'Returning icons'
+      'Returning icons from database'
     );
 
     res.json(response);
   } catch (err) {
-    logger.error({ err, provider }, 'Failed to load icons');
+    logger.error({ err, provider }, 'Failed to load icons from database');
     res.status(500).json({ error: 'Failed to load icons' });
   }
 }
@@ -96,7 +88,7 @@ export async function getIcons(
  * Get a list of all available cloud providers
  *
  * This endpoint returns a list of all cloud providers that have icons available.
- * The list is derived from the unique provider values in the icons data.
+ * The list is retrieved from the database.
  *
  * @param {Request} req - Express request object
  * @param {Response} res - Express response object
@@ -105,12 +97,11 @@ export async function getIcons(
 export async function getProviders(req: Request, res: Response<string[] | ErrorResponse>) {
   try {
     logger.info({ ip: req.ip }, 'Request for providers');
-    const icons = await readIconsData();
-    const providers = [...new Set(icons.map(icon => icon.provider))];
-    logger.info({ count: providers.length }, 'Returning providers');
+    const providers = await db.getProviders();
+    logger.info({ count: providers.length, providers }, 'Returning providers from database');
     res.json(providers);
   } catch (err) {
-    logger.error({ err }, 'Failed to load providers');
+    logger.error({ err }, 'Failed to load providers from database');
     res.status(500).json({ error: 'Failed to load providers' });
   }
 }
@@ -150,17 +141,13 @@ export async function getIconByName(
   );
 
   try {
-    const icons = await readIconsData();
     const normalizedIconName = icon_name.replace(/\.[^/.]+$/, '').toLowerCase();
 
-    const icon = icons.find(
-      i =>
-        i.provider.toLowerCase() === provider.toLowerCase() &&
-        i.id.toLowerCase() === normalizedIconName
-    );
+    // Use database service with caching to get icon
+    const icon = await getIconWithCache(provider, normalizedIconName);
 
     if (!icon) {
-      logger.warn({ provider, icon_name }, 'Icon not found');
+      logger.warn({ provider, icon_name, normalizedIconName }, 'Icon not found in database');
       res.status(404).json({ error: 'Icon not found' });
       return;
     }
@@ -173,7 +160,7 @@ export async function getIconByName(
           icon_name,
           format,
         },
-        'Returning icon in JSON format'
+        'Returning icon in JSON format from database'
       );
       res.json(iconWithContent);
       return;
@@ -201,12 +188,61 @@ export async function getIconByName(
         format: 'svg',
         size,
       },
-      'Returning icon in SVG format'
+      'Returning icon in SVG format from database'
     );
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(iconWithContent.svg_content);
   } catch (err) {
-    logger.error({ err, provider, icon_name }, 'Failed to load icon');
+    logger.error({ err, provider, icon_name }, 'Failed to load icon from database');
     res.status(500).json({ error: 'Failed to load icon' });
+  }
+}
+
+/**
+ * Get all available tags
+ */
+export async function getTags(req: Request, res: Response<string[] | ErrorResponse>) {
+  try {
+    logger.info({ ip: req.ip }, 'Request for tags');
+    const tags = await db.getTags();
+    logger.info({ count: tags.length }, 'Returning tags from database');
+    res.json(tags);
+  } catch (err) {
+    logger.error({ err }, 'Failed to load tags from database');
+    res.status(500).json({ error: 'Failed to load tags' });
+  }
+}
+
+/**
+ * Get database health status
+ */
+export async function getHealth(req: Request, res: Response) {
+  try {
+    const health = await db.checkHealth();
+    const statusCode = health.status === 'healthy' ? 200 : 503;
+    logger.info({ health }, 'Health check completed');
+    res.status(statusCode).json(health);
+  } catch (err) {
+    logger.error({ err }, 'Health check failed');
+    res.status(503).json({
+      status: 'unhealthy',
+      timestamp: new Date().toISOString(),
+      error: 'Database connection failed'
+    });
+  }
+}
+
+/**
+ * Get database statistics
+ */
+export async function getStats(req: Request, res: Response) {
+  try {
+    logger.info({ ip: req.ip }, 'Request for database statistics');
+    const stats = await db.getStats();
+    logger.info({ stats }, 'Returning database statistics');
+    res.json(stats);
+  } catch (err) {
+    logger.error({ err }, 'Failed to load database statistics');
+    res.status(500).json({ error: 'Failed to load statistics' });
   }
 }

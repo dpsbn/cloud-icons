@@ -38,7 +38,6 @@ const mockIcons: Icon[] = [
     description: 'Azure Storage Account',
     tags: ['storage', 'azure', 'cloud'],
     svg_path: 'azure/storage-account.svg',
-    png_path: 'azure/storage-account.png',
     license: 'MIT',
   },
   {
@@ -48,7 +47,6 @@ const mockIcons: Icon[] = [
     description: 'Azure Virtual Machine',
     tags: ['compute', 'azure', 'vm'],
     svg_path: 'azure/virtual-machine.svg',
-    png_path: 'azure/virtual-machine.png',
     license: 'MIT',
   },
   {
@@ -58,7 +56,6 @@ const mockIcons: Icon[] = [
     description: 'AWS S3 Bucket',
     tags: ['storage', 'aws', 'cloud'],
     svg_path: 'aws/s3-bucket.svg',
-    png_path: 'aws/s3-bucket.png',
     license: 'MIT',
   },
 ];

@@ -5,7 +5,6 @@ export interface Icon {
   description: string;
   tags: string[];
   svg_path: string;
-  png_path: string;
   license: string;
 }
 
