@@ -33,7 +33,7 @@ export async function getIcons({
                                    search,
                                    tags,
                                }: GetIconsParams): Promise<IconsResponse> {
-    return apiClient<IconsResponse>(`/api/${provider}/icons`, {
+    return apiClient<IconsResponse>(`/${provider}/icons`, {
         params: {
             page,
             pageSize,
@@ -51,5 +51,5 @@ export async function getIcons({
  * @returns A promise that resolves to the icon
  */
 export async function getIconById(provider: string, iconId: string): Promise<Icon> {
-    return apiClient<Icon>(`/api/${provider}/icons/${iconId}`);
+    return apiClient<Icon>(`/${provider}/icon/${iconId}`);
 }

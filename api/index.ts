@@ -95,6 +95,15 @@ app.use(
   })
 );
 
+// CORS configuration - allow localhost origins for development
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: false,
+  methods: ['GET', 'HEAD', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-API-Key', 'Authorization'],
+  exposedHeaders: ['Content-Length', 'ETag', 'RateLimit-Limit', 'RateLimit-Remaining', 'RateLimit-Reset']
+}));
+
 // Apply API key middleware before rate limiting
 app.use(apiKeyMiddleware);
 
@@ -158,56 +167,6 @@ app.use(iconRateLimit);
 
 // Mount routes
 app.use('/', iconsRouter);
-
-// CORS configuration with enhanced security
-app.use(
-  cors({
-    // Only allow specific origins defined in the environment variable
-    origin: (origin, callback) => {
-      // Get allowed origins from environment variable
-      const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
-
-      // Allow requests with no origin (like mobile apps, curl requests, etc.)
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      // In development, allow all origins if no specific origins are configured
-      if (process.env.NODE_ENV === 'development' && allowedOrigins.length === 0) {
-        logger.warn({ origin }, 'CORS: All origins allowed in development mode');
-        return callback(null, true);
-      }
-
-      // In production, require specific origins
-      if (process.env.NODE_ENV === 'production' && allowedOrigins.length === 0) {
-        logger.warn('CORS: No allowed origins configured in production mode');
-        // Default to a restrictive policy in production if no origins are specified
-        allowedOrigins.push('https://cloudicons.example.com');
-      }
-
-      // Check if the request origin is in the allowed list
-      if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
-        logger.debug({ origin }, 'CORS: Origin allowed');
-        return callback(null, true);
-      }
-
-      // Origin not allowed
-      logger.warn({ origin, allowedOrigins }, 'CORS: Origin not allowed');
-      return callback(new Error('CORS: Origin not allowed'), false);
-    },
-    methods: ['GET'], // Only allow GET requests
-    maxAge: 86400, // 24 hours cache for preflight requests
-    credentials: false, // Don't allow cookies
-    allowedHeaders: ['Content-Type', 'X-API-Key'], // Only allow these headers
-    exposedHeaders: [
-      'Content-Length',
-      'ETag',
-      'RateLimit-Limit',
-      'RateLimit-Remaining',
-      'RateLimit-Reset',
-    ], // Expose these headers to clients
-  })
-);
 
 // Compression with optimized settings
 app.use(

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
+import { getIcons } from "@/api/icons"
 
 interface Icon {
   tags?: string[]
@@ -16,7 +17,6 @@ export function TagFilter({ onTagsChange, provider }: TagFilterProps) {
   const [availableTags, setAvailableTags] = useState<string[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
   // Fetch all icons to extract tags
   useEffect(() => {
@@ -24,12 +24,15 @@ export function TagFilter({ onTagsChange, provider }: TagFilterProps) {
       try {
         setLoading(true)
         // Fetch first page of icons to extract tags
-        const response = await fetch(`${API_URL}/api/${provider}/icons?page=1&pageSize=100`)
-        const data = await response.json()
+        const response = await getIcons({
+          provider,
+          page: 1,
+          pageSize: 100
+        })
 
         // Extract unique tags from icons
         const tags = new Set<string>()
-        data.data.forEach((icon: Icon) => {
+        response.data.forEach((icon: Icon) => {
           if (icon.tags && Array.isArray(icon.tags)) {
             icon.tags.forEach((tag: string) => tags.add(tag))
           }
@@ -47,7 +50,7 @@ export function TagFilter({ onTagsChange, provider }: TagFilterProps) {
     }
 
     fetchTags()
-  }, [provider, API_URL, onTagsChange])
+  }, [provider, onTagsChange])
 
   const toggleTag = (tag: string) => {
     let newSelectedTags: string[]

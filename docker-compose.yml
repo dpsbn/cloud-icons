@@ -56,8 +56,6 @@ services:
     build:
       context: ./cloudicons-web
       dockerfile: Dockerfile
-      args:
-        - NEXT_PUBLIC_API_URL=http://localhost:3002
     ports:
       - "3000:3000"
     env_file:
@@ -65,6 +63,9 @@ services:
     environment:
       # Override specific settings for Docker
       - NODE_ENV=development
+      # Override API URL for Docker internal networking
+      - NEXT_PUBLIC_API_URL=http://localhost:3002
+      - NEXT_PUBLIC_API_KEY=development
     depends_on:
       - api
     restart: unless-stopped

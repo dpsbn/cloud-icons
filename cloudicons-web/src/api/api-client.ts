@@ -4,7 +4,7 @@
  */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'dev-key';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'development';
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;

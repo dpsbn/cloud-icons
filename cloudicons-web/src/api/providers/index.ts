@@ -8,5 +8,5 @@ import { apiClient } from '../api-client';
  * @returns A promise that resolves to an array of provider names
  */
 export async function getProviders(): Promise<string[]> {
-  return apiClient<string[]>('/api/providers');
+  return apiClient<string[]>('/cloud-providers');
 }
